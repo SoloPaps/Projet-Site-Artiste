@@ -1,0 +1,34 @@
+# angeliqueheduin.fr — en-têtes HTTP (Apache / OVH)
+# Sans ce fichier déployé à la racine du FTP, les balises <meta> ne protègent
+# pas contre le clickjacking ni le sniffing MIME.
+
+<IfModule mod_headers.c>
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://*.tile.openstreetmap.org https://tile.openstreetmap.org; connect-src 'self' https://formspree.io; form-action 'none'; base-uri 'self'; object-src 'none'; frame-src 'none'; frame-ancestors 'none'; upgrade-insecure-requests"
+  Header always set X-Frame-Options "DENY"
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=(), browsing-topics=()"
+  Header always set Strict-Transport-Security "max-age=15552000; includeSubDomains"
+  Header always set Cross-Origin-Opener-Policy "same-origin"
+  Header always set X-Permitted-Cross-Domain-Policies "none"
+</IfModule>
+
+Options -Indexes
+
+<IfModule mod_authz_core.c>
+  <FilesMatch "\.(py|md|mdc)$">
+    Require all denied
+  </FilesMatch>
+  <FilesMatch "^(AGENTS\.md)$">
+    Require all denied
+  </FilesMatch>
+  <FilesMatch "\.(php|phtml|php5|phar)$">
+    Require all denied
+  </FilesMatch>
+</IfModule>
+
+<IfModule mod_alias.c>
+  RedirectMatch 403 ^/tools(/|$)
+  RedirectMatch 403 ^/docs(/|$)
+  RedirectMatch 403 ^/\.cursor(/|$)
+</IfModule>

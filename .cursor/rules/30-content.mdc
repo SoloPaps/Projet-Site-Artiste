@@ -1,0 +1,26 @@
+---
+description: Rules for rewriting the site's text (human, sober, precise) without inventing facts
+globs: **/*.html
+alwaysApply: false
+---
+
+# Text rewriting rules
+
+Follow @docs/GUIDE-REDACTION.md.
+
+## Process
+- Rewrite ONE block at a time. Show the current text and the proposed text side by side, then wait for approval before the next block.
+- Blocks in scope: hero text, biography in the Portrait block, the four panels of the "Ma démarche créative" tab.
+- Edit text nodes only. Do not change HTML structure, classes or ids.
+
+## Facts
+Keep every factual element: the path from osteopath to painting, the anchoring
+in Occitanie, the fragmented stained-glass technique, the totem animals.
+Add NO new fact (dates, exhibitions, awards, techniques, prices, places).
+If a sentence needs a fact you do not have, ask.
+
+## Style
+- Sober, concrete, first-person phrasing where the original uses it.
+- Strongly reduce repeated metaphors ("passeurs d'énergie", "force souveraine", "acte de soin", "énergie essentielle") and excessive bold/italic emphasis.
+- Percentage skill bars ("Huile sur toile — 92 %"): propose a plain list of practiced techniques without percentages, and wait for validation before implementing.
+- Before the first rewrite, check that the voice sample in the guide is filled. If it is not, ask the owner for one or two paragraphs written in her own words.

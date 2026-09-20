@@ -1,0 +1,33 @@
+---
+description: Security rules for HTML/JS (CSP, headers vs meta, contact form, honeypot, safe prefill, external scripts)
+globs: **/*.html,**/*.js
+alwaysApply: false
+---
+
+# Security rules
+
+## Content Security Policy
+- After the shop is removed, remove Stripe/PayPal sources (`js.stripe.com`, `paypal.com`, ...) only if they were needed solely by the shop.
+- Never widen a CSP. Never add `unsafe-inline` or `unsafe-eval`.
+- Add only what is strictly required (for example the form endpoint) and say so in your reply.
+
+## Meta tags versus real HTTP headers
+Check how the security headers are set. If they are `<meta http-equiv>` tags,
+report to the user that `X-Frame-Options`, `frame-ancestors` and
+`X-Content-Type-Options` have no effect there, and that real headers must be set
+on the server/host. Do not claim they protect the site.
+
+## Dynamic content
+- No `eval()`. No `innerHTML` (or equivalent) with dynamic data.
+- The contact form prefill (subject, artwork name) must use `value` / `textContent`. If the artwork name can come from a URL parameter, treat it as untrusted.
+
+## Contact form and honeypot
+- Add a hidden honeypot field: `tabindex="-1"`, `autocomplete="off"`, `aria-hidden="true"`, hidden with the `hidden` attribute or an inline style (no new CSS rule).
+- If Formspree is used, check in its documentation which field name it recognizes as honeypot (commonly `_gotcha`) and use that name.
+- The honeypot reduces spam; it is not a security guarantee.
+- The Formspree form ID is public by design, but must stay a placeholder until the owner provides it.
+
+## Secrets and external scripts
+- Report any key, token or credential hardcoded in the code.
+- For external scripts and styles (Leaflet, etc.): pinned version, `integrity` (SRI) and `crossorigin`. Do not invent hashes: compute them from the official file, or report what is missing.
+- Never add a dependency or CDN without approval.

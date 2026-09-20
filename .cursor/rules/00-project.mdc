@@ -1,0 +1,56 @@
+---
+description: Scope, task order, validation gates and language for the angeliqueheduin.fr partial redesign
+alwaysApply: true
+---
+
+# angeliqueheduin.fr — partial redesign rules
+
+Source of truth: @docs/CAHIER-DES-CHARGES.md — read it before touching any file.
+
+## Context
+Static showcase website of a painter.
+Work: text content, shop already removed, fixing broken features, security,
+and simplifying the home page (hero / portrait / parcours / atelier / démarche)
+so it does not look like a generated template.
+
+**Design freeze (updated):** do not change layout, colors or visual structure of
+`#gallery-section` or `#contact-section` (including the Leaflet map). Palette and
+type on the rest of the home page stay the same (cream, terracotta, Cormorant / DM Sans).
+Do not edit gallery or contact CSS/JS unless asked.
+
+## Project structure — read before editing anything
+- `oeuvres/*.html` — these pages EXIST in this project. Do not assume they are missing;
+  check locally first. Some of them may be generated (see next point) rather than
+  hand-written: check before editing.
+- `tools/build_pages.py`, `tools/check_site.py`, `tools/render_test.py` — build/check
+  scripts. Before editing any file under `oeuvres/` (or any file you suspect is
+  generated), check whether `build_pages.py` produces it from a template or data
+  source. If it does, edit the source/template, never the generated output — an
+  edit to a generated file is lost on the next build. Say explicitly which case
+  applies before editing.
+- `AGENTS.md` at the project root may contain instructions read by other agents/tools
+  besides Cursor. Read it once at the start of the project and flag any conflict or
+  duplication with `.cursor/rules/`. Do not silently let the two diverge.
+
+## Task order (never all at once)
+1. Remove the shop (`boutique.html`, `boutique.css`, `boutique.js`) and every reference to it. Replace the "Acquérir l'œuvre" cart flow with a scroll/link to the contact form (subject "Acquisition d'une œuvre", artwork name appended to the message body).
+2. Fix the contact form (the Formspree ID stays a clearly marked placeholder) and add a honeypot.
+3. Rewrite text, ONE block at a time, waiting for approval between blocks.
+4. Technical and security checks (CSP, social links, artwork detail pages).
+
+## Validation gates
+- Before starting: read the docs and confirm the scope in a few lines.
+- After task 1: list every modified/deleted file and every removed link.
+- Text: propose one block, wait for validation, then the next.
+- Never decide alone: replacement of the percentage skill bars, testimonials, which social links are real, `oeuvres/*.html` pages that may not exist. Propose or flag, then wait.
+- When a real piece of information is missing, say so explicitly. Never guess.
+
+## Design freeze
+Do not change layout, colors or visual structure of the collection (`#gallery-section`)
+or the contact block (`#contact-section`, map included). Do not edit their CSS/JS unless asked.
+The rest of the home page may be simplified (less template chrome) while keeping the same palette and type.
+Removing markup/CSS/JS that only served the shop or the cart remains in scope.
+
+## Language
+- Replies to the user: French.
+- Code identifiers and comments: keep the language already used in the existing code. If unclear, ask.

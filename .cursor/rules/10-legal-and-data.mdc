@@ -1,0 +1,37 @@
+---
+description: Never invent legal/official data; placeholder convention; testimonials, social links and legal pages handling
+alwaysApply: true
+---
+
+# Legal data and unverifiable content (non-negotiable)
+
+## Never invent or complete
+SIRET/SIREN, hosting provider identity, Formspree form ID, payment links, IBAN,
+VAT number, postal address, or any other legal or official data. Never use an
+example value that could be mistaken for a real one.
+
+## Placeholder convention
+- In visible text: `[À COMPLÉTER : <what is needed>]`
+- In code: a comment `TODO-OWNER: <what is needed>` at the exact place to fill.
+- Every placeholder must be reported to the user in your reply.
+- Publication is blocked while any of these strings remains: `VOTRE_`, `À COMPLÉTER`, `TODO-OWNER`, `XXXX`. Say so when you finish a task.
+
+## Testimonials
+The unverifiable testimonials were removed from the home page by owner decision
+(2026-09-20). Do not put them back, edit old copies, or add new ones without
+a new decision from the owner.
+
+## Social links
+Two conflicting sets exist (Pinterest/Facebook vs Instagram/Facebook). Ask which are real. Do not pick.
+
+## Legal pages (mentions légales, CGV, privacy policy)
+- Do not rewrite legal wording.
+- You may remove navigation links to the shop.
+- Flag anything inconsistent with the changes: mentions of the shop, cart, Stripe, PayPal, bank transfer; missing mention of Formspree (contact form) or of third-party map tiles (Leaflet). Let the owner decide, ideally with a qualified person. You are not a lawyer.
+
+## Artwork detail pages
+`oeuvres/*.html` exist in this project. Check locally (file list, not "the live site")
+whether each page referenced in the sitemap and in the JS `works` data actually exists,
+and whether its slug matches the corresponding image/data filename. Report every
+mismatch you find instead of guessing which name is correct. Do not delete or rename
+files yourself — flag and wait.
