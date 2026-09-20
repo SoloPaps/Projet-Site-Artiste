@@ -1194,9 +1194,9 @@ function appliquerSujetContact(sujet) {
       scrollWheelZoom: scrollWheel,
       attributionControl: true
     });
-    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-      maxZoom: 19,
+    L.tileLayer('https://api.maptiler.com/maps/basic-v2/{z}/{x}/{y}.png?key=wmqmSj6KAwzc88lbFHLd', {
+      attribution: '&copy; <a href="https://www.maptiler.com/copyright/" target="_blank">MapTiler</a> &copy; <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> contributors',
+      maxZoom: 20,
       detectRetina: false,
       referrerPolicy: 'strict-origin-when-cross-origin'
     }).addTo(m);
