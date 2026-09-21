@@ -10,7 +10,7 @@
   <meta name="theme-color" content="#c94b22">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta name="robots" content="index, follow">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://*.tile.openstreetmap.org https://tile.openstreetmap.org; connect-src 'self' https://formspree.io; form-action 'none'; base-uri 'self'; object-src 'none'; frame-src 'none'; frame-ancestors 'none'; upgrade-insecure-requests">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://*.tile.openstreetmap.fr https://tile.openstreetmap.fr; connect-src 'self' https://formspree.io; form-action 'none'; base-uri 'self'; object-src 'none'; frame-src 'none'; frame-ancestors 'none'; upgrade-insecure-requests">
   <meta http-equiv="X-Frame-Options" content="DENY">
   <meta http-equiv="X-Content-Type-Options" content="nosniff">
   <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=(), browsing-topics=()">
@@ -101,9 +101,12 @@
   </script>
 
   <link rel="preload" as="image" href="../images/bateau2026.jpg">
+  <link rel="icon" href="../images/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../images/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=DM+Sans:wght@200;300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 
   <!-- Styles partagés des fiches œuvres -->
   <link rel="stylesheet" href="../css/oeuvre.css">
@@ -141,9 +144,12 @@
   <article class="oeuvre-hero" itemscope itemtype="https://schema.org/VisualArtwork" aria-label="Fiche œuvre">
     <div class="oeuvre-image-col">
       <div class="oeuvre-img-wrap">
-        <img src="../images/bateau2026.jpg"
+        <picture>
+          <source type="image/webp" srcset="../images/bateau2026-400.webp 400w, ../images/bateau2026-800.webp 800w" sizes="(max-width: 768px) 100vw, 42vw">
+          <img src="../images/bateau2026.jpg"
              alt="Deux Voiles — peinture acrylique d&#x27;Angélique Héduin. Deux voiliers aux voiles ocre, cuivre et violettes et aux coques brunes glissent sur une mer turquoise striée d&#x27;écume blanche, sous un ciel de nuages bleutés. 50×50 cm, 2026."
-             width="800" height="804" itemprop="image" loading="eager">
+             width="800" height="804" itemprop="image" loading="eager" decoding="async">
+        </picture>
         <span class="oeuvre-img-badge">Disponible</span>
       </div>
     </div>
@@ -193,15 +199,15 @@
     <div class="related-head"><p class="related-eyebrow">Vous aimerez aussi</p><h2 class="related-title">Autres œuvres de la collection</h2></div>
     <div class="related-grid">
       <a href="souvenirs-de-blonville.html" class="related-card">
-        <div class="related-card-img"><img src="../images/souvenirs-de-blonville.jpg" alt="Souvenirs de Blonville" width="400" height="400" loading="lazy"></div>
+        <div class="related-card-img"><picture><source type="image/webp" srcset="../images/souvenirs-de-blonville-400.webp 400w, ../images/souvenirs-de-blonville-800.webp 800w" sizes="400px"><img src="../images/souvenirs-de-blonville.jpg" alt="Souvenirs de Blonville" width="400" height="400" loading="lazy" decoding="async"></picture></div>
         <span class="related-card-title">Souvenirs de Blonville</span><span class="related-card-price">300 €</span>
       </a>
       <a href="le-guetteur-silencieux-2024.html" class="related-card">
-        <div class="related-card-img"><img src="../images/le-guetteur-silencieux-2024.jpg" alt="Le Guetteur Silencieux" width="400" height="400" loading="lazy"></div>
+        <div class="related-card-img"><picture><source type="image/webp" srcset="../images/le-guetteur-silencieux-2024-400.webp 400w, ../images/le-guetteur-silencieux-2024-800.webp 800w" sizes="400px"><img src="../images/le-guetteur-silencieux-2024.jpg" alt="Le Guetteur Silencieux" width="400" height="400" loading="lazy" decoding="async"></picture></div>
         <span class="related-card-title">Le Guetteur Silencieux</span><span class="related-card-price">450 €</span>
       </a>
       <a href="raconte-moi-une-histoire.html" class="related-card">
-        <div class="related-card-img"><img src="../images/raconte-moi-une-histoire.jpg" alt="Raconte-moi une histoire !" width="400" height="400" loading="lazy"></div>
+        <div class="related-card-img"><picture><source type="image/webp" srcset="../images/raconte-moi-une-histoire-400.webp 400w, ../images/raconte-moi-une-histoire-800.webp 800w" sizes="400px"><img src="../images/raconte-moi-une-histoire.jpg" alt="Raconte-moi une histoire !" width="400" height="400" loading="lazy" decoding="async"></picture></div>
         <span class="related-card-title">Raconte-moi une histoire !</span><span class="related-card-price">380 €</span>
       </a>
     </div>

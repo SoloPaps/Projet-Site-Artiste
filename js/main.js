@@ -1,5 +1,17 @@
 'use strict';
 
+function prefersReducedMotion() {
+  try {
+    return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  } catch (e) {
+    return false;
+  }
+}
+function scrollToEl(el) {
+  if (!el) return;
+  el.scrollIntoView({ behavior: prefersReducedMotion() ? 'auto' : 'smooth' });
+}
+
 /* ══════════════════════════════
    HAMBURGER MENU (mobile)
 ══════════════════════════════ */
@@ -8,37 +20,50 @@
   const drawer = document.getElementById('nav-drawer');
   if (!btn || !drawer) return;
 
+  function firstLink() {
+    return drawer.querySelector('.nav-drawer-link, .nav-drawer-cta');
+  }
   function openDrawer() {
     btn.classList.add('open');
     btn.setAttribute('aria-expanded', 'true');
     drawer.classList.add('open');
     drawer.setAttribute('aria-hidden', 'false');
+    drawer.inert = false;
+    const link = firstLink();
+    if (link) link.focus();
   }
   function closeDrawer() {
+    const wasOpen = drawer.classList.contains('open');
     btn.classList.remove('open');
     btn.setAttribute('aria-expanded', 'false');
     drawer.classList.remove('open');
     drawer.setAttribute('aria-hidden', 'true');
+    drawer.inert = true;
+    if (wasOpen) btn.focus();
   }
 
-  btn.addEventListener('click', () => {
+  drawer.inert = true;
+
+  btn.addEventListener('click', (e) => {
+    e.stopPropagation();
     btn.classList.contains('open') ? closeDrawer() : openDrawer();
   });
 
-  // Close on link click
   drawer.querySelectorAll('.nav-drawer-link, .nav-drawer-cta').forEach(link => {
     link.addEventListener('click', closeDrawer);
   });
 
-  // Close on outside click
   document.addEventListener('click', e => {
     if (!btn.contains(e.target) && !drawer.contains(e.target)) closeDrawer();
   });
 
-  // Close on scroll
-  window.addEventListener('scroll', closeDrawer, { passive: true });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && drawer.classList.contains('open')) {
+      e.preventDefault();
+      closeDrawer();
+    }
+  });
 
-  // Sync active state in drawer
   const drawerLinks = Array.from(drawer.querySelectorAll('.nav-drawer-link[data-section]'));
   const sectionObserverDrawer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -84,8 +109,8 @@ const sectionObserver = new IntersectionObserver((entries) => {
   threshold: 0
 });
 
-// Observer hero + gallery-section
-['hero', 'gallery-section'].forEach(id => {
+// Observer hero + portfolio + collection + contact
+['hero', 'portfolio-section', 'gallery-section', 'contact-section'].forEach(id => {
   const el = document.getElementById(id);
   if (el) sectionObserver.observe(el);
 });
@@ -294,12 +319,13 @@ const works = [
    Utilisé par la galerie et par l'arrivée depuis une fiche œuvre.
 ══════════════════════════════ */
 function appliquerSujetContact(sujet) {
-  const chips = Array.from(document.querySelectorAll('.subj-chip'));
+  const chips = Array.from(document.querySelectorAll('#subj-chips .subj-chip'));
   const chip  = chips.find(c => c.dataset.val === sujet);
   if (chip) { chip.click(); return; }
-  // Aucune puce ne correspond : on renseigne le champ et on n'en laisse aucune
-  // sélectionnée, pour ne pas afficher un libellé contredisant le sujet envoyé.
-  chips.forEach(c => c.classList.remove('active'));
+  chips.forEach(c => {
+    c.classList.remove('active');
+    c.setAttribute('aria-pressed', 'false');
+  });
   const champ = document.getElementById('cf-subject');
   if (champ) champ.value = sujet;
 }
@@ -311,7 +337,28 @@ function appliquerSujetContact(sujet) {
 
   let current       = 0;
   let transitioning = false;
-  const liked       = new Set();
+
+  const FAV_KEY = 'ah-favoris';
+  function loadFavIdx() {
+    const set = new Set();
+    try {
+      const raw = JSON.parse(localStorage.getItem(FAV_KEY) || '[]');
+      if (!Array.isArray(raw)) return set;
+      raw.forEach(function (s) {
+        if (typeof s !== 'string' || !SLUG_OK.test(s)) return;
+        const idx = works.findIndex(function (w) { return w.slug === s; });
+        if (idx >= 0) set.add(idx);
+      });
+    } catch (e) {}
+    return set;
+  }
+  function saveFavs() {
+    const slugs = [];
+    liked.forEach(function (i) {
+      if (works[i] && works[i].slug) slugs.push(works[i].slug);
+    });
+    try { localStorage.setItem(FAV_KEY, JSON.stringify(slugs)); } catch (e) {}
+  }
 
   const strip  = document.getElementById('strip');
   const awrap  = document.getElementById('awrap');
@@ -319,10 +366,12 @@ function appliquerSujetContact(sujet) {
   const pbar   = document.getElementById('pbar');
   const btnAcq = document.getElementById('btnacq');
   const btnFav = document.getElementById('btnfav');
+  if (!strip || !awrap || !cdots) return;
 
   const TAG_CLASS = new Set(['tag-b', 'tag-o', 'tag-g', 'tag-p', 'tag-gold', 'tag-sun', 'tag-t', 'tag-r', 'tag-decor']);
   const IMG_SRC_OK = /^images\/[A-Za-z0-9._+-]+\.(jpe?g|png|webp)$/;
   const SLUG_OK = /^oeuvres\/[a-z0-9-]+\.html$/;
+  const liked = loadFavIdx();
 
   function safeImgSrc(src) {
     return (typeof src === 'string' && IMG_SRC_OK.test(src)) ? src : '';
@@ -345,7 +394,7 @@ function appliquerSujetContact(sujet) {
       }
     }
   }
-  function appendArtworkImage(parent, src, alt, w, h) {
+  function appendArtworkImage(parent, src, alt, w, h, opts) {
     const safe = safeImgSrc(src);
     if (!safe) return;
     const img = document.createElement('img');
@@ -353,48 +402,104 @@ function appliquerSujetContact(sujet) {
     img.alt = typeof alt === 'string' ? alt : '';
     if (w) img.width = w;
     if (h) img.height = h;
-    parent.appendChild(img);
+    img.decoding = 'async';
+    if (opts && opts.lazy) img.loading = 'lazy';
+    const stem = safe.replace(/\.(jpe?g|png)$/i, '');
+    if (stem !== safe) {
+      const pic = document.createElement('picture');
+      const source = document.createElement('source');
+      source.type = 'image/webp';
+      source.srcset = stem + '-400.webp 400w, ' + stem + '-800.webp 800w';
+      source.sizes = (opts && opts.sizes) ? opts.sizes : '(max-width: 700px) 400px, 800px';
+      pic.appendChild(source);
+      pic.appendChild(img);
+      parent.appendChild(pic);
+    } else {
+      parent.appendChild(img);
+    }
   }
 
   /* ── BUILD DOM ── */
   works.forEach((w, i) => {
-
-    // Artwork canvas — image avec décor si disponible, sinon SVG original
     const a = document.createElement('div');
     a.className = 'artwork ' + (i === 0 ? 'in' : 'out');
     a.id = 'aw-' + i;
-    if (w.imgDecor) {
-      appendArtworkImage(a, w.imgDecor, w.imgAlt, 600, 600);
-    } else {
-      const svgSource = document.getElementById(w.svgId);
-      if (svgSource) {
-        Array.from(svgSource.childNodes).forEach(function (n) {
-          a.appendChild(n.cloneNode(true));
-        });
-      } else {
-        appendArtworkImage(a, w.img, w.imgAlt, 600, 600);
-      }
-    }
     awrap.appendChild(a);
 
-    // Miniature strip — toujours l'image originale sans décor
-    const th = document.createElement('div');
+    const th = document.createElement('button');
+    th.type = 'button';
     th.className = 'thumb' + (i === 0 ? ' active' : '');
-    appendArtworkImage(th, w.img, w.imgAlt, 32, 32);
-    const thumbImg = th.querySelector('img');
-    if (thumbImg) thumbImg.loading = 'lazy';
+    const titlePlain = String(w.title || '').replace(/<[^>]+>/g, '');
+    th.setAttribute('aria-label', titlePlain || ('Œuvre ' + (i + 1)));
+    if (i === 0) th.setAttribute('aria-current', 'true');
+    appendArtworkImage(th, w.img, '', 32, 32, { lazy: true, sizes: '32px' });
     th.addEventListener('click', () => go(i));
     strip.appendChild(th);
 
-    // Dot
-    const cd = document.createElement('div');
+    const cd = document.createElement('button');
+    cd.type = 'button';
     cd.className = 'cdot' + (i === 0 ? ' active' : '');
+    cd.setAttribute('aria-label', 'Aller à l\'œuvre ' + (i + 1));
+    cd.addEventListener('click', function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      go(i);
+    });
     cdots.appendChild(cd);
   });
 
   const artEls   = Array.from(awrap.querySelectorAll('.artwork'));
   const thumbEls = Array.from(strip.querySelectorAll('.thumb'));
   const dotEls   = Array.from(cdots.querySelectorAll('.cdot'));
+
+  function ensureArtwork(i) {
+    const a = artEls[i];
+    const w = works[i];
+    if (!a || !w || a.querySelector('img')) return;
+    const src = w.imgDecor || w.img;
+    appendArtworkImage(a, src, w.imgAlt, 600, 600, { lazy: i !== current });
+  }
+  function preloadNeighbors(i) {
+    const n = works.length;
+    if (!n) return;
+    ensureArtwork(i);
+    ensureArtwork((i + 1) % n);
+    ensureArtwork((i - 1 + n) % n);
+  }
+
+  const favBox = document.getElementById('gal-favs');
+  const favTrack = document.getElementById('gal-favs-track');
+  function renderFavs() {
+    if (!favBox || !favTrack) return;
+    favTrack.textContent = '';
+    const idxs = [];
+    liked.forEach(function (i) { idxs.push(i); });
+    idxs.sort(function (a, b) { return a - b; });
+    favBox.hidden = idxs.length === 0;
+    idxs.forEach(function (i) {
+      const w = works[i];
+      if (!w) return;
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'gal-favs-item';
+      const plain = String(w.title || '').replace(/<[^>]+>/g, '');
+      b.setAttribute('aria-label', 'Voir ' + plain);
+      appendArtworkImage(b, w.img, '', 48, 48, { lazy: true, sizes: '36px' });
+      const cap = document.createElement('span');
+      cap.className = 'gal-favs-name';
+      cap.textContent = plain;
+      b.appendChild(cap);
+      b.addEventListener('click', function () { go(i); });
+      favTrack.appendChild(b);
+    });
+  }
+  function syncFavBtn() {
+    if (!btnFav) return;
+    const on = liked.has(current);
+    btnFav.classList.toggle('liked', on);
+    btnFav.setAttribute('aria-pressed', on ? 'true' : 'false');
+    btnFav.setAttribute('aria-label', on ? 'Retirer des favoris' : 'Ajouter aux favoris');
+  }
 
   let filterSeries = '';
   function visibleList() {
@@ -485,7 +590,7 @@ function appliquerSujetContact(sujet) {
       const canvasLink = document.getElementById('canvas-link');
       if (canvasLink) canvasLink.href = href;
       pbar.style.width = ((pos + 1) / total * 100) + '%';
-      btnFav.classList.toggle('liked', liked.has(i));
+      syncFavBtn();
 
       if (animate) {
         targets.forEach(el => {
@@ -504,13 +609,16 @@ function appliquerSujetContact(sujet) {
 
     artEls[current].className  = 'artwork out';
     thumbEls[current].classList.remove('active');
+    thumbEls[current].removeAttribute('aria-current');
     dotEls[current].classList.remove('active');
 
     current = ((i % works.length) + works.length) % works.length;
 
     artEls[current].className  = 'artwork in';
     thumbEls[current].classList.add('active');
+    thumbEls[current].setAttribute('aria-current', 'true');
     dotEls[current].classList.add('active');
+    preloadNeighbors(current);
 
     updatePanel(current, true);
     setTimeout(() => { transitioning = false; }, 460);
@@ -581,14 +689,16 @@ function appliquerSujetContact(sujet) {
     }
 
     const contact = document.getElementById('contact-section');
-    if (contact) contact.scrollIntoView({ behavior: 'smooth' });
+    if (contact) scrollToEl(contact);
   });
 
   // Favori
   btnFav.addEventListener('click', e => {
     e.stopPropagation();
     liked.has(current) ? liked.delete(current) : liked.add(current);
-    btnFav.classList.toggle('liked', liked.has(current));
+    saveFavs();
+    syncFavBtn();
+    renderFavs();
   });
 
   /* ── INIT ── */
@@ -608,23 +718,20 @@ function appliquerSujetContact(sujet) {
     if (i < 0 || i === current) return;
     artEls[current].className = 'artwork out';
     thumbEls[current].classList.remove('active');
+    thumbEls[current].removeAttribute('aria-current');
     dotEls[current].classList.remove('active');
     current = i;
     artEls[current].className = 'artwork in';
     thumbEls[current].classList.add('active');
+    thumbEls[current].setAttribute('aria-current', 'true');
     dotEls[current].classList.add('active');
   })();
+  preloadNeighbors(current);
   updatePanel(current, false);
+  renderFavs();
+  syncFavBtn();
 
 })();
-
-/* ══════════════════════════════
-   NAV: observe new sections
-══════════════════════════════ */
-['portfolio-section','contact-section'].forEach(id => {
-  const el = document.getElementById(id);
-  if (el) sectionObserver.observe(el);
-});
 
 /* ══════════════════════════════
    PARCOURS — années / toiles
@@ -691,8 +798,11 @@ function appliquerSujetContact(sujet) {
   document.querySelectorAll('.subj-chip').forEach(chip => {
     chip.addEventListener('click', () => {
       if (chip.closest('.atelier-when') || chip.closest('.pref-chips')) return;
-      document.querySelectorAll('#subj-chips .subj-chip').forEach(c => c.classList.remove('active'));
-      chip.classList.add('active');
+      document.querySelectorAll('#subj-chips .subj-chip').forEach(c => {
+        const on = c === chip;
+        c.classList.toggle('active', on);
+        c.setAttribute('aria-pressed', on ? 'true' : 'false');
+      });
       const subjectInput = document.getElementById('cf-subject');
       if (subjectInput) subjectInput.value = chip.dataset.val;
       syncAtelierSlot();
@@ -1013,6 +1123,7 @@ function appliquerSujetContact(sujet) {
 
   const form    = document.getElementById('contact-form');
   const success = document.getElementById('form-success');
+  const formError = document.getElementById('form-error');
   const btnSend = document.getElementById('btn-send');
   const formReadyAt = Date.now() + 3000;
   const missingEl = document.getElementById('form-missing');
@@ -1020,6 +1131,38 @@ function appliquerSujetContact(sujet) {
   const telInput = document.getElementById('cf-tel');
   if (!form) return;
   if (success) success.setAttribute('aria-live', 'polite');
+  const sendLabel = btnSend ? btnSend.querySelector('.btn-send-label') : null;
+  const FIELD_IDS = ['cf-prenom','cf-nom','cf-email','cf-msg'];
+
+  function showFormError(msg) {
+    if (!formError) return;
+    formError.hidden = false;
+    formError.textContent = msg;
+  }
+  function hideFormError() {
+    if (!formError) return;
+    formError.hidden = true;
+    formError.textContent = '';
+  }
+  function setFieldInvalid(el, invalid) {
+    if (!el) return;
+    el.classList.toggle('error', !!invalid);
+    el.setAttribute('aria-invalid', invalid ? 'true' : 'false');
+  }
+  function setSendLabel(text) {
+    if (sendLabel) sendLabel.textContent = text;
+  }
+  if (btnSend) {
+    btnSend.disabled = true;
+    setSendLabel('Patientez…');
+    const wait = Math.max(0, formReadyAt - Date.now());
+    setTimeout(function () {
+      if (!success || !success.classList.contains('show')) {
+        btnSend.disabled = false;
+        setSendLabel('Envoyer le message');
+      }
+    }, wait);
+  }
 
   function missingFields() {
     const list = [];
@@ -1055,19 +1198,27 @@ function appliquerSujetContact(sujet) {
 
   form.addEventListener('submit', e => {
     e.preventDefault();
+    hideFormError();
     const gotcha = form.querySelector('input[name="_gotcha"]');
     if (gotcha && gotcha.value) return;
-    if (Date.now() < formReadyAt) return;
+    if (Date.now() < formReadyAt) {
+      setSendLabel('Patientez…');
+      return;
+    }
     let valid = true;
-    ['cf-prenom','cf-nom','cf-email','cf-msg'].forEach(id => {
+    FIELD_IDS.forEach(id => {
       const el = document.getElementById(id);
-      if (el && !el.value.trim()) { el.classList.add('error'); valid = false; }
-      else if (el) el.classList.remove('error');
+      const bad = !!(el && !el.value.trim());
+      setFieldInvalid(el, bad);
+      if (bad) valid = false;
     });
-    if (!document.getElementById('cf-privacy')?.checked) valid = false;
+    const privacy = document.getElementById('cf-privacy');
+    const privacyBad = !!(privacy && !privacy.checked);
+    setFieldInvalid(privacy, privacyBad);
+    if (privacyBad) valid = false;
     if (isAtelierSujet()) {
       if (!atelierJour || !atelierJour.value) {
-        if (atelierJour) atelierJour.classList.add('error');
+        setFieldInvalid(atelierJour, true);
         valid = false;
       }
       if (!atelierWhen) valid = false;
@@ -1082,7 +1233,7 @@ function appliquerSujetContact(sujet) {
       }
     }
     btnSend.disabled = true;
-    btnSend.querySelector('.btn-send-label').textContent = 'Envoi en cours…';
+    setSendLabel('Envoi en cours…');
     fetch('https://formspree.io/f/mjykyvno', {
       method: 'POST',
       body: new FormData(form),
@@ -1095,6 +1246,8 @@ function appliquerSujetContact(sujet) {
           success.setAttribute('aria-hidden', 'false');
         }
         form.reset();
+        FIELD_IDS.forEach(function (id) { setFieldInvalid(document.getElementById(id), false); });
+        setFieldInvalid(privacy, false);
         if (telField) telField.reset();
         atelierWhen = '';
         syncAtelierSlot();
@@ -1102,25 +1255,28 @@ function appliquerSujetContact(sujet) {
         updateMissing();
       } else {
         btnSend.disabled = false;
-        btnSend.querySelector('.btn-send-label').textContent = 'Réessayer';
-        alert('Une erreur est survenue. Merci de réessayer ou d\'écrire directement à angeliqueheduin@gmail.com');
+        setSendLabel('Réessayer');
+        showFormError('Une erreur est survenue. Merci de réessayer ou d\'écrire directement à angeliqueheduin@gmail.com');
       }
     })
     .catch(() => {
       btnSend.disabled = false;
-      btnSend.querySelector('.btn-send-label').textContent = 'Réessayer';
-      alert('Problème de connexion. Merci d\'écrire directement à angeliqueheduin@gmail.com');
+      setSendLabel('Réessayer');
+      showFormError('Problème de connexion. Merci d\'écrire directement à angeliqueheduin@gmail.com');
     });
   });
 
-  ['cf-prenom','cf-nom','cf-email','cf-msg'].forEach(id => {
+  FIELD_IDS.forEach(id => {
     document.getElementById(id)?.addEventListener('input', function () {
-      this.classList.remove('error');
+      setFieldInvalid(this, false);
       updateMissing();
     });
   });
   const privacyEl = document.getElementById('cf-privacy');
-  if (privacyEl) privacyEl.addEventListener('change', updateMissing);
+  if (privacyEl) privacyEl.addEventListener('change', function () {
+    setFieldInvalid(privacyEl, false);
+    updateMissing();
+  });
   if (telInput) telInput.addEventListener('input', function () { syncPref(); updateMissing(); });
   syncAtelierSlot();
   syncPref();
@@ -1154,7 +1310,19 @@ function appliquerSujetContact(sujet) {
 (function () {
   const mapEl     = document.getElementById('leaflet-map');
   const mapElFull = document.getElementById('leaflet-map-full');
-  if (!mapEl || typeof L === 'undefined') return;
+  if (!mapEl) return;
+
+  function withLeaflet(fn) {
+    if (typeof L !== 'undefined') { fn(); return; }
+    var s = document.querySelector('script[data-leaflet]');
+    if (!s) {
+      s = document.createElement('script');
+      s.src = 'vendor/leaflet/leaflet.min.js';
+      s.setAttribute('data-leaflet', '1');
+      document.head.appendChild(s);
+    }
+    s.addEventListener('load', fn);
+  }
 
   // Coordonnées précises : Chemin du Mairoual, Bessan
   const LAT = 43.35667144154177, LNG = 3.4191283889352744;
@@ -1194,11 +1362,13 @@ function appliquerSujetContact(sujet) {
       scrollWheelZoom: scrollWheel,
       attributionControl: true
     });
-    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    // OSM.org bloque les tuiles sans Referer (« Access blocked » 403).
+    // Leaflet vendored n'applique pas referrerPolicy : on utilise OSM France.
+    L.tileLayer('https://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Tiles &copy; <a href="https://www.openstreetmap.fr">OSM France</a>',
       maxZoom: 19,
-      detectRetina: false,
-      referrerPolicy: 'strict-origin-when-cross-origin'
+      subdomains: 'abc',
+      detectRetina: false
     }).addTo(m);
     applySepia(m);
     const isMobile = window.innerWidth < 600;
@@ -1234,15 +1404,17 @@ function appliquerSujetContact(sujet) {
 
   const mapObs = new IntersectionObserver(function (entries) {
     if (!entries[0].isIntersecting) return;
-    if (!mini) {
-      mini = createMap(mapEl, 15, false, true);
-      map = mini.map;
-    }
-    setTimeout(function () {
-      map.invalidateSize();
-      mini.marker.openPopup();
-    }, 200);
     mapObs.disconnect();
+    withLeaflet(function () {
+      if (!mini) {
+        mini = createMap(mapEl, 15, false, true);
+        map = mini.map;
+      }
+      setTimeout(function () {
+        map.invalidateSize();
+        mini.marker.openPopup();
+      }, 200);
+    });
   }, { threshold: 0.1 });
   mapObs.observe(mapEl);
 
@@ -1260,13 +1432,15 @@ function appliquerSujetContact(sujet) {
     btnExpand.addEventListener('click', function () {
       modal.classList.add('open');
       document.body.style.overflow = 'hidden';
-      requestAnimationFrame(function () {
-        if (!mapFull) {
-          var full = createMap(mapElFull, 16, true, false);
-          mapFull = full.map;
-        }
-        mapFull.invalidateSize({ animate: false });
-        mapFull.setView([LAT, LNG], 16);
+      withLeaflet(function () {
+        requestAnimationFrame(function () {
+          if (!mapFull) {
+            var full = createMap(mapElFull, 16, true, false);
+            mapFull = full.map;
+          }
+          mapFull.invalidateSize({ animate: false });
+          mapFull.setView([LAT, LNG], 16);
+        });
       });
       setTimeout(function () { if (btnClose) btnClose.focus(); }, 120);
     });

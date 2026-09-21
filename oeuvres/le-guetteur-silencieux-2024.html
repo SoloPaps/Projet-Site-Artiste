@@ -11,7 +11,7 @@
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta name="robots" content="index, follow">
   <!-- AUDIT — En-têtes de sécurité (CSP, X-Frame, nosniff) -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://*.tile.openstreetmap.org https://tile.openstreetmap.org; connect-src 'self' https://formspree.io; form-action 'none'; base-uri 'self'; object-src 'none'; frame-src 'none'; frame-ancestors 'none'; upgrade-insecure-requests">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://*.tile.openstreetmap.fr https://tile.openstreetmap.fr; connect-src 'self' https://formspree.io; form-action 'none'; base-uri 'self'; object-src 'none'; frame-src 'none'; frame-ancestors 'none'; upgrade-insecure-requests">
   <meta http-equiv="X-Frame-Options" content="DENY">
   <meta http-equiv="X-Content-Type-Options" content="nosniff">
   <!-- AUDIT — Permissions-Policy -->
@@ -84,11 +84,14 @@
   </script>
 
     <!-- AUDIT — preload image LCP (première image visible) -->
+    <link rel="icon" href="../images/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../images/apple-touch-icon.png">
   <link rel="preload" as="image" href="../images/le-guetteur-silencieux-2024.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <!-- AUDIT — SRI non applicable sur Google Fonts (URL dynamique) ; utiliser self-hosted fonts pour SRI complet -->
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=DM+Sans:wght@200;300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 
   <!-- ══ CSS VARIABLES + NAVBAR ══ -->
   <style>
@@ -96,6 +99,7 @@
     .skip-link:focus { top: 16px; }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    picture { display: contents; }
     :root {
       --ink:      #1c1710;
       --ink-soft: #6a6057;
@@ -312,9 +316,9 @@
   <article class="oeuvre-hero" itemscope itemtype="https://schema.org/VisualArtwork" aria-label="Fiche œuvre"><!-- AUDIT — aria-label sur article -->
     <div class="oeuvre-image-col">
       <div class="oeuvre-img-wrap">
-        <img src="../images/le-guetteur-silencieux-2024.jpg"
+        <picture><source type="image/webp" srcset="../images/le-guetteur-silencieux-2024-400.webp 400w, ../images/le-guetteur-silencieux-2024-800.webp 800w" sizes="(max-width: 700px) 400px, 800px"><img src="../images/le-guetteur-silencieux-2024.jpg"
              alt="Le Guetteur Silencieux 2024 — peinture acrylique d'Angélique Héduin. Chat en profil majestueux, œil doré en amande, robe en facettes de vitrail coloré sur fond mandala orange. Dorures et collage sur toile 50×60 cm."
-             width="800" height="970" itemprop="image" loading="eager">
+             width="800" height="970" itemprop="image" loading="eager"></picture>
         <span class="oeuvre-img-badge" aria-label="Disponible"><!-- AUDIT — aria-label badge image -->Disponible</span>
       </div>
     </div>
@@ -362,15 +366,15 @@
     <div class="related-head"><p class="related-eyebrow">Vous aimerez aussi</p><h2 class="related-title">Autres œuvres de la collection</h2></div>
     <div class="related-grid">
       <a href="raconte-moi-une-histoire.html" class="related-card">
-        <div class="related-card-img"><img src="../images/raconte-moi-une-histoire.jpg" alt="Raconte-moi une histoire !" width="400" height="400" loading="lazy"></div>
+        <div class="related-card-img"><picture><source type="image/webp" srcset="../images/raconte-moi-une-histoire-400.webp 400w, ../images/raconte-moi-une-histoire-800.webp 800w" sizes="400px"><img src="../images/raconte-moi-une-histoire.jpg" alt="Raconte-moi une histoire !" width="400" height="400" loading="lazy"></picture></div>
         <span class="related-card-title">Raconte-moi une histoire !</span><span class="related-card-price">380 €</span>
       </a>
       <a href="le-cerf-des-mille-signes-2025.html" class="related-card">
-        <div class="related-card-img"><img src="../images/cerf2025.jpg" alt="Le Cerf des Mille Signes" width="400" height="400" loading="lazy"></div>
+        <div class="related-card-img"><picture><source type="image/webp" srcset="../images/cerf2025-400.webp 400w, ../images/cerf2025-800.webp 800w" sizes="400px"><img src="../images/cerf2025.jpg" alt="Le Cerf des Mille Signes" width="400" height="400" loading="lazy"></picture></div>
         <span class="related-card-title">Le Cerf des Mille Signes</span><span class="related-card-price">Prix sur demande</span>
       </a>
       <a href="klimt-juin-2023.html" class="related-card">
-        <div class="related-card-img"><img src="../images/klimt-juin-2023.jpg" alt="Klimt — Hommage au Baiser" width="400" height="400" loading="lazy"></div>
+        <div class="related-card-img"><picture><source type="image/webp" srcset="../images/klimt-juin-2023-400.webp 400w, ../images/klimt-juin-2023-800.webp 800w" sizes="400px"><img src="../images/klimt-juin-2023.jpg" alt="Klimt — Hommage au Baiser" width="400" height="400" loading="lazy"></picture></div>
         <span class="related-card-title">Klimt — Hommage au Baiser</span><span class="related-card-price">400 €</span>
       </a>
     </div>

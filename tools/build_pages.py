@@ -299,7 +299,7 @@ def render(w):
     for r in w["rel"]:
         t, im, pg = EXISTING[r]
         cards.append(f'''      <a href="{pg}" class="related-card">
-        <div class="related-card-img"><img src="../images/{im}" alt="{esc(t)}" width="400" height="400" loading="lazy"></div>
+        <div class="related-card-img"><picture><source type="image/webp" srcset="../images/{im.rsplit('.',1)[0]}-400.webp 400w, ../images/{im.rsplit('.',1)[0]}-800.webp 800w" sizes="400px"><img src="../images/{im}" alt="{esc(t)}" width="400" height="400" loading="lazy" decoding="async"></picture></div>
         <span class="related-card-title">{esc(t)}</span><span class="related-card-price">{PRICES.get(r, "Prix sur demande")}</span>
       </a>''')
     cards_html = "\n".join(cards)
@@ -316,7 +316,7 @@ def render(w):
   <meta name="theme-color" content="#c94b22">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta name="robots" content="index, follow">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://*.tile.openstreetmap.org https://tile.openstreetmap.org; connect-src 'self' https://formspree.io; form-action 'none'; base-uri 'self'; object-src 'none'; frame-src 'none'; frame-ancestors 'none'; upgrade-insecure-requests">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://*.tile.openstreetmap.fr https://tile.openstreetmap.fr; connect-src 'self' https://formspree.io; form-action 'none'; base-uri 'self'; object-src 'none'; frame-src 'none'; frame-ancestors 'none'; upgrade-insecure-requests">
   <meta http-equiv="X-Frame-Options" content="DENY">
   <meta http-equiv="X-Content-Type-Options" content="nosniff">
   <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=(), browsing-topics=()">
@@ -346,9 +346,12 @@ def render(w):
   </script>
 
   <link rel="preload" as="image" href="../images/{f}.jpg">
+  <link rel="icon" href="../images/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../images/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=DM+Sans:wght@200;300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 
   <!-- Styles partagés des fiches œuvres -->
   <link rel="stylesheet" href="../css/oeuvre.css">
@@ -386,9 +389,12 @@ def render(w):
   <article class="oeuvre-hero" itemscope itemtype="https://schema.org/VisualArtwork" aria-label="Fiche œuvre">
     <div class="oeuvre-image-col">
       <div class="oeuvre-img-wrap">
-        <img src="../images/{f}.jpg"
+        <picture>
+          <source type="image/webp" srcset="../images/{f}-400.webp 400w, ../images/{f}-800.webp 800w" sizes="(max-width: 768px) 100vw, 42vw">
+          <img src="../images/{f}.jpg"
              alt="{esc(w['alt'])}"
-             width="{hw}" height="{hh}" itemprop="image" loading="eager">
+             width="{hw}" height="{hh}" itemprop="image" loading="eager" decoding="async">
+        </picture>
         <span class="oeuvre-img-badge">{esc(w['badge'])}</span>
       </div>
     </div>

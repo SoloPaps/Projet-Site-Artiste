@@ -10,7 +10,7 @@
   <meta name="theme-color" content="#c94b22">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta name="robots" content="index, follow">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://*.tile.openstreetmap.org https://tile.openstreetmap.org; connect-src 'self' https://formspree.io; form-action 'none'; base-uri 'self'; object-src 'none'; frame-src 'none'; frame-ancestors 'none'; upgrade-insecure-requests">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://*.tile.openstreetmap.fr https://tile.openstreetmap.fr; connect-src 'self' https://formspree.io; form-action 'none'; base-uri 'self'; object-src 'none'; frame-src 'none'; frame-ancestors 'none'; upgrade-insecure-requests">
   <meta http-equiv="X-Frame-Options" content="DENY">
   <meta http-equiv="X-Content-Type-Options" content="nosniff">
   <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=(), browsing-topics=()">
@@ -102,9 +102,12 @@
   </script>
 
   <link rel="preload" as="image" href="../images/taureau2026.jpg">
+  <link rel="icon" href="../images/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../images/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=DM+Sans:wght@200;300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 
   <!-- Styles partagés des fiches œuvres -->
   <link rel="stylesheet" href="../css/oeuvre.css">
@@ -142,9 +145,12 @@
   <article class="oeuvre-hero" itemscope itemtype="https://schema.org/VisualArtwork" aria-label="Fiche œuvre">
     <div class="oeuvre-image-col">
       <div class="oeuvre-img-wrap">
-        <img src="../images/taureau2026.jpg"
+        <picture>
+          <source type="image/webp" srcset="../images/taureau2026-400.webp 400w, ../images/taureau2026-800.webp 800w" sizes="(max-width: 768px) 100vw, 42vw">
+          <img src="../images/taureau2026.jpg"
              alt="Féria — peinture acrylique d&#x27;Angélique Héduin. Taureau en facettes rouges, turquoise et brunes, mufle rehaussé de feuille d&#x27;or, face à un torero en habit de lumière jaune tenant une cape rouge ornée de motifs, fond de losanges et chevrons. Le mot Féria est peint en bas. 100×130 cm, 2026."
-             width="800" height="1084" itemprop="image" loading="eager">
+             width="800" height="1084" itemprop="image" loading="eager" decoding="async">
+        </picture>
         <span class="oeuvre-img-badge">Grand format</span>
       </div>
     </div>
@@ -197,15 +203,15 @@
     <div class="related-head"><p class="related-eyebrow">Vous aimerez aussi</p><h2 class="related-title">Autres œuvres de la collection</h2></div>
     <div class="related-grid">
       <a href="le-cheval-soleil-2026.html" class="related-card">
-        <div class="related-card-img"><img src="../images/cheval2026.jpg" alt="Le Cheval Soleil" width="400" height="400" loading="lazy"></div>
+        <div class="related-card-img"><picture><source type="image/webp" srcset="../images/cheval2026-400.webp 400w, ../images/cheval2026-800.webp 800w" sizes="400px"><img src="../images/cheval2026.jpg" alt="Le Cheval Soleil" width="400" height="400" loading="lazy" decoding="async"></picture></div>
         <span class="related-card-title">Le Cheval Soleil</span><span class="related-card-price">Prix sur demande</span>
       </a>
       <a href="lane-de-b100-2025.html" class="related-card">
-        <div class="related-card-img"><img src="../images/lane-de-b100-2025.jpg" alt="L&#x27;Âne de B100 2025" width="400" height="400" loading="lazy"></div>
+        <div class="related-card-img"><picture><source type="image/webp" srcset="../images/lane-de-b100-2025-400.webp 400w, ../images/lane-de-b100-2025-800.webp 800w" sizes="400px"><img src="../images/lane-de-b100-2025.jpg" alt="L&#x27;Âne de B100 2025" width="400" height="400" loading="lazy" decoding="async"></picture></div>
         <span class="related-card-title">L&#x27;Âne de B100 2025</span><span class="related-card-price">470 €</span>
       </a>
       <a href="le-flamboyant-juin-2023.html" class="related-card">
-        <div class="related-card-img"><img src="../images/le-flamboyant-juin-2023.jpg" alt="Le Flamboyant" width="400" height="400" loading="lazy"></div>
+        <div class="related-card-img"><picture><source type="image/webp" srcset="../images/le-flamboyant-juin-2023-400.webp 400w, ../images/le-flamboyant-juin-2023-800.webp 800w" sizes="400px"><img src="../images/le-flamboyant-juin-2023.jpg" alt="Le Flamboyant" width="400" height="400" loading="lazy" decoding="async"></picture></div>
         <span class="related-card-title">Le Flamboyant</span><span class="related-card-price">350 €</span>
       </a>
     </div>

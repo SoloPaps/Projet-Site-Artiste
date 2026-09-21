@@ -43,7 +43,7 @@ def exists(rel_from, href):
     return os.path.exists(os.path.normpath(os.path.join(ROOT, os.path.dirname(rel_from), path)))
 
 pages = (
-    ["index.html", "mentions-legales.html", "cgv.html", "politique-confidentialite.html"]
+    ["index.html", "404.html", "mentions-legales.html", "cgv.html", "politique-confidentialite.html"]
     + sorted("oeuvres/"+f for f in os.listdir(os.path.join(ROOT,"oeuvres")) if f.endswith(".html"))
 )
 
@@ -74,11 +74,12 @@ def image_format(path):
     if head.startswith(b"\xff\xd8\xff"):                    return "jpeg"
     if head.startswith(b"\x89PNG\r\n\x1a\n"):               return "png"
     if head[:4]==b"RIFF" and head[8:12]==b"WEBP":           return "webp"
+    if head[:4]==b"\x00\x00\x01\x00":                       return "ico"
     if head.startswith((b"GIF87a",b"GIF89a")):              return "gif"
     if head[:2]==b"BM":                                     return "bmp"
     return "inconnu"
 
-EXT_FORMAT = {"jpg":"jpeg","jpeg":"jpeg","png":"png","webp":"webp","gif":"gif","bmp":"bmp"}
+EXT_FORMAT = {"jpg":"jpeg","jpeg":"jpeg","png":"png","webp":"webp","gif":"gif","bmp":"bmp","ico":"ico"}
 imgdir=os.path.join(ROOT,"images")
 for f in sorted(os.listdir(imgdir)):
     real=image_format(os.path.join(imgdir,f))
@@ -93,17 +94,13 @@ if not m: err("js/main.js: tableau works introuvable")
 else:
     for blk in re.findall(r'\{\s*slug:.*?bg:\s*"[^"]*"\s*\}', m.group(1), re.S):
         g=lambda k: (re.search(k+r':\s*"([^"]*)"',blk) or [None,None])[1]
-        works.append(dict(slug=g("slug"),img=g("img"),decor=g("imgDecor"),svg=g("svgId"),dims=g("dims"),
+        works.append(dict(slug=g("slug"),img=g("img"),decor=g("imgDecor"),dims=g("dims"),
                           price=(re.search(r'price:\s*(null|"[^"]*")',blk) or [None,None])[1]))
     for i,w in enumerate(works):
         for k in("slug","img","decor"):
             if not w[k] or not os.path.exists(os.path.join(ROOT,w[k])): err(f"js/main.js works[{i}]: {k} introuvable → {w[k]}")
         if not re.search(r'\d+ × \d+ cm', w["dims"] or ""): err(f"js/main.js works[{i}]: dimensions invalides « {w['dims']} »")
-    svgs=[w["svg"] for w in works]
-    if len(set(svgs))!=len(svgs): err("js/main.js: svgId en double")
     idx=read("index.html")
-    for sid in svgs:
-        if f'id="{sid}"' not in idx: err(f"index.html: bloc caché #{sid} manquant")
     if f'01 — {len(works):02d}' not in idx: err(f"index.html: compteur statique ≠ {len(works):02d}")
     # les 6 premières doivent garder leur ordre (indices de référence stables)
     order=["souvenirs-de-blonville","lane-de-b100-2025","raconte-moi-une-histoire","le-guetteur-silencieux-2024","klimt-juin-2023","le-flamboyant-juin-2023"]
@@ -129,10 +126,11 @@ leaflet_css = os.path.join(ROOT, "vendor", "leaflet", "leaflet.min.css")
 if not os.path.exists(leaflet_js): err("vendor/leaflet/leaflet.min.js manquant")
 if not os.path.exists(leaflet_css): err("vendor/leaflet/leaflet.min.css manquant")
 idx = read("index.html")
-if "cdnjs.cloudflare.com" in idx: err("index.html: cdnjs encore référencé")
-if "vendor/leaflet/leaflet.min.js" not in idx: err("index.html: Leaflet local non chargé")
-if re.search(r"name=\"_gotcha\"[^>]*style=", idx): err("index.html: honeypot avec style inline")
 js_main = read("js/main.js")
+if "cdnjs.cloudflare.com" in idx: err("index.html: cdnjs encore référencé")
+if "vendor/leaflet/leaflet.min.js" not in idx and "vendor/leaflet/leaflet.min.js" not in js_main:
+    err("Leaflet local non chargé (index.html ou js/main.js)")
+if re.search(r"name=\"_gotcha\"[^>]*style=", idx): err("index.html: honeypot avec style inline")
 if re.search(r"\.innerHTML\s*=", js_main): err("js/main.js: assignment innerHTML encore présent")
 
 def script_src_of(csp):
@@ -157,7 +155,7 @@ import collections
 _miss=collections.Counter(re.sub(r'^.*→ (?:\.\./)?','',w) for w in warns if "→" in w)
 for f,n in _miss.items(): print(f"  ⚠  {f} : référencé {n}× mais absent du dossier (à ajouter plus tard)")
 for w in warns:
-    if "→" not in w: print("  ⚠ ", w)
-for e in errors: print("  ✘ ", e)
-print("\n✔ TOUT EST OK" if not errors else f"\n✘ {len(errors)} ERREUR(S)")
+    if "→" not in w: print("  ! ", w)
+for e in errors: print("  x ", e)
+print("\n[OK] TOUT EST OK" if not errors else f"\n[ERR] {len(errors)} ERREUR(S)")
 sys.exit(1 if errors else 0)

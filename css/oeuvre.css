@@ -1,5 +1,6 @@
 /* oeuvre.css — styles partagés des fiches œuvres. Accent par page : --art, --art-bg, --art-w */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+picture { display: contents; }
     :root {
       --ink:      #1c1710;
       --ink-soft: #6a6057;
@@ -196,6 +197,10 @@
     }
     .btn-acq:focus-visible, .btn-contact:focus-visible {
       outline-offset: 2px;
+    }
+    @media print {
+      nav, .hamburger, .nav-drawer, .oeuvre-btns, footer { display: none !important; }
+      .oeuvre-image-col { position: static !important; height: auto !important; }
     }
     /* AUDIT — classe utilitaire lien texte */
     .link-soft { color: var(--ink-soft); }

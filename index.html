@@ -8,7 +8,7 @@
   <meta name="author" content="Angélique Héduin">
   <meta name="robots" content="index, follow">
   <meta name="theme-color" content="#c94b22">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://*.tile.openstreetmap.org https://tile.openstreetmap.org; connect-src 'self' https://formspree.io; form-action 'none'; base-uri 'self'; object-src 'none'; frame-src 'none'; frame-ancestors 'none'; upgrade-insecure-requests">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://*.tile.openstreetmap.fr https://tile.openstreetmap.fr; connect-src 'self' https://formspree.io; form-action 'none'; base-uri 'self'; object-src 'none'; frame-src 'none'; frame-ancestors 'none'; upgrade-insecure-requests">
   <meta http-equiv="X-Frame-Options" content="DENY">
   <meta http-equiv="X-Content-Type-Options" content="nosniff">
   <link rel="sitemap" type="application/xml" href="/sitemap.xml">
@@ -35,13 +35,14 @@
   <meta name="twitter:image:alt" content="Angélique Héduin — Peintre figurative à Bessan">
 
   <link rel="canonical" href="https://angeliqueheduin.fr/">
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='16' fill='%23c94b22'/><path d='M16 6C16 6 10 12 10 17C10 20.3 12.7 23 16 23C19.3 23 22 20.3 22 17C22 12 16 6 16 6Z' fill='white'/><circle cx='16' cy='17' r='3.5' fill='%23c94b22'/></svg>">
-  <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'><circle cx='90' cy='90' r='90' fill='%23c94b22'/><path d='M90 22C90 22 54 62 54 90C54 110.3 70.8 127 90 127C109.2 127 126 110.3 126 90C126 62 90 22 90 22Z' fill='white'/><circle cx='90' cy='90' r='22' fill='%23c94b22'/></svg>">
+  <link rel="icon" href="images/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
 
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=DM+Sans:wght@200;300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="vendor/leaflet/leaflet.min.css">
@@ -405,6 +406,7 @@
     }
   ]
   </script>
+  <link rel="preload" as="image" href="images/le-guetteur-silencieux-2024.jpg">
   <link rel="preload" as="image" href="images/souvenirs-de-blonville+decors.jpg">
 </head>
 <body>
@@ -432,7 +434,7 @@
       <a href="#contact-section"   class="nav-link" data-section="contact-section">Contact</a>
     </div>
 
-    <button type="button" class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+    <button type="button" class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false" aria-controls="nav-drawer">
       <span></span>
       <span></span>
       <span></span>
@@ -543,7 +545,7 @@
       <div class="pf-hero-right">
         <figure class="pf-portrait">
           <div class="pf-portrait-frame">
-            <img src="images/profil.jpg" alt="Angélique Héduin" width="1984" height="1474">
+            <picture><source type="image/webp" srcset="images/profil-400.webp 400w, images/profil-800.webp 800w" sizes="(max-width: 960px) 70vw, 400px"><img src="images/profil.jpg" alt="Angélique Héduin" width="1384" height="1744" loading="lazy" decoding="async"></picture>
           </div>
         </figure>
       </div>
@@ -555,15 +557,15 @@
       <div class="parcours-stage">
         <div class="parcours-stage-visual">
           <figure class="parcours-shot is-on" data-year="2022">
-            <img src="images/klimt-juin-2023.jpg" alt="Klimt — Hommage au Baiser, peinture acrylique avec dorures" width="600" height="780">
+            <picture><source type="image/webp" srcset="images/klimt-juin-2023-400.webp 400w, images/klimt-juin-2023-800.webp 800w" sizes="(max-width: 700px) 400px, 800px"><img src="images/klimt-juin-2023.jpg" alt="Klimt — Hommage au Baiser, peinture acrylique avec dorures" width="600" height="780" loading="lazy" decoding="async"></picture>
             <figcaption>Klimt · 2023</figcaption>
           </figure>
           <figure class="parcours-shot" data-year="2024" aria-hidden="true">
-            <img src="images/le-guetteur-silencieux-2024.jpg" alt="Le Guetteur Silencieux — chat totémique en facettes de vitrail" width="600" height="600">
+            <picture><source type="image/webp" srcset="images/le-guetteur-silencieux-2024-400.webp 400w, images/le-guetteur-silencieux-2024-800.webp 800w" sizes="(max-width: 700px) 400px, 800px"><img src="images/le-guetteur-silencieux-2024.jpg" alt="Le Guetteur Silencieux — chat totémique en facettes de vitrail" width="600" height="600" loading="lazy" decoding="async"></picture>
             <figcaption>Le Guetteur Silencieux · 2024</figcaption>
           </figure>
           <figure class="parcours-shot" data-year="2025" aria-hidden="true">
-            <img src="images/lane-de-b100-2025.jpg" alt="L'Âne de Bessan — âne totémique aux motifs géométriques" width="600" height="800">
+            <picture><source type="image/webp" srcset="images/lane-de-b100-2025-400.webp 400w, images/lane-de-b100-2025-800.webp 800w" sizes="(max-width: 700px) 400px, 800px"><img src="images/lane-de-b100-2025.jpg" alt="L'Âne de Bessan — âne totémique aux motifs géométriques" width="600" height="800" loading="lazy" decoding="async"></picture>
             <figcaption>L'Âne de Bessan · 2025</figcaption>
           </figure>
         </div>
@@ -611,13 +613,13 @@
         </div>
         <div class="atelier-wall" aria-hidden="true">
           <figure class="atelier-canvas c1">
-            <img src="images/flamenco2025.jpg" alt="" width="400" height="400">
+            <picture><source type="image/webp" srcset="images/flamenco2025-400.webp 400w, images/flamenco2025-800.webp 800w" sizes="(max-width: 700px) 400px, 800px"><img src="images/flamenco2025.jpg" alt="" width="400" height="400" loading="lazy" decoding="async"></picture>
           </figure>
           <figure class="atelier-canvas c2">
-            <img src="images/taureau2026.jpg" alt="" width="400" height="520">
+            <picture><source type="image/webp" srcset="images/taureau2026-400.webp 400w, images/taureau2026-800.webp 800w" sizes="(max-width: 700px) 400px, 800px"><img src="images/taureau2026.jpg" alt="" width="400" height="520" loading="lazy" decoding="async"></picture>
           </figure>
           <figure class="atelier-canvas c3">
-            <img src="images/bateau2026.jpg" alt="" width="400" height="400">
+            <picture><source type="image/webp" srcset="images/bateau2026-400.webp 400w, images/bateau2026-800.webp 800w" sizes="(max-width: 700px) 400px, 800px"><img src="images/bateau2026.jpg" alt="" width="400" height="400" loading="lazy" decoding="async"></picture>
           </figure>
         </div>
       </div>
@@ -627,7 +629,7 @@
       <p class="section-eyebrow">Une toile</p>
       <div class="featured-grid">
         <a href="oeuvres/le-cheval-soleil-2026.html" class="featured-visual">
-          <img src="images/cheval2026.jpg" alt="Le Cheval Soleil — peinture acrylique et feuilles d'or, cheval de profil devant un halo solaire, crinière de plumes turquoise et orangées" width="500" height="660">
+          <picture><source type="image/webp" srcset="images/cheval2026-400.webp 400w, images/cheval2026-800.webp 800w" sizes="(max-width: 700px) 400px, 800px"><img src="images/cheval2026.jpg" alt="Le Cheval Soleil — peinture acrylique et feuilles d'or, cheval de profil devant un halo solaire, crinière de plumes turquoise et orangées" width="500" height="660" loading="lazy" decoding="async"></picture>
         </a>
         <div class="featured-copy">
           <h3 class="about-title">Le Cheval <em>Soleil</em></h3>
@@ -648,15 +650,15 @@
 
       <div class="demarche-wall" id="demarche-wall">
         <button type="button" class="demarche-tile is-on" data-panel="0" aria-pressed="true">
-          <img src="images/vin2026.jpg" alt="Les Quatre Verres" width="500" height="500">
+          <picture><source type="image/webp" srcset="images/vin2026-400.webp 400w, images/vin2026-800.webp 800w" sizes="(max-width: 700px) 400px, 800px"><img src="images/vin2026.jpg" alt="Les Quatre Verres" width="500" height="500" loading="lazy" decoding="async"></picture>
           <span>L'ancrage</span>
         </button>
         <button type="button" class="demarche-tile" data-panel="1" aria-pressed="false">
-          <img src="images/raconte-moi-une-histoire.jpg" alt="Raconte-moi une histoire !" width="500" height="700">
+          <picture><source type="image/webp" srcset="images/raconte-moi-une-histoire-400.webp 400w, images/raconte-moi-une-histoire-800.webp 800w" sizes="(max-width: 700px) 400px, 800px"><img src="images/raconte-moi-une-histoire.jpg" alt="Raconte-moi une histoire !" width="500" height="700" loading="lazy" decoding="async"></picture>
           <span>La matière</span>
         </button>
         <button type="button" class="demarche-tile" data-panel="2" aria-pressed="false">
-          <img src="images/cerf2025.jpg" alt="Le Cerf des Mille Signes" width="500" height="500">
+          <picture><source type="image/webp" srcset="images/cerf2025-400.webp 400w, images/cerf2025-800.webp 800w" sizes="(max-width: 700px) 400px, 800px"><img src="images/cerf2025.jpg" alt="Le Cerf des Mille Signes" width="500" height="500" loading="lazy" decoding="async"></picture>
           <span>Les totems</span>
         </button>
       </div>
@@ -681,75 +683,6 @@
     </div>
 
   </section>
-
-  <!-- ══ SVG SOURCES (cachés) ══ -->
-  <div style="display:none" aria-hidden="true">
-    <div id="svg-0">
-      <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" width="500" height="500">
-        <image href="images/souvenirs-de-blonville.jpg" x="0" y="0" width="500" height="500" preserveAspectRatio="xMidYMid slice"/>
-      </svg>
-    </div>
-    <div id="svg-1">
-      <svg viewBox="0 0 500 700" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" width="500" height="700">
-        <image href="images/lane-de-b100-2025.jpg" x="0" y="0" width="500" height="700" preserveAspectRatio="xMidYMid slice"/>
-      </svg>
-    </div>
-    <div id="svg-2">
-      <svg viewBox="0 0 500 700" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" width="500" height="700">
-        <image href="images/raconte-moi-une-histoire.jpg" x="0" y="0" width="500" height="700" preserveAspectRatio="xMidYMid slice"/>
-      </svg>
-    </div>
-    <div id="svg-3">
-      <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" width="500" height="500">
-        <image href="images/le-guetteur-silencieux-2024.jpg" x="0" y="0" width="500" height="500" preserveAspectRatio="xMidYMid slice"/>
-      </svg>
-    </div>
-    <div id="svg-4">
-      <svg viewBox="0 0 500 650" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" width="500" height="650">
-        <image href="images/klimt-juin-2023.jpg" x="0" y="0" width="500" height="650" preserveAspectRatio="xMidYMid slice"/>
-      </svg>
-    </div>
-    <div id="svg-5">
-      <svg viewBox="0 0 500 600" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" width="500" height="600">
-        <image href="images/le-flamboyant-juin-2023.jpg" x="0" y="0" width="500" height="600" preserveAspectRatio="xMidYMid slice"/>
-      </svg>
-    </div>
-    <div id="svg-6">
-      <svg viewBox="0 0 500 660" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" width="500" height="660">
-        <image href="images/cheval2026.jpg" x="0" y="0" width="500" height="660" preserveAspectRatio="xMidYMid slice"/>
-      </svg>
-    </div>
-    <div id="svg-7">
-      <svg viewBox="0 0 500 680" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" width="500" height="680">
-        <image href="images/taureau2026.jpg" x="0" y="0" width="500" height="680" preserveAspectRatio="xMidYMid slice"/>
-      </svg>
-    </div>
-    <div id="svg-8">
-      <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" width="500" height="500">
-        <image href="images/bateau2026.jpg" x="0" y="0" width="500" height="500" preserveAspectRatio="xMidYMid slice"/>
-      </svg>
-    </div>
-    <div id="svg-9">
-      <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" width="500" height="500">
-        <image href="images/cerf2025.jpg" x="0" y="0" width="500" height="500" preserveAspectRatio="xMidYMid slice"/>
-      </svg>
-    </div>
-    <div id="svg-10">
-      <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" width="500" height="500">
-        <image href="images/flamenco2025.jpg" x="0" y="0" width="500" height="500" preserveAspectRatio="xMidYMid slice"/>
-      </svg>
-    </div>
-    <div id="svg-11">
-      <svg viewBox="0 0 500 360" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" width="500" height="360">
-        <image href="images/rudby2026.jpg" x="0" y="0" width="500" height="360" preserveAspectRatio="xMidYMid slice"/>
-      </svg>
-    </div>
-    <div id="svg-12">
-      <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" width="500" height="500">
-        <image href="images/vin2026.jpg" x="0" y="0" width="500" height="500" preserveAspectRatio="xMidYMid slice"/>
-      </svg>
-    </div>
-  </div>
 
   <!-- ══ GALERIE ══ -->
   <section id="gallery-section" aria-label="Collection d'œuvres">
@@ -834,7 +767,7 @@
               <span class="btn-label">Acquérir l'œuvre</span>
             </button>
 
-            <button type="button" class="btn-favori" id="btnfav" title="Ajouter aux favoris">
+            <button type="button" class="btn-favori" id="btnfav" title="Ajouter aux favoris" aria-label="Ajouter aux favoris" aria-pressed="false">
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                 <path class="heart"
                       d="M8 13s-6-3.5-6-7.5A3.5 3.5 0 0 1 8 4a3.5 3.5 0 0 1 6 1.5C14 9.5 8 13 8 13z"/>
@@ -848,6 +781,11 @@
         </div>
       </div>
 
+    </div>
+
+    <div class="gal-favs" id="gal-favs" hidden>
+      <p class="gal-favs-label">Vos favoris</p>
+      <div class="gal-favs-track" id="gal-favs-track"></div>
     </div>
   </section>
 
@@ -951,19 +889,19 @@
 
         
         <div class="contact-map">
-          <div id="leaflet-map"></div>
+          <div id="leaflet-map" role="img" aria-label="Carte de l'atelier à Bessan, 17 Chemin du Mairoual"></div>
           <div class="contact-map-label">
             <svg width="9" height="9" viewBox="0 0 20 20" fill="none"><path d="M10 3C10 3 6 7 6 10.5C6 12.985 7.791 15 10 15C12.209 15 14 12.985 14 10.5C14 7 10 3 10 3Z" fill="#c94b22"/></svg>
             Bessan, Occitanie
           </div>
-          <button type="button" class="map-expand-btn" id="map-expand-btn" title="Agrandir la carte">
+          <button type="button" class="map-expand-btn" id="map-expand-btn" title="Agrandir la carte" aria-label="Agrandir la carte">
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
               <path d="M1.5 5V1.5H5M9 1.5h3.5V5M12.5 9v3.5H9M5 12.5H1.5V9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
             Agrandir
           </button>
         </div>
-        <a class="map-gmaps-btn" href="https://www.google.com/maps/place/Osteopathe+bessan+Ang%C3%A9lique+H%C3%A9duin/@43.3586149,3.4170149,17z/data=!4m6!3m5!1s0x47e6671ab90d7775:0x90ef3ba1914c1c84!8m2!3d43.3566559!4d3.4190211!16s%2Fg%2F11h4x8mv1j?entry=ttu&g_ep=EgoyMDI2MDQyMS4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer">
+        <a class="map-gmaps-btn" href="https://www.google.com/maps/search/?api=1&query=17+Chemin+du+Mairoual%2C+34550+Bessan" target="_blank" rel="noopener noreferrer">
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 1.5C5.5 1.5 3.5 3.5 3.5 6c0 3.5 4.5 8.5 4.5 8.5S12.5 9.5 12.5 6c0-2.5-2-4.5-4.5-4.5z" stroke="currentColor" stroke-width="1.3"/><circle cx="8" cy="6" r="1.5" stroke="currentColor" stroke-width="1.3"/></svg>
           Ouvrir dans Google Maps
           <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H5M10 2v5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -981,14 +919,14 @@
           
           <div class="form-subjects">
             <span class="subj-label">Sujet</span>
-            <div class="subj-chips" id="subj-chips">
-              <button type="button" class="subj-chip active" data-val="Acquisition d'une œuvre">Acquérir une œuvre</button>
-              <button type="button" class="subj-chip" data-val="Demande de prix">Demande de prix</button>
-              <button type="button" class="subj-chip" data-val="Question sur une œuvre">Question sur une œuvre</button>
-              <button type="button" class="subj-chip" data-val="commande">Commande personnalisée</button>
-              <button type="button" class="subj-chip" data-val="exposition">Exposition / Collaboration</button>
-              <button type="button" class="subj-chip" data-val="atelier">Visite atelier</button>
-              <button type="button" class="subj-chip" data-val="autre">Autre</button>
+            <div class="subj-chips" id="subj-chips" role="group" aria-label="Sujet du message">
+              <button type="button" class="subj-chip active" data-val="Acquisition d'une œuvre" aria-pressed="true">Acquérir une œuvre</button>
+              <button type="button" class="subj-chip" data-val="Demande de prix" aria-pressed="false">Demande de prix</button>
+              <button type="button" class="subj-chip" data-val="Question sur une œuvre" aria-pressed="false">Question sur une œuvre</button>
+              <button type="button" class="subj-chip" data-val="commande" aria-pressed="false">Commande personnalisée</button>
+              <button type="button" class="subj-chip" data-val="exposition" aria-pressed="false">Exposition / Collaboration</button>
+              <button type="button" class="subj-chip" data-val="atelier" aria-pressed="false">Visite atelier</button>
+              <button type="button" class="subj-chip" data-val="autre" aria-pressed="false">Autre</button>
             </div>
           </div>
 
@@ -1002,17 +940,17 @@
             <div class="form-row">
               <div class="form-field">
                 <label for="cf-prenom">Prénom</label>
-                <input type="text" id="cf-prenom" name="prenom" placeholder="Votre prénom" autocomplete="given-name" maxlength="80" required>
+                <input type="text" id="cf-prenom" name="prenom" placeholder="Votre prénom" autocomplete="given-name" maxlength="80" required aria-describedby="form-missing">
               </div>
               <div class="form-field">
                 <label for="cf-nom">Nom</label>
-                <input type="text" id="cf-nom" name="nom" placeholder="Votre nom" autocomplete="family-name" maxlength="80" required>
+                <input type="text" id="cf-nom" name="nom" placeholder="Votre nom" autocomplete="family-name" maxlength="80" required aria-describedby="form-missing">
               </div>
             </div>
 
             <div class="form-field">
               <label for="cf-email">Email</label>
-              <input type="email" id="cf-email" name="email" placeholder="vous@exemple.fr" autocomplete="email" maxlength="254" required>
+              <input type="email" id="cf-email" name="email" placeholder="vous@exemple.fr" autocomplete="email" maxlength="254" required aria-describedby="form-missing">
             </div>
 
             <div class="form-field">
@@ -1070,13 +1008,13 @@
 
             <div class="form-field">
               <label for="cf-msg">Message</label>
-              <textarea id="cf-msg" name="message" rows="5" placeholder="Décrivez votre projet, posez vos questions..." maxlength="600" required></textarea>
+              <textarea id="cf-msg" name="message" rows="5" placeholder="Décrivez votre projet, posez vos questions..." maxlength="600" required aria-describedby="form-missing"></textarea>
               <span class="char-count" id="char-count">0 / 600</span>
             </div>
 
             <div class="form-privacy">
               <label class="privacy-check">
-                <input type="checkbox" id="cf-privacy" name="privacy" required>
+                <input type="checkbox" id="cf-privacy" name="privacy" required aria-describedby="form-missing">
                 <span class="check-custom"></span>
                 <span>J'accepte que mes données soient utilisées pour répondre à ma demande. Aucun démarchage commercial.</span>
               </label>
@@ -1089,6 +1027,7 @@
               </svg>
             </button>
             <p class="form-missing" id="form-missing" aria-live="polite"></p>
+            <p class="form-error" id="form-error" role="alert" aria-live="assertive" hidden></p>
 
             <div class="form-success" id="form-success" aria-live="polite" aria-hidden="true">
               <div class="form-success-icon">
@@ -1097,7 +1036,7 @@
                   <path d="M8 14l4 4 8-8" stroke="#3a7a54" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
               </div>
-              <h4 class="form-success-title">Message envoyé !</h4>
+              <h3 class="form-success-title">Message envoyé !</h3>
               <p class="form-success-text">Merci pour votre message. Je vous répondrai sous 48h ouvrées.</p>
             </div>
 
@@ -1143,7 +1082,6 @@
     </div>
   </div>
 
-  <script src="vendor/leaflet/leaflet.min.js" defer></script>
   <script src="js/main.js" defer></script>
 </body>
 </html>
