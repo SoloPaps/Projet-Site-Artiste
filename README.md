@@ -10,13 +10,13 @@ css/oeuvre.css        Styles partagés de TOUTES les fiches œuvres (nouvelles p
 js/oeuvre.js          Scripts partagés des fiches (navbar, menu mobile)
 js/contact-prefill.js Fiches œuvres : pré-remplit le formulaire de contact de l'accueil
                       (nom de l'œuvre, via sessionStorage) — chargé par les 13 fiches
-oeuvres/*.html        Une fiche par œuvre (13)
+oeuvres/*.html        Une fiche par œuvre (14)
 images/               <nom>.jpg (œuvre intégrale) + <nom>+decors.jpg (mise en scène)
 sitemap.xml, robots.txt
 tools/                Scripts de vérification et de génération (voir plus bas)
 ```
 
-## Les 13 œuvres (ordre du tableau `works` — NE PAS RÉORDONNER)
+## Les 14 œuvres (ordre du tableau `works` — NE PAS RÉORDONNER)
 
 L'indice numérique de l'œuvre dans `works` sert de référence stable (miniatures,
 puces de navigation, contrôle de cohérence de `tools/check_site.py`).
@@ -24,23 +24,24 @@ puces de navigation, contrôle de cohérence de `tools/check_site.py`).
 
 | Indice | Œuvre | Format | Prix |
 |---|---|---|---|
-| 0 | Souvenirs de Blonville | 50 × 50 | 300 € |
-| 1 | L'Âne de Bessan | 60 × 80 | 470 € |
-| 2 | Raconte-moi une histoire ! | 58 × 77 | 380 € |
-| 3 | Le Guetteur Silencieux | 50 × 60 | 450 € |
-| 4 | Klimt — Hommage au Baiser | 60 × 80 | 400 € |
-| 5 | Le Flamboyant | 50 × 60 | 350 € |
-| 6 | Le Cheval Soleil | 100 × 130 | à compléter |
-| 7 | Féria | 100 × 130 | à compléter |
-| 8 | Deux Voiles | 50 × 50 | à compléter |
-| 9 | Le Cerf des Mille Signes | 50 × 50 | à compléter |
-| 10 | Flamenco | 50 × 50 | à compléter |
-| 11 | L'Esprit du Fauve | 70 × 50 | à compléter |
-| 12 | Les Quatre Verres | 50 × 50 | à compléter |
+| 0 | Souvenirs de Blonville | 50 × 50 | 150 € |
+| 1 | L'Âne de B100 | 60 × 80 | 470 € |
+| 2 | Raconte-moi une histoire ! | 58 × 77 | 240 € |
+| 3 | Le Guetteur Silencieux | 50 × 60 | 240 € |
+| 4 | Le Baiser | 60 × 80 | 240 € |
+| 5 | Le Flamboyant | 50 × 60 | 180 € |
+| 6 | Cheval Céleste | 100 × 130 | 1350 € |
+| 7 | La Féria | 100 × 130 | 1500 € |
+| 8 | Les Voiliers | 50 × 50 | 150 € |
+| 9 | Le Cerf des Mille Signes | 50 × 50 | 180 € |
+| 10 | Danseuse de flamenco | 50 × 50 | 230 € |
+| 11 | La force du rugby | 70 × 50 | 240 € |
+| 12 | À table | 50 × 50 | 180 € |
+| 13 | Le Rosé de Bessan | 50 × 50 | 230 € |
 
-## Renseigner un prix (œuvres 6 à 12)
+## Renseigner un prix
 
-Un prix doit être modifié à **4 endroits**, sinon le site se contredit :
+Toutes les œuvres ont un prix. Pour en changer un, le modifier aux **4 endroits** suivants, sinon le site se contredit :
 
 1. `main.js` → dans `works[i]`, remplacer `price: null` par `price: "450"`.
 2. `oeuvres/<page>.html` → remplacer le bloc `oeuvre-price on-request` par le bloc
@@ -59,9 +60,8 @@ n'est envoyée à Google (pas de bloc `Offer`).
 2. Ajouter une entrée **à la fin** de `WORKS` dans `tools/build_pages.py`, puis :
    `python3 tools/build_pages.py`  → génère la fiche dans `oeuvres/`.
 3. Ajouter l'objet correspondant **à la fin** du tableau `works` dans `main.js`
-   (avec un `svgId` inédit `svg-13`, etc.).
-4. Ajouter le bloc caché `<div id="svg-13">…</div>` dans `index.html`
-   (copier `svg-12`), mettre à jour le compteur `01 — 13` → `01 — 14`.
+   (avec un `svgId` inédit `svg-14`, etc.).
+4. Mettre à jour le compteur de la galerie (`01 — 14` → `01 — 15`).
 5. Ajouter l'URL au `sitemap.xml` et le bloc `VisualArtwork` au JSON-LD de l'index.
 6. Vérifier : `python3 tools/check_site.py`
 

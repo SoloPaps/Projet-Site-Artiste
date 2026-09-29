@@ -39,7 +39,7 @@ def tag_class(c):
 WORKS = [
   dict(
     slug="le-cheval-soleil-2026", file="cheval2026", year="2026",
-    title_html="Le Cheval <em>Soleil</em>", title="Le Cheval Soleil",
+    title_html="Cheval <em>Céleste</em>", title="Cheval Céleste",
     dims=(100, 130), dorures=True,
     medium="Acrylique et feuilles d'or sur toile · 2026",
     technique="Acrylique + feuilles d'or",
@@ -50,7 +50,7 @@ WORKS = [
     short="Cheval de profil couronné d'un halo solaire, crinière de plumes turquoise et orangées, harnachement ornementé et feuilles d'or sur fond de rayons.",
     keywords="cheval, totem, soleil, halo, plumes, turquoise, orange, feuille d'or, symbole, grand format",
     genre=["Art figuratif","Animal totémique","Art chamanique","Feuille d'or"],
-    alt="Le Cheval Soleil — peinture acrylique d'Angélique Héduin. Cheval noir et gris de profil, crinière de plumes turquoise et orange, harnais ornementé de motifs graphiques, halo solaire jaune et orange rayonnant avec touches de feuille d'or. 100×130 cm, 2026.",
+    alt="Cheval Céleste — peinture acrylique d'Angélique Héduin. Cheval noir et gris de profil, crinière de plumes turquoise et orange, harnais ornementé de motifs graphiques, halo solaire jaune et orange rayonnant avec touches de feuille d'or. 100×130 cm, 2026.",
     desc=("Un cheval de profil, noble et calme, se détache devant un <strong>halo solaire</strong> aux rayons orange, jaunes et turquoise. "
           "Sa crinière se change en <strong>plumes turquoise et ambrées</strong>, son encolure est parée de colliers, de perles et de motifs graphiques, "
           "et des <strong>feuilles d'or</strong> viennent capter la lumière dans les plumes et dans le halo. "
@@ -66,7 +66,7 @@ WORKS = [
   ),
   dict(
     slug="taureau-feria-2026", file="taureau2026", year="2026",
-    title_html="<em>Féria</em>", title="Féria",
+    title_html="La <em>Féria</em>", title="La Féria",
     dims=(100, 130), dorures=True,
     medium="Acrylique et feuilles d'or sur toile · 2026",
     technique="Acrylique + feuilles d'or",
@@ -77,7 +77,7 @@ WORKS = [
     short="Taureau en facettes rouges, turquoise et brunes face à un torero à la cape rouge, sur fond de motifs géométriques. Le mot « Féria » est peint en bas de la toile.",
     keywords="taureau, torero, féria, cape rouge, géométrique, feuille d'or, fête, corrida, grand format",
     genre=["Art figuratif","Animal totémique","Vitrail moderne","Feuille d'or"],
-    alt="Féria — peinture acrylique d'Angélique Héduin. Taureau en facettes rouges, turquoise et brunes, mufle rehaussé de feuille d'or, face à un torero en habit de lumière jaune tenant une cape rouge ornée de motifs, fond de losanges et chevrons. Le mot Féria est peint en bas. 100×130 cm, 2026.",
+    alt="La Féria — peinture acrylique d'Angélique Héduin. Taureau en facettes rouges, turquoise et brunes, mufle rehaussé de feuille d'or, face à un torero en habit de lumière jaune tenant une cape rouge ornée de motifs, fond de losanges et chevrons. Le mot Féria est peint en bas. 100×130 cm, 2026.",
     desc=("Le <strong>taureau</strong> et l'homme se font face dans un tourbillon de formes. "
           "L'animal est découpé en <strong>facettes rouges, turquoise et brunes</strong>, comme un vitrail, avec un mufle et une corne rehaussés de <strong>feuille d'or</strong>. "
           "Le torero, en habit jaune brodé, tient une <strong>cape rouge</strong> couverte de losanges et de chevrons. "
@@ -93,7 +93,7 @@ WORKS = [
   ),
   dict(
     slug="deux-voiles-2026", file="bateau2026", year="2026",
-    title_html="Deux <em>Voiles</em>", title="Deux Voiles",
+    title_html="Les <em>Voiliers</em>", title="Les Voiliers",
     dims=(50, 50), dorures=False,
     medium="Peinture acrylique sur toile · 2026",
     technique="Acrylique sur toile",
@@ -104,7 +104,7 @@ WORKS = [
     short="Deux voiliers aux voiles ocre et violettes glissent sur une mer turquoise, au couteau, sous un ciel de nuages légers.",
     keywords="voilier, bateau, mer, turquoise, voile, marine, couteau, ocre, violet, mouvement",
     genre=["Art figuratif","Marine","Paysage"],
-    alt="Deux Voiles — peinture acrylique d'Angélique Héduin. Deux voiliers aux voiles ocre, cuivre et violettes et aux coques brunes glissent sur une mer turquoise striée d'écume blanche, sous un ciel de nuages bleutés. 50×50 cm, 2026.",
+    alt="Les Voiliers — peinture acrylique d'Angélique Héduin. Deux voiliers aux voiles ocre, cuivre et violettes et aux coques brunes glissent sur une mer turquoise striée d'écume blanche, sous un ciel de nuages bleutés. 50×50 cm, 2026.",
     desc=("Deux voiliers filent côte à côte sur une <strong>mer turquoise</strong> travaillée en larges gestes. "
           "Leurs voiles, <strong>cuivre, ocre et violet profond</strong>, se répondent : l'une gonflée en arc, l'autre tendue comme une aile. "
           "L'écume blanche, posée en touches franches, dessine le sillage des coques. "
@@ -147,7 +147,7 @@ WORKS = [
   ),
   dict(
     slug="flamenco-2025", file="flamenco2025", year="2025",
-    title_html="<em>Flamenco</em>", title="Flamenco",
+    title_html="Danseuse de <em>flamenco</em>", title="Danseuse de flamenco",
     dims=(50, 50), dorures=False, dentelle=True,
     medium="Acrylique et dentelle sur toile · 2025",
     technique="Acrylique + dentelle",
@@ -158,7 +158,7 @@ WORKS = [
     short="Un âne au harnais rouge et une danseuse en robe à volants rouge et blanche dans une ruelle ensoleillée, avec dentelle réelle marouflée dans la toile.",
     keywords="flamenco, danseuse, âne, robe rouge, dentelle, ruelle, sud, fleurs, tonneaux, volants",
     genre=["Art figuratif","Scène de rue","Technique mixte","Dentelle"],
-    alt="Flamenco — peinture acrylique d'Angélique Héduin. Un âne gris et blanc au harnais rouge et châle à franges au premier plan, une danseuse en robe rouge à volants de dentelle blanche dans une ruelle aux façades ocre, volets bleus, boutique de fleurs et tonneaux. 50×50 cm, 2025.",
+    alt="Danseuse de flamenco — peinture acrylique d'Angélique Héduin. Un âne gris et blanc au harnais rouge et châle à franges au premier plan, une danseuse en robe rouge à volants de dentelle blanche dans une ruelle aux façades ocre, volets bleus, boutique de fleurs et tonneaux. 50×50 cm, 2025.",
     desc=("Une <strong>ruelle ensoleillée</strong> aux façades ocre, aux volets bleus et aux fleurs en pot. "
           "Au premier plan, un <strong>âne</strong> au regard doux, harnaché de rouge, porte un châle à franges dont la <strong>dentelle</strong> est réelle, appliquée dans la matière. "
           "Plus loin, une <strong>danseuse de flamenco</strong> lève le bras : robe rouge à volants, éventail de dentelle blanche, chevelure de feu. "
@@ -167,14 +167,14 @@ WORKS = [
     context=None,
     usage="Salon · Salle à manger · Cuisine · Espace de réception · Chambre",
     usage_title="Idéal pour",
-    og_h=1200, rel=["souvenirs-de-blonville","taureau-feria-2026","lane-de-b100-2025"],
+    og_h=1200, rel=["le-rose-de-bessan-2026","taureau-feria-2026","lane-de-b100-2025"],
     rel_title="Autres œuvres de la collection",
     ld_desc="Âne au harnais rouge et danseuse de flamenco dans une ruelle du Sud, avec dentelle marouflée. Acrylique et dentelle sur toile, 50×50 cm, 2025.",
     img_size=(857, 870), aw=520,
   ),
   dict(
     slug="lesprit-du-fauve-2026", file="rudby2026", year="2026",
-    title_html="L'Esprit du <em>Fauve</em>", title="L'Esprit du Fauve",
+    title_html="La force du <em>rugby</em>", title="La force du rugby",
     dims=(70, 50), dorures=False, landscape=True,
     medium="Peinture acrylique sur toile · 2026",
     technique="Acrylique sur toile",
@@ -185,7 +185,7 @@ WORKS = [
     short="Un joueur de rugby en course, ballon sous le bras, emporté par un tourbillon bleu où surgit un fauve en mosaïque colorée.",
     keywords="rugby, joueur, sport, fauve, tourbillon, mosaïque, vitrail, mouvement, bleu, rouge",
     genre=["Art figuratif","Sport","Animal totémique","Vitrail moderne"],
-    alt="L'Esprit du Fauve — peinture acrylique d'Angélique Héduin. Un joueur de rugby en maillot rouge portant le numéro 8 court ballon en main sur un terrain vert, dans un tourbillon de traits colorés sur fond bleu, avec une tête de fauve en mosaïque multicolore qui surgit à sa gauche. 70×50 cm, 2026.",
+    alt="La force du rugby — peinture acrylique d'Angélique Héduin. Un joueur de rugby en maillot rouge portant le numéro 8 court ballon en main sur un terrain vert, dans un tourbillon de traits colorés sur fond bleu, avec une tête de fauve en mosaïque multicolore qui surgit à sa gauche. 70×50 cm, 2026.",
     desc=("Un <strong>joueur de rugby</strong> file ballon en main sur un terrain de gazon, poteaux en fond. "
           "Autour de lui, un <strong>tourbillon bleu</strong> strié de jaune, de rouge et d'orange donne à la toile toute sa vitesse. "
           "À sa gauche, un <strong>fauve en mosaïque</strong>, taillé comme un vitrail de pièces colorées, semble surgir de l'élan. "
@@ -201,7 +201,7 @@ WORKS = [
   ),
   dict(
     slug="les-quatre-verres-2026", file="vin2026", year="2026",
-    title_html="Les Quatre <em>Verres</em>", title="Les Quatre Verres",
+    title_html="À <em>table</em>", title="À table",
     dims=(50, 50), dorures=False,
     medium="Peinture acrylique sur toile · 2026",
     technique="Acrylique sur toile",
@@ -212,7 +212,7 @@ WORKS = [
     short="Quatre verres de vin rouge, une grappe de raisin et des feuilles de vigne, sur un fond partagé entre ocre chaud et bleus vifs, avec un motif de dentelle blanche.",
     keywords="vin, verres, raisin, vigne, nature morte, tonneaux, violet, bleu, convivialité, couleur",
     genre=["Art figuratif","Nature morte","Vitrail moderne"],
-    alt="Les Quatre Verres — peinture acrylique d'Angélique Héduin. Quatre verres de vin rouge alignés, grappe de raisin violet et feuilles de vigne vertes devant un fond partagé en deux : ocre orangé avec tonneaux à gauche, bleus vifs avec motif de dentelle blanche à droite. 50×50 cm, 2026.",
+    alt="À table — peinture acrylique d'Angélique Héduin. Quatre verres de vin rouge alignés, grappe de raisin violet et feuilles de vigne vertes devant un fond partagé en deux : ocre orangé avec tonneaux à gauche, bleus vifs avec motif de dentelle blanche à droite. 50×50 cm, 2026.",
     desc=("Quatre <strong>verres de vin</strong> alignés captent les reflets du fond : le <strong>violet du vin</strong>, les bleus, les jaunes. "
           "Devant eux, une <strong>grappe de raisin</strong> aux grains luisants et des feuilles de vigne rappellent la terre d'où tout vient. "
           "Le fond est coupé en deux, <strong>ocre et orange chaud</strong> à gauche avec sa vigne et ses tonneaux, <strong>bleus francs</strong> à droite rehaussés d'un motif de dentelle blanche. "
@@ -220,29 +220,68 @@ WORKS = [
     context=None,
     usage="Cuisine · Salle à manger · Bar · Cave · Restaurant · Cadeau",
     usage_title="Idéal pour",
-    og_h=1200, rel=["flamenco-2025","souvenirs-de-blonville","deux-voiles-2026"],
+    og_h=1200, rel=["flamenco-2025","souvenirs-de-blonville","le-rose-de-bessan-2026"],
     rel_title="Autres œuvres de la collection",
     ld_desc="Quatre verres de vin rouge, grappe de raisin et feuilles de vigne sur un fond ocre et bleu. Peinture acrylique sur toile, 50×50 cm, 2026.",
     img_size=(822, 870), aw=520,
+  ),
+  dict(
+    slug="le-rose-de-bessan-2026", file="le-rose-de-bessan", year="2026",
+    title_html="Le Rosé de <em>Bessan</em>", title="Le Rosé de Bessan",
+    dims=(50, 50), dorures=False,
+    medium="Peinture acrylique sur toile · 2026",
+    technique="Acrylique sur toile",
+    num="N° 27 · Collection 2026 · Âne & Vigne",
+    cat_eyebrow="Âne & vigne",
+    tags=[("Âne Totémique","tag-o"),("Vin & Vigne","tag-b"),("Bessan","tag-g"),("Vitrail","tag-p")],
+    art="#b04a62", art_bg="#c45a6a18", badge="Disponible",
+    short="Un âne au museau baissé vers une bassine, le corps en facettes de vitrail, un tonneau qui verse le vin, l'étiquette « Rosé de Bessan », la vigne et le village derrière.",
+    keywords="âne, rosé, Bessan, vigne, tonneau, vitrail, facettes, vin, village, Occitanie",
+    genre=["Art figuratif","Animal totémique","Vitrail moderne"],
+    alt="Le Rosé de Bessan — peinture acrylique d'Angélique Héduin. Un âne de profil, museau baissé vers une bassine, le corps découpé en facettes orange, bleu, rose, jaune et turquoise. Un tonneau cerclé verse le vin par un robinet, étiquette Rosé de Bessan. Vignes et village aux toits clairs derrière. 50×50 cm, 2026.",
+    desc=("Un <strong>âne</strong> baisse le museau vers une bassine. "
+          "Son corps est découpé en <strong>facettes</strong> orange, bleu, rose, jaune et turquoise, comme un vitrail. "
+          "À droite, un <strong>tonneau</strong> cerclé laisse couler le vin par un robinet : l'étiquette porte <strong>Rosé de Bessan</strong>. "
+          "Derrière, les rangs de vigne montent vers un village aux toits clairs. "
+          "Une toile de <strong>terroir, de couleur et de soif</strong>."),
+    context=None,
+    usage="Cave · Salle à manger · Cuisine · Bar · Restaurant",
+    usage_title="Idéal pour",
+    og_h=1200, rel=["lane-de-b100-2025","les-quatre-verres-2026","flamenco-2025"],
+    rel_title="Autres œuvres de la collection",
+    ld_desc="Âne en facettes de vitrail penché vers une bassine, tonneau étiqueté Rosé de Bessan, vignes et village. Peinture acrylique sur toile, 50×50 cm, 2026.",
+    img_size=(881, 865), aw=520,
   ),
 ]
 
 # Œuvres existantes pour la section « Vous aimerez aussi » (titre, image, page)
 EXISTING = {
   "souvenirs-de-blonville":      ("Souvenirs de Blonville", "souvenirs-de-blonville.jpg", "souvenirs-de-blonville.html"),
-  "lane-de-b100-2025":           ("L'Âne de B100 2025", "lane-de-b100-2025.jpg", "lane-de-b100-2025.html"),
+  "lane-de-b100-2025":           ("L'Âne de B100", "lane-de-b100-2025.jpg", "lane-de-b100-2025.html"),
   "raconte-moi-une-histoire":    ("Raconte-moi une histoire !", "raconte-moi-une-histoire.jpg", "raconte-moi-une-histoire.html"),
   "le-guetteur-silencieux-2024": ("Le Guetteur Silencieux", "le-guetteur-silencieux-2024.jpg", "le-guetteur-silencieux-2024.html"),
   "le-flamboyant-juin-2023":     ("Le Flamboyant", "le-flamboyant-juin-2023.jpg", "le-flamboyant-juin-2023.html"),
-  "klimt-juin-2023":             ("Klimt — Hommage au Baiser", "klimt-juin-2023.jpg", "klimt-juin-2023.html"),
+  "klimt-juin-2023":             ("Le Baiser", "klimt-juin-2023.jpg", "klimt-juin-2023.html"),
 }
 for w in WORKS:
     EXISTING[w["slug"]] = (w["title"], w["file"] + ".jpg", w["slug"] + ".html")
 
-# Prix réels affichés dans « Vous aimerez aussi » (les nouvelles œuvres = sur demande)
+# Prix affichés sur la fiche et dans « Vous aimerez aussi »
 PRICES = {
-  "souvenirs-de-blonville": "300 €", "lane-de-b100-2025": "470 €", "raconte-moi-une-histoire": "380 €",
-  "le-guetteur-silencieux-2024": "450 €", "le-flamboyant-juin-2023": "350 €", "klimt-juin-2023": "400 €",
+  "souvenirs-de-blonville": "150 €",
+  "lane-de-b100-2025": "470 €",
+  "raconte-moi-une-histoire": "240 €",
+  "le-guetteur-silencieux-2024": "240 €",
+  "klimt-juin-2023": "240 €",
+  "le-flamboyant-juin-2023": "180 €",
+  "le-cheval-soleil-2026": "1350 €",
+  "taureau-feria-2026": "1500 €",
+  "deux-voiles-2026": "150 €",
+  "le-cerf-des-mille-signes-2025": "180 €",
+  "flamenco-2025": "230 €",
+  "lesprit-du-fauve-2026": "240 €",
+  "les-quatre-verres-2026": "180 €",
+  "le-rose-de-bessan-2026": "230 €",
 }
 
 def dim_txt(w):
@@ -258,13 +297,16 @@ def render(w):
     hw = 800
     hh = round(hw * ih / iw)
     title_full = w["title"]
+    price_label = PRICES.get(slug)
+    price_num = "".join(ch for ch in price_label if ch.isdigit()) if price_label else ""
+    price_phrase = f"{price_num} €" if price_num else "Prix sur demande"
     # META
     page_title = f"{title_full} — Angélique Héduin · {w['year']}"
     meta_desc = (f"« {title_full} » — {w['short']} {dim_txt(w)}, {w['year']}. "
-                 f"Œuvre d'Angélique Héduin, artiste peintre à Bessan (Hérault). Prix sur demande.")
-    og_desc = f"{w['short']} {dim_txt(w)}, {w['year']}. Œuvre originale — prix sur demande."
-    tw_desc = f"{w['technique']} · {dim_txt(w)} · {w['year']} · Prix sur demande"
-    # JSON-LD (pas d'Offer : prix non défini → aucune donnée fausse envoyée à Google)
+                 f"Œuvre d'Angélique Héduin, artiste peintre à Bessan (Hérault). {price_phrase}.")
+    og_desc = f"{w['short']} {dim_txt(w)}, {w['year']}. Œuvre originale — {price_phrase}."
+    tw_desc = f"{w['technique']} · {dim_txt(w)} · {w['year']} · {price_phrase}"
+    # JSON-LD (Offer seulement si le prix est renseigné)
     ld = {
       "@context": "https://schema.org", "@type": "VisualArtwork",
       "@id": url + "#artwork", "name": title_full, "url": url,
@@ -278,6 +320,34 @@ def render(w):
       "artist": {"@type":"Person","@id":BASE+"/#artist","name":"Angélique Héduin","url":BASE+"/"},
       "isPartOf": {"@type":"Collection","name":f"Collection {w['year']}"}
     }
+    if price_num:
+        ld["offers"] = {
+          "@type": "Offer",
+          "url": url,
+          "priceCurrency": "EUR",
+          "price": price_num,
+          "priceValidUntil": "2027-01-01",
+          "availability": "https://schema.org/InStock",
+          "itemCondition": "https://schema.org/NewCondition",
+          "seller": {"@id": BASE + "/#atelier"},
+        }
+    if price_num:
+        price_html = (
+            '<div class="oeuvre-price-row" itemprop="offers" itemscope itemtype="https://schema.org/Offer">\n'
+            f'        <span class="oeuvre-price" itemprop="price" content="{esc(price_num)}">{esc(price_num)}</span>\n'
+            '        <span class="oeuvre-price-cur" itemprop="priceCurrency" content="EUR">€</span>\n'
+            '        <span class="oeuvre-price-tax">TTC</span>\n'
+            '        <meta itemprop="availability" content="https://schema.org/InStock">\n'
+            '      </div>'
+        )
+        acq_label = "Acquérir cette œuvre"
+    else:
+        price_html = (
+            '<div class="oeuvre-price-row">\n'
+            '        <span class="oeuvre-price on-request">Prix sur demande</span>\n'
+            '      </div>'
+        )
+        acq_label = "Demander le prix"
     bc = {
       "@context":"https://schema.org","@type":"BreadcrumbList",
       "itemListElement":[
@@ -422,11 +492,9 @@ def render(w):
         <div class="spec-item"><span class="spec-label">Certificat</span><span class="spec-val">Certificat d'authenticité inclus</span></div>
       </div>
       <div class="oeuvre-avail"><div class="avail-dot" aria-hidden="true"></div>Disponible</div>
-      <div class="oeuvre-price-row">
-        <span class="oeuvre-price on-request">Prix sur demande</span>
-      </div>
+      {price_html}
       <div class="oeuvre-btns">
-        <a href="../index.html#contact-section" class="btn-acq">Demander le prix</a>
+        <a href="../index.html#contact-section" class="btn-acq">{acq_label}</a>
         <a href="../index.html#contact-section" class="btn-contact">Poser une question</a>
       </div>
       <p class="oeuvre-note">Emballage soigné · Certificat d'authenticité inclus<br>
