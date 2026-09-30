@@ -113,7 +113,7 @@ WORKS = [
     context=None,
     usage="Salon · Chambre · Bureau · Entrée · Salle de bain lumineuse",
     usage_title="Idéal pour",
-    og_h=1200, rel=["souvenirs-de-blonville","le-guetteur-silencieux-2024","raconte-moi-une-histoire"],
+    og_h=1200, rel=["souvenirs-de-blonville","le-guetteur-silencieux-2024","la-barque-catalane-2026"],
     rel_title="Autres œuvres de la collection",
     ld_desc="Deux voiliers aux voiles ocre et violettes sur une mer turquoise au couteau. Peinture acrylique sur toile, 50×50 cm, 2026.",
     img_size=(894, 898), aw=520,
@@ -252,6 +252,33 @@ WORKS = [
     ld_desc="Âne en facettes de vitrail penché vers une bassine, tonneau étiqueté Rosé de Bessan, vignes et village. Peinture acrylique sur toile, 50×50 cm, 2026.",
     img_size=(881, 865), aw=520,
   ),
+  dict(
+    slug="la-barque-catalane-2026", file="la-barque-catalane", year="2026",
+    title_html="La barque <em>catalane</em>", title="La barque catalane",
+    dims=(50, 50), dorures=False,
+    medium="Peinture acrylique sur toile · 2026",
+    technique="Acrylique sur toile",
+    num="N° 28 · Collection 2026 · Mer",
+    cat_eyebrow="Mer",
+    tags=[("Marine","tag-b"),("Barque","tag-o"),("Plage","tag-g"),("Carré 50×50","tag-t")],
+    art="#1f6fbf", art_bg="#2a8ec018", badge="Disponible",
+    short="Une barque catalane à la voile jaune rayée de rouge, coque bleue et rouge, tirée sur le sable face à une mer bleu franc.",
+    keywords="barque, catalane, voile, rouge, jaune, mer, plage, sable, marine, bateau",
+    genre=["Art figuratif","Marine","Paysage"],
+    alt="La barque catalane — peinture acrylique d'Angélique Héduin. Une barque à la voile jaune barrée de bandes rouges et à la coque bleue, jaune et rouge est tirée sur le sable. Mer bleu franc, écume, rochers et un petit bateau à l'horizon sous un ciel pâle. 50×50 cm, 2026.",
+    desc=("Une <strong>barque catalane</strong> est tirée sur le sable, voile jaune barrée de <strong>bandes rouges</strong>. "
+          "La coque est bleue, avec un liston jaune et un fond rouge. "
+          "L'eau, <strong>bleu franc</strong>, vient mousser au bord de la plage. "
+          "Plus loin, des rochers et un petit bateau sur la ligne d'horizon. "
+          "Une toile de <strong>mer, de lumière et de couleur</strong>."),
+    context=None,
+    usage="Salon · Salle à manger · Entrée · Chambre · Bureau",
+    usage_title="Idéal pour",
+    og_h=1200, rel=["deux-voiles-2026","souvenirs-de-blonville","flamenco-2025"],
+    rel_title="Autres œuvres de la collection",
+    ld_desc="Barque catalane à la voile jaune et rouge, coque bleue et rouge, tirée sur le sable face à la mer. Peinture acrylique sur toile, 50×50 cm, 2026.",
+    img_size=(1390, 1386), aw=520,
+  ),
 ]
 
 # Œuvres existantes pour la section « Vous aimerez aussi » (titre, image, page)
@@ -282,6 +309,7 @@ PRICES = {
   "lesprit-du-fauve-2026": "240 €",
   "les-quatre-verres-2026": "180 €",
   "le-rose-de-bessan-2026": "230 €",
+  "la-barque-catalane-2026": "170 €",
 }
 
 def dim_txt(w):

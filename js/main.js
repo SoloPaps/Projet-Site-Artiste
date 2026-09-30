@@ -326,6 +326,21 @@ const works = [
     tags:     [{ l: "Âne Totémique", c: "tag-o" }, { l: "Vin & Vigne", c: "tag-b" }, { l: "Bessan", c: "tag-g" }],
     series:   "totem",
     bg:       "#c45a6a"
+  },
+  {
+    slug:     "oeuvres/la-barque-catalane-2026.html",
+    img:      "images/la-barque-catalane.jpg",
+    imgDecor: "images/la-barque-catalane+decors.jpg",
+    svgId:    "svg-14",
+    imgAlt:   "La barque catalane — peinture acrylique, barque à voile jaune et rouge tirée sur le sable, coque bleue et rouge, mer bleu franc",
+    title:    "La barque <em>catalane</em>",
+    medium:   "Peinture acrylique sur toile · 2026",
+    dims:     "50 × 50 cm",
+    desc:     "Une barque catalane est tirée sur le sable, voile jaune barrée de bandes rouges. La coque est bleue, avec un liston jaune et un fond rouge. L'eau, bleu franc, vient mousser au bord de la plage. Plus loin, des rochers et un petit bateau sur la ligne d'horizon. Une toile de mer, de lumière et de couleur.",
+    price:    "170",
+    tags:     [{ l: "Marine", c: "tag-b" }, { l: "Barque", c: "tag-o" }, { l: "Plage", c: "tag-g" }],
+    series:   "mer",
+    bg:       "#2f8ec4"
   }
 ];
 

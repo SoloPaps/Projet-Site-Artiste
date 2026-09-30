@@ -9,14 +9,14 @@ css/style.css         Styles de l'index
 css/oeuvre.css        Styles partagés de TOUTES les fiches œuvres (nouvelles pages)
 js/oeuvre.js          Scripts partagés des fiches (navbar, menu mobile)
 js/contact-prefill.js Fiches œuvres : pré-remplit le formulaire de contact de l'accueil
-                      (nom de l'œuvre, via sessionStorage) — chargé par les 13 fiches
-oeuvres/*.html        Une fiche par œuvre (14)
+                      (nom de l'œuvre, via sessionStorage) — chargé par les fiches
+oeuvres/*.html        Une fiche par œuvre (15)
 images/               <nom>.jpg (œuvre intégrale) + <nom>+decors.jpg (mise en scène)
 sitemap.xml, robots.txt
 tools/                Scripts de vérification et de génération (voir plus bas)
 ```
 
-## Les 14 œuvres (ordre du tableau `works` — NE PAS RÉORDONNER)
+## Les 15 œuvres (ordre du tableau `works` — NE PAS RÉORDONNER)
 
 L'indice numérique de l'œuvre dans `works` sert de référence stable (miniatures,
 puces de navigation, contrôle de cohérence de `tools/check_site.py`).
@@ -38,6 +38,7 @@ puces de navigation, contrôle de cohérence de `tools/check_site.py`).
 | 11 | La force du rugby | 70 × 50 | 240 € |
 | 12 | À table | 50 × 50 | 180 € |
 | 13 | Le Rosé de Bessan | 50 × 50 | 230 € |
+| 14 | La barque catalane | 50 × 50 | 170 € |
 
 ## Renseigner un prix
 
@@ -60,8 +61,8 @@ n'est envoyée à Google (pas de bloc `Offer`).
 2. Ajouter une entrée **à la fin** de `WORKS` dans `tools/build_pages.py`, puis :
    `python3 tools/build_pages.py`  → génère la fiche dans `oeuvres/`.
 3. Ajouter l'objet correspondant **à la fin** du tableau `works` dans `main.js`
-   (avec un `svgId` inédit `svg-14`, etc.).
-4. Mettre à jour le compteur de la galerie (`01 — 14` → `01 — 15`).
+   (avec un `svgId` inédit `svg-15`, etc.).
+4. Mettre à jour le compteur de la galerie (`01 — 15` → `01 — 16`).
 5. Ajouter l'URL au `sitemap.xml` et le bloc `VisualArtwork` au JSON-LD de l'index.
 6. Vérifier : `python3 tools/check_site.py`
 
