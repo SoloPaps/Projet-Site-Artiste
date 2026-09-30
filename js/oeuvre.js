@@ -20,12 +20,12 @@
   btn.addEventListener("click", function () { btn.classList.contains("open") ? close() : open(); });
   drawer.querySelectorAll(".nav-drawer-link, .nav-drawer-cta").forEach(function (l) { l.addEventListener("click", close); });
   document.addEventListener("click", function (e) { if (!btn.contains(e.target) && !drawer.contains(e.target)) close(); });
-  window.addEventListener("scroll", close, { passive: true });
   document.addEventListener("keydown", function (e) { if (e.key === "Escape") close(); });
 })();
 
 /* Retour collection : mémoriser l'œuvre pour la remettre en scène */
 (function () {
+  if (location.pathname.indexOf("/oeuvres/") === -1) return;
   var m = location.pathname.match(/([^/]+)\.html$/);
   var key = (m && /^[a-z0-9-]+$/.test(m[1])) ? m[1] : "";
   if (key) {

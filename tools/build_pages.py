@@ -33,7 +33,7 @@ def tag_class(c):
     return c if c in TAG_CLASS_OK else ""
 
 # ───────────────────────────── DONNÉES ─────────────────────────────
-# num : numéro de fiche (suite logique après N°19 existant)
+# num : N° 01 à 15, dans l'ordre de la galerie (works)
 # art / art_bg : couleur d'accent de la page et fond de la colonne image
 # rel : slugs des 3 œuvres suggérées en bas de page
 WORKS = [
@@ -43,7 +43,7 @@ WORKS = [
     dims=(100, 130), dorures=True,
     medium="Acrylique et feuilles d'or sur toile · 2026",
     technique="Acrylique + feuilles d'or",
-    num="N° 20 · Collection 2026 · Cheval Totémique",
+    num="N° 07 · Collection 2026 · Cheval Totémique",
     cat_eyebrow="Cheval totémique",
     tags=[("Cheval Totémique","tag-o"),("Dorures","tag-gold"),("Soleil","tag-sun"),("Plumes","tag-t")],
     art="#c88010", art_bg="#f0b01018", badge="Grand format",
@@ -70,7 +70,7 @@ WORKS = [
     dims=(100, 130), dorures=True,
     medium="Acrylique et feuilles d'or sur toile · 2026",
     technique="Acrylique + feuilles d'or",
-    num="N° 21 · Collection 2026 · Taureau Totémique",
+    num="N° 08 · Collection 2026 · Taureau Totémique",
     cat_eyebrow="Taureau totémique",
     tags=[("Taureau Totémique","tag-o"),("Dorures","tag-gold"),("Géométrique","tag-b"),("Fête","tag-r")],
     art="#c0281e", art_bg="#e0301c14", badge="Grand format",
@@ -97,7 +97,7 @@ WORKS = [
     dims=(50, 50), dorures=False,
     medium="Peinture acrylique sur toile · 2026",
     technique="Acrylique sur toile",
-    num="N° 22 · Collection 2026 · Mer & Voiliers",
+    num="N° 09 · Collection 2026 · Mer & Voiliers",
     cat_eyebrow="Mer & voiliers",
     tags=[("Marine","tag-b"),("Voiliers","tag-t"),("Mouvement","tag-o"),("Carré 50×50","tag-g")],
     art="#2a8ea0", art_bg="#40b0c018", badge="Disponible",
@@ -124,7 +124,7 @@ WORKS = [
     dims=(50, 50), dorures=False,
     medium="Peinture acrylique sur toile · 2025",
     technique="Acrylique sur toile",
-    num="N° 23 · Collection 2025 · Cerf Totémique",
+    num="N° 10 · Collection 2025 · Cerf Totémique",
     cat_eyebrow="Cerf totémique",
     tags=[("Cerf Totémique","tag-o"),("Symboles","tag-p"),("Nature","tag-g"),("Plumes","tag-b")],
     art="#3a8a5a", art_bg="#40a0e018", badge="Disponible",
@@ -151,7 +151,7 @@ WORKS = [
     dims=(50, 50), dorures=False, dentelle=True,
     medium="Acrylique et dentelle sur toile · 2025",
     technique="Acrylique + dentelle",
-    num="N° 24 · Collection 2025 · Scène du Sud",
+    num="N° 11 · Collection 2025 · Scène du Sud",
     cat_eyebrow="Scène du Sud",
     tags=[("Flamenco","tag-r"),("Dentelle","tag-gold"),("Ruelle du Sud","tag-o"),("Âne","tag-b")],
     art="#c0392b", art_bg="#f0a02018", badge="Disponible",
@@ -178,7 +178,7 @@ WORKS = [
     dims=(70, 50), dorures=False, landscape=True,
     medium="Peinture acrylique sur toile · 2026",
     technique="Acrylique sur toile",
-    num="N° 25 · Collection 2026 · Sport & Totem",
+    num="N° 12 · Collection 2026 · Sport & Totem",
     cat_eyebrow="Sport & totem",
     tags=[("Sport","tag-o"),("Fauve Totémique","tag-p"),("Mouvement","tag-b"),("Rugby","tag-r")],
     art="#c0392b", art_bg="#30a0e018", badge="Format paysage",
@@ -205,7 +205,7 @@ WORKS = [
     dims=(50, 50), dorures=False,
     medium="Peinture acrylique sur toile · 2026",
     technique="Acrylique sur toile",
-    num="N° 26 · Collection 2026 · Nature Morte",
+    num="N° 13 · Collection 2026 · Nature Morte",
     cat_eyebrow="Nature morte",
     tags=[("Nature Morte","tag-p"),("Vin & Vigne","tag-o"),("Couleur","tag-b"),("Convivialité","tag-g")],
     art="#7a3a8a", art_bg="#7a3a8a14", badge="Disponible",
@@ -231,7 +231,7 @@ WORKS = [
     dims=(50, 50), dorures=False,
     medium="Peinture acrylique sur toile · 2026",
     technique="Acrylique sur toile",
-    num="N° 27 · Collection 2026 · Âne & Vigne",
+    num="N° 14 · Collection 2026 · Âne & Vigne",
     cat_eyebrow="Âne & vigne",
     tags=[("Âne Totémique","tag-o"),("Vin & Vigne","tag-b"),("Bessan","tag-g"),("Vitrail","tag-p")],
     art="#b04a62", art_bg="#c45a6a18", badge="Disponible",
@@ -258,7 +258,7 @@ WORKS = [
     dims=(50, 50), dorures=False,
     medium="Peinture acrylique sur toile · 2026",
     technique="Acrylique sur toile",
-    num="N° 28 · Collection 2026 · Mer",
+    num="N° 15 · Collection 2026 · Mer",
     cat_eyebrow="Mer",
     tags=[("Marine","tag-b"),("Barque","tag-o"),("Plage","tag-g"),("Carré 50×50","tag-t")],
     art="#1f6fbf", art_bg="#2a8ec018", badge="Disponible",

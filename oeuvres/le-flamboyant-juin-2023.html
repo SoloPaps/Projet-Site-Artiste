@@ -127,7 +127,7 @@
       transform: translateX(-50%);
       z-index: 500;
       height: 56px;
-      width: min(860px, calc(100vw - 32px));
+      width: min(840px, calc(100vw - 32px));
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -151,7 +151,7 @@
       text-decoration: none; flex-shrink: 0;
     }
     nav#navbar .logo-mark {
-      width: 36px; height: 36px; border-radius: 50%;
+      width: 38px; height: 38px; border-radius: 50%;
       background: var(--ink);
       display: flex; align-items: center; justify-content: center;
       flex-shrink: 0; transition: background .22s;
@@ -190,33 +190,91 @@
     }
     nav#navbar .nav-cta:hover { background: var(--accent); transform: translateY(-1px); }
 
-    /* Mobile nav */
-    @media (max-width: 640px) {
-      nav#navbar { height: 50px; top: 12px; padding: 0 6px 0 8px; }
-      nav#navbar .logo-sub { display: none; }
-      nav#navbar .logo-name { font-size: .88rem; }
-      nav#navbar .nav-links { gap: 0; }
-      nav#navbar .nav-link { font-size: .72rem; padding: .32rem .6rem; }
-      nav#navbar .nav-cta { font-size: .7rem; padding: .42rem .85rem; }
+    /* Menu mobile — même panneau crème que l'accueil */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      width: 44px;
+      height: 44px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+      border-radius: 8px;
+      transition: background .2s;
+      flex-shrink: 0;
+      z-index: 600;
     }
-    @media (max-width: 480px) {
-      nav#navbar .nav-links .nav-link:nth-child(2) { display: none; } /* Cache Portfolio sur très petit */
+    .hamburger:hover { background: var(--warm); }
+    .hamburger span {
+      display: block;
+      width: 20px;
+      height: 1.5px;
+      background: var(--ink);
+      border-radius: 2px;
+      transition: transform .28s ease, opacity .2s;
+      transform-origin: center;
     }
+    .hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
 
-    /* Hamburger mobile */
-    .hamburger { display: none; flex-direction: column; justify-content: center; gap: 5px; background: none; border: none; cursor: pointer; padding: 8px; z-index: 10; }
-    .hamburger span { display: block; width: 22px; height: 2px; background: var(--white); border-radius: 2px; transition: transform .25s, opacity .25s; }
-    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-    .hamburger.open span:nth-child(2) { opacity: 0; }
-    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-    .nav-drawer { position: fixed; top: 0; right: 0; bottom: 0; width: 260px; background: var(--ink); padding: 80px 28px 40px; z-index: 9; transform: translateX(100%); transition: transform .3s cubic-bezier(.4,0,.2,1); display: flex; flex-direction: column; gap: 8px; }
-    .nav-drawer.open { transform: translateX(0); }
-    .nav-drawer-link, .nav-drawer-cta { color: var(--white); text-decoration: none; font-size: .9rem; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,.08); opacity: .85; }
-    .nav-drawer-cta { margin-top: 16px; border: 1.5px solid rgba(255,255,255,.3); border-radius: 8px; padding: 12px 16px; text-align: center; opacity: 1; }
-    @media (max-width: 640px) {
+    .nav-drawer {
+      display: none;
+      position: fixed;
+      top: 70px;
+      left: 50%;
+      width: calc(100vw - 24px);
+      max-width: 400px;
+      background: rgba(253,250,246,.97);
+      backdrop-filter: blur(28px) saturate(1.9);
+      -webkit-backdrop-filter: blur(28px) saturate(1.9);
+      border: 1px solid rgba(28,23,16,.09);
+      border-radius: 20px;
+      box-shadow: 0 8px 40px rgba(28,23,16,.14);
+      z-index: 490;
+      padding: 8px;
+      opacity: 0;
+      transform: translateX(-50%) translateY(-8px);
+      transition: opacity .25s ease, transform .25s ease;
+      pointer-events: none;
+    }
+    .nav-drawer.open {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+      pointer-events: auto;
+      visibility: visible;
+    }
+    .nav-drawer:not(.open) { visibility: hidden; }
+    .nav-drawer-link {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      font-size: .85rem;
+      font-weight: 400;
+      color: var(--ink-soft);
+      padding: 12px 16px;
+      border-radius: 12px;
+      transition: color .15s, background .15s;
+    }
+    .nav-drawer-link:hover { color: var(--ink); background: var(--warm); }
+    .nav-drawer-link.active { color: var(--ink); font-weight: 500; background: var(--warm-2); }
+
+    @media (max-width: 780px) {
+      nav#navbar {
+        top: 10px;
+        width: calc(100vw - 24px);
+        height: 50px;
+        padding: 0 .8rem;
+      }
+      nav#navbar .logo-sub { display: none; }
       nav#navbar .nav-links { display: none; }
       nav#navbar .nav-cta { display: none; }
-      .hamburger { display: flex; }
+      .hamburger { display: flex; margin-left: auto; }
+      .nav-drawer { display: block; }
     }
   </style>
   <style>
@@ -330,7 +388,7 @@
         <a href="../index.html#gallery-section">Collection</a><span aria-hidden="true">›</span>
         <span>Le Flamboyant</span>
       </nav>
-      <p class="oeuvre-num">N° 6 · Collection 2023 · Oiseau Totémique</p>
+      <p class="oeuvre-num">N° 06 · Collection 2023 · Oiseau Totémique</p>
       <h1 class="oeuvre-title" itemprop="name">Le <em>Flamboyant</em></h1>
       <p class="oeuvre-medium" itemprop="artMedium">Peinture acrylique · Juin 2023</p>
       <div class="oeuvre-tags">
