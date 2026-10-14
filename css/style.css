@@ -87,12 +87,13 @@ nav.scrolled {
   text-decoration: none; flex-shrink: 0;
 }
 .logo-mark {
-  width: 38px; height: 38px; border-radius: 50%;
-  background: var(--ink);
-  display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0; transition: background .22s;
+  display: block;
+  height: 40px;
+  width: 40px;
+  object-fit: cover;
+  object-position: left center;
+  flex-shrink: 0;
 }
-.logo:hover .logo-mark { background: var(--accent); }
 .logo-text { display: flex; flex-direction: column; line-height: 1.1; }
 .logo-name {
   font-family: var(--fs); font-size: 1rem;
