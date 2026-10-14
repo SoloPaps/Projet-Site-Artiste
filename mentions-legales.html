@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="fr" dir="ltr" prefix="og: https://ogp.me/ns#">
 <head>
+  <script src="js/theme-init.js"></script>
+  <link rel="stylesheet" href="css/theme.css">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mentions légales — Angélique Héduin, Peintre à Bessan</title>
@@ -84,7 +86,8 @@
   <!-- ══ NAV (identique au site principal) ══ -->
   <nav id="navbar" aria-label="Navigation principale">
     <a href="index.html" class="logo">
-      <img class="logo-mark" src="images/logo/ah-mark.svg" alt="Angélique Héduin" width="40" height="40">
+      <img class="logo-mark logo-mark-light" src="images/logo/ah-mark.svg" alt="Angélique Héduin" width="40" height="40">
+      <img class="logo-mark logo-mark-dark" src="images/logo/ah-mark-sombre.svg" alt="" width="40" height="40">
       <div class="logo-text">
         <span class="logo-name">Angélique Héduin</span>
         <span class="logo-sub">Peintre · Bessan, Occitanie</span>
@@ -98,6 +101,9 @@
     </div>
 
     <!-- Hamburger (mobile) -->
+    <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Thème : Auto. Passer à Clair.">
+      <span class="theme-toggle-label">Auto</span>
+    </button>
     <button type="button" class="hamburger" id="hamburger" aria-label="Ouvrir le menu de navigation" aria-expanded="false">
       <span></span>
       <span></span>
