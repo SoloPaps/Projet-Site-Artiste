@@ -1352,7 +1352,7 @@ function appliquerSujetContact(sujet) {
     var s = document.querySelector('script[data-leaflet]');
     if (!s) {
       s = document.createElement('script');
-      s.src = 'vendor/leaflet/leaflet.min.js?v=20261014';
+      s.src = 'vendor/leaflet/leaflet.min.js?v=20261015';
       s.setAttribute('data-leaflet', '1');
       document.head.appendChild(s);
     }
