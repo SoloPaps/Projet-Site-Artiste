@@ -121,6 +121,10 @@ for w in works:
 # ── sécurité ──
 if not os.path.exists(os.path.join(ROOT, ".htaccess")):
     err(".htaccess manquant")
+if not os.path.exists(os.path.join(ROOT, ".nojekyll")):
+    err(".nojekyll manquant (sans lui, GitHub Pages lance Jekyll et casse le build)")
+if os.path.exists(os.path.join(ROOT, "Document_suivre.md")):
+    err("Document_suivre.md est un fichier Word : le renommer en .docx, Jekyll le lit comme du Markdown")
 leaflet_js = os.path.join(ROOT, "vendor", "leaflet", "leaflet.min.js")
 leaflet_css = os.path.join(ROOT, "vendor", "leaflet", "leaflet.min.css")
 if not os.path.exists(leaflet_js): err("vendor/leaflet/leaflet.min.js manquant")
@@ -132,6 +136,29 @@ if "vendor/leaflet/leaflet.min.js" not in idx and "vendor/leaflet/leaflet.min.js
     err("Leaflet local non chargé (index.html ou js/main.js)")
 if re.search(r"name=\"_gotcha\"[^>]*style=", idx): err("index.html: honeypot avec style inline")
 if re.search(r"\.innerHTML\s*=", js_main): err("js/main.js: assignment innerHTML encore présent")
+if ".replace(/\\+/g, '%2B')" not in js_main:
+    err("js/main.js: les « + » des fichiers +decors ne sont pas encodés en %2B")
+wf_path = os.path.join(ROOT, ".github", "workflows", "static.yml")
+if os.path.exists(wf_path):
+    wf = read(".github/workflows/static.yml")
+    if re.search(r"path:\s*['\"]\.['\"]", wf):
+        err("workflow Pages: path '.' publie tools/, docs/ et les fichiers internes")
+    if "_site" not in wf:
+        err("workflow Pages: le dossier publié _site est absent")
+else:
+    err(".github/workflows/static.yml manquant")
+
+LEGACY_OEUVRES = (
+    "souvenirs-de-blonville", "raconte-moi-une-histoire", "lane-de-b100-2025",
+    "le-guetteur-silencieux-2024", "klimt-juin-2023", "le-flamboyant-juin-2023",
+)
+for slug in LEGACY_OEUVRES:
+    page = "oeuvres/" + slug + ".html"
+    s = read(page)
+    if "<style>" in s:
+        err(f"{page}: CSS encore incorporé")
+    if 'href="../css/oeuvre-legacy-nav.css"' not in s or f'href="../css/legacy/{slug}.css"' not in s:
+        err(f"{page}: feuilles CSS externes manquantes")
 
 def script_src_of(csp):
     m = re.search(r"script-src\s+([^;]+)", csp)
@@ -149,6 +176,13 @@ for p in pages:
         err(f"{p}: script exécutable inline")
     if "onfocus=" in s or "onblur=" in s:
         err(f"{p}: gestionnaire d'événement inline")
+    for attr_name, attr in re.findall(r'(href|src|srcset|imagesrcset)="([^"]+)"', s):
+        parts = attr.split(",") if attr_name in ("srcset", "imagesrcset") else [attr]
+        for part in parts:
+            url = part.strip().split()[0] if part.strip() else ""
+            path = url.split("?", 1)[0].split("#", 1)[0]
+            if "+" in path and not path.startswith(("mailto:", "tel:", "data:")):
+                err(f"{p}: « + » non encodé dans une URL → {url}")
 
 print(f"\n{len(pages)} pages · {len(works)} œuvres · {len(os.listdir(imgdir))} images")
 import collections

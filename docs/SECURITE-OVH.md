@@ -37,6 +37,12 @@ Le `.htaccess` refuse aussi ces chemins s’ils sont tout de même envoyés. Mie
 
 Si ces lignes sont absentes, Apache n’applique pas le `.htaccess` (fichier mal placé, ou module `headers` désactivé). Dans ce cas, le site s’affiche encore, mais **le clickjacking n’est pas bloqué**.
 
-## 4. Formspree (spam)
+## 4. GitHub Pages
+
+Le workflow `.github/workflows/static.yml` publie le site sur GitHub Pages. Cet hébergeur **n'applique pas** `.htaccess`. Les balises `<meta http-equiv>` ne remplacent pas `Content-Security-Policy` pour `frame-ancestors`, ni `X-Frame-Options`, ni `X-Content-Type-Options`. Sur `github.io`, le clic-jacking n'est donc pas bloqué par ce dépôt.
+
+Le fichier `.nojekyll` est obligatoire si la source Pages redevient la branche : sans lui, Jekyll traite les Markdown et a déjà fait échouer le build (29 septembre 2026, fichier Word alors nommé `Document_suivre.md`).
+
+## 5. Formspree (spam)
 
 L’identifiant du formulaire est public par conception. Dans le compte Formspree : activer le filtre anti-spam / les quotas. Le honeypot `_gotcha` du site réduit le spam, ce n’est pas une garantie.
