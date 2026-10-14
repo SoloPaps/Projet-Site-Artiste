@@ -124,7 +124,7 @@ nav.scrolled {
   text-decoration: none; transition: background .2s, transform .15s;
   white-space: nowrap; flex-shrink: 0;
 }
-.nav-cta:hover { background: var(--accent); transform: translateY(-1px); }
+.nav-cta:hover { background: var(--accent); color: #fff; transform: translateY(-1px); }
 
 /* ══════════════════════════════
    HERO — editorial asymmetric
@@ -556,7 +556,8 @@ nav.scrolled {
   letter-spacing: .06em; cursor: pointer;
   transition: background .2s, transform .12s, box-shadow .2s; white-space: nowrap;
 }
-.btn-acquerir:hover { background: #2c2419; transform: translateY(-1px); box-shadow: 0 6px 20px rgba(28,23,16,.18); }
+.btn-acquerir:hover,
+.btn-acquerir:focus-visible { background: #2c2419; color: #fdfaf6; transform: translateY(-1px); box-shadow: 0 6px 20px rgba(28,23,16,.18); }
 .btn-acquerir:active { transform: scale(.98); }
 
 .btn-favori {
@@ -567,7 +568,7 @@ nav.scrolled {
 }
 .btn-favori:hover { background: var(--warm); border-color: rgba(28,23,16,.2); }
 .btn-favori.liked .heart { fill: var(--accent); stroke: var(--accent); }
-.heart { fill: none; stroke: rgba(28,23,16,.45); stroke-width: 1.5; transition: fill .2s, stroke .2s; }
+.heart { fill: none; stroke: var(--ink-soft); stroke-width: 1.5; transition: fill .2s, stroke .2s; }
 
 .nav-arrows {
   position: absolute;
@@ -583,16 +584,22 @@ nav.scrolled {
   pointer-events: auto;
   width: 44px; height: 44px; flex: 0 0 auto;
   border-radius: 50%;
-  border: 1px solid rgba(28,23,16,.1);
-  background: rgba(253,250,246,.94);
-  color: var(--ink);
+  border: 1px solid rgba(246,241,233,.45);
+  background: #1c1710;
+  color: #f6f1e9;
   font-family: var(--fb); font-size: 1.15rem; line-height: 1;
   cursor: pointer;
   display: flex; align-items: center; justify-content: center;
-  box-shadow: 0 2px 12px rgba(28,23,16,.12);
-  transition: background .18s, transform .18s, border-color .18s;
+  box-shadow: 0 2px 14px rgba(0,0,0,.35);
+  transition: background .18s, transform .18s, border-color .18s, color .18s;
 }
-.btn-arrow:hover { background: var(--white); border-color: rgba(201,75,34,.35); transform: scale(1.06); }
+.btn-arrow:hover,
+.btn-arrow:focus-visible {
+  background: #c94b22;
+  color: #fff;
+  border-color: #c94b22;
+  transform: scale(1.06);
+}
 
 .panel-fade-out { opacity: 0; transform: translateY(5px); transition: opacity .12s, transform .12s; }
 .panel-fade-in  { opacity: 1; transform: translateY(0); transition: opacity .3s ease, transform .3s ease; }
@@ -730,7 +737,7 @@ footer a:hover { color: var(--accent); }
   padding: 13px 16px; border-radius: 12px;
   transition: background .2s; margin-top: 4px;
 }
-.nav-drawer-cta:hover { background: var(--accent); }
+.nav-drawer-cta:hover { background: var(--accent); color: #fff; }
 
 @media (max-width: 780px) {
   nav {
@@ -1553,7 +1560,7 @@ footer a:hover { color: var(--accent); }
 }
 .ci-val { font-size: .76rem; color: var(--ink); font-weight: 400; }
 .ci-sub { font-size: .62rem; color: var(--ink-mist); font-style: italic; font-family: var(--fs); }
-.ci-arrow { color: rgba(28,23,16,.2); flex-shrink: 0; }
+.ci-arrow { color: var(--ink-mist); flex-shrink: 0; }
 .contact-info-row:not(.no-link):hover .ci-arrow { color: var(--accent); }
 
 .ci-socials { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 4px; }
@@ -1597,7 +1604,8 @@ footer a:hover { color: var(--accent); }
   max-width: calc(100% - 12px);
   font-size: 10px;
   line-height: 1.3;
-  background: rgba(253,250,246,.92);
+  background: var(--white);
+  color: var(--ink-soft);
 }
 .contact-map-label {
   position: absolute; bottom: 22px; left: 10px;
@@ -1955,7 +1963,7 @@ footer a:hover { color: var(--accent); }
 .privacy-check input:checked + .check-custom::after {
   content: ''; display: block;
   width: 9px; height: 5px;
-  border-left: 1.5px solid #fff; border-bottom: 1.5px solid #fff;
+  border-left: 1.5px solid var(--cream); border-bottom: 1.5px solid var(--cream);
   transform: rotate(-45deg) translateY(-1px);
 }
 
@@ -2101,7 +2109,7 @@ footer a:hover { color: var(--accent); }
 .map-expand-btn {
   position: absolute; top: 10px; right: 10px; z-index: 800;
   display: flex; align-items: center; gap: 6px;
-  background: rgba(253,250,246,.88);
+  background: var(--white);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(28,23,16,.1);
@@ -2111,7 +2119,8 @@ footer a:hover { color: var(--accent); }
   box-shadow: 0 2px 10px rgba(28,23,16,.12);
   transition: background .2s, transform .15s;
 }
-.map-expand-btn:hover { background: rgba(253,250,246,.98); transform: translateY(-1px); }
+.map-expand-btn:hover,
+.map-expand-btn:focus-visible { background: var(--warm); color: var(--ink); transform: translateY(-1px); }
 
 /* Map modal — hidden from hit-testing when closed (otherwise the
    invisible Leaflet card sits on top of the collection and the mini map). */
@@ -2134,7 +2143,8 @@ footer a:hover { color: var(--accent); }
 .map-modal-card {
   width: min(860px, calc(100vw - 40px));
   height: min(540px, calc(100vh - 80px));
-  background: rgba(253,250,246,.92);
+  background: var(--white);
+  color: var(--ink);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
   border: 1px solid rgba(28,23,16,.1);
