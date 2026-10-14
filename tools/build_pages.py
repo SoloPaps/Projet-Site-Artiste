@@ -405,8 +405,8 @@ def render(w):
     return f'''<!DOCTYPE html>
 <html lang="fr">
 <head>
-  <script src="../js/theme-init.js"></script>
-  <link rel="stylesheet" href="../css/theme.css">
+  <script src="../js/theme-init.js?v=20261014"></script>
+  <link rel="stylesheet" href="../css/theme.css?v=20261014">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -454,7 +454,7 @@ def render(w):
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 
   <!-- Styles partagés des fiches œuvres -->
-  <link rel="stylesheet" href="../css/oeuvre.css">
+  <link rel="stylesheet" href="../css/oeuvre.css?v=20261014">
   <!-- Accent propre à cette œuvre -->
   <style>
     :root {{ --art: {css_color(w['art'])}; --art-bg: {css_color(w['art_bg'], '#f0b01018')}; --art-w: {int(w['aw'])}px; }}
@@ -547,8 +547,8 @@ def render(w):
     <a href="../cgv.html">CGV</a>
     <a href="../politique-confidentialite.html">Confidentialité</a>
   </footer>
-  <script src="../js/oeuvre.js" defer></script>
-  <script src="../js/contact-prefill.js" defer></script>
+  <script src="../js/oeuvre.js?v=20261014" defer></script>
+  <script src="../js/contact-prefill.js?v=20261014" defer></script>
 </body>
 </html>
 '''
