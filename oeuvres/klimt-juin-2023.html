@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+  <script src="../js/theme-init.js"></script>
+  <link rel="stylesheet" href="../css/theme.css">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -108,7 +110,8 @@
   <a href="#main-content" class="skip-link">Aller au contenu principal</a>
   <nav id="navbar" aria-label="Navigation principale"> <!-- AUDIT — aria-label ajouté -->
     <a href="../index.html" class="logo">
-      <img class="logo-mark" src="../images/logo/ah-mark.svg" alt="Angélique Héduin" width="40" height="40">
+      <img class="logo-mark logo-mark-light" src="../images/logo/ah-mark.svg" alt="Angélique Héduin" width="40" height="40">
+      <img class="logo-mark logo-mark-dark" src="../images/logo/ah-mark-sombre.svg" alt="" width="40" height="40">
       <div class="logo-text"><span class="logo-name">Angélique Héduin</span><span class="logo-sub">Peintre · Bessan, Occitanie</span></div>
     </a>
     <div class="nav-links">
@@ -116,7 +119,8 @@
       <a href="../index.html#portfolio-section" class="nav-link">Portfolio</a>
       <a href="../index.html#gallery-section" class="nav-link">Collection</a>
       <a href="../index.html#contact-section" class="nav-link">Contact</a>
-    </div>    <button class="hamburger" id="hamburger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="nav-drawer">
+    </div>    <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Thème : Auto. Passer à Clair."><span class="theme-toggle-label">Auto</span></button>
+    <button class="hamburger" id="hamburger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="nav-drawer">
       <span></span><span></span><span></span>
     </button>
   </nav>

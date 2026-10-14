@@ -1,0 +1,197 @@
+/* Thème sombre. Les variables de :root (clair) restent la base.
+   data-theme=dark force le sombre ; data-theme=auto suit prefers-color-scheme. */
+
+html[data-theme="dark"] {
+  color-scheme: dark;
+  --ink: #f6f1e9;
+  --ink-soft: #d9cfc3;
+  --ink-mist: #c4b8a8;
+  --cream: #1c1710;
+  --warm: #2a241c;
+  --warm-2: #3a3229;
+  --accent: #e0704a;
+  --gold: #b8915a;
+  --green: #8dcea8;
+  --white: #241f1a;
+  --shadow-frame: 0 20px 60px rgba(0,0,0,.45), 0 4px 12px rgba(0,0,0,.35);
+  --shadow-frame-hover: 0 32px 80px rgba(0,0,0,.55), 0 8px 24px rgba(0,0,0,.4);
+}
+
+@media (prefers-color-scheme: dark) {
+  html[data-theme="auto"],
+  html:not([data-theme]) {
+    color-scheme: dark;
+    --ink: #f6f1e9;
+    --ink-soft: #d9cfc3;
+    --ink-mist: #c4b8a8;
+    --cream: #1c1710;
+    --warm: #2a241c;
+    --warm-2: #3a3229;
+    --accent: #e0704a;
+    --gold: #b8915a;
+    --green: #8dcea8;
+    --white: #241f1a;
+    --shadow-frame: 0 20px 60px rgba(0,0,0,.45), 0 4px 12px rgba(0,0,0,.35);
+    --shadow-frame-hover: 0 32px 80px rgba(0,0,0,.55), 0 8px 24px rgba(0,0,0,.4);
+  }
+}
+
+/* Logo : version sombre du bandeau */
+img.logo-mark.logo-mark-dark { display: none; }
+
+html[data-theme="dark"] img.logo-mark.logo-mark-light { display: none; }
+html[data-theme="dark"] img.logo-mark.logo-mark-dark { display: block; }
+
+@media (prefers-color-scheme: dark) {
+  html[data-theme="auto"] img.logo-mark.logo-mark-light,
+  html:not([data-theme]) img.logo-mark.logo-mark-light { display: none; }
+  html[data-theme="auto"] img.logo-mark.logo-mark-dark,
+  html:not([data-theme]) img.logo-mark.logo-mark-dark { display: block; }
+}
+
+/* Bouton Clair / Sombre / Auto */
+.theme-toggle {
+  appearance: none;
+  -webkit-appearance: none;
+  border: 1px solid rgba(28,23,16,.22);
+  background: transparent;
+  color: var(--ink);
+  font-family: var(--fb, "DM Sans", system-ui, sans-serif);
+  font-size: .62rem;
+  font-weight: 500;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  line-height: 1;
+  border-radius: 100px;
+  padding: .42rem .62rem;
+  margin-right: 4px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.theme-toggle:hover { background: var(--warm); color: var(--ink); }
+.theme-toggle:focus { outline: none; }
+.theme-toggle:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+html[data-theme="dark"] .theme-toggle {
+  border-color: rgba(246,241,233,.35);
+}
+@media (prefers-color-scheme: dark) {
+  html[data-theme="auto"] .theme-toggle,
+  html:not([data-theme]) .theme-toggle {
+    border-color: rgba(246,241,233,.35);
+  }
+}
+
+/* Surfaces claires codées en dur (nav, tiroir, carte) */
+html[data-theme="dark"] nav#navbar,
+html[data-theme="dark"] nav#navbar.scrolled,
+html[data-theme="dark"] nav.scrolled {
+  background: rgba(20,16,12,.94);
+  border-color: rgba(246,241,233,.16);
+  box-shadow: 0 4px 24px rgba(0,0,0,.35);
+}
+html[data-theme="dark"] .nav-drawer {
+  background: rgba(20,16,12,.97);
+  border-color: rgba(246,241,233,.16);
+}
+html[data-theme="dark"] .skip-link {
+  background: #f6f1e9;
+  color: #1c1710;
+}
+html[data-theme="dark"] footer {
+  background: #14110e;
+  color: #c4b8a8;
+  border-top-color: rgba(246,241,233,.12);
+}
+html[data-theme="dark"] footer a { color: #d9cfc3; }
+html[data-theme="dark"] footer a:hover { color: #e0704a; }
+html[data-theme="dark"] .form-field input,
+html[data-theme="dark"] .form-field textarea,
+html[data-theme="dark"] .form-field input:focus,
+html[data-theme="dark"] .form-field textarea:focus {
+  border-color: rgba(246,241,233,.28);
+}
+html[data-theme="dark"] .btn-main,
+html[data-theme="dark"] .btn-acq {
+  background: #e0704a;
+  color: #1c1710;
+}
+html[data-theme="dark"] .btn-main:hover,
+html[data-theme="dark"] .btn-acq:hover {
+  background: #c94b22;
+  color: #f6f1e9;
+}
+html[data-theme="dark"] .ah-popup .leaflet-popup-content-wrapper {
+  background: #241f1a !important;
+  color: #f6f1e9;
+  border-color: rgba(246,241,233,.16) !important;
+}
+html[data-theme="dark"] .tag-o { color: #e0704a; }
+html[data-theme="dark"] .tag-b { color: #9ec4ef; }
+html[data-theme="dark"] .tag-g { color: #8dcea8; }
+html[data-theme="dark"] .tag-p { color: #e2b0d4; }
+html[data-theme="dark"] .tag-gold,
+html[data-theme="dark"] .tag-sun { color: #d4b483; }
+
+@media (prefers-color-scheme: dark) {
+  html[data-theme="auto"] nav#navbar,
+  html[data-theme="auto"] nav#navbar.scrolled,
+  html[data-theme="auto"] nav.scrolled,
+  html:not([data-theme]) nav#navbar,
+  html:not([data-theme]) nav.scrolled {
+    background: rgba(20,16,12,.94);
+    border-color: rgba(246,241,233,.16);
+    box-shadow: 0 4px 24px rgba(0,0,0,.35);
+  }
+  html[data-theme="auto"] .nav-drawer,
+  html:not([data-theme]) .nav-drawer {
+    background: rgba(20,16,12,.97);
+    border-color: rgba(246,241,233,.16);
+  }
+  html[data-theme="auto"] .skip-link,
+  html:not([data-theme]) .skip-link {
+    background: #f6f1e9;
+    color: #1c1710;
+  }
+  html[data-theme="auto"] footer,
+  html:not([data-theme]) footer {
+    background: #14110e;
+    color: #c4b8a8;
+    border-top-color: rgba(246,241,233,.12);
+  }
+  html[data-theme="auto"] footer a,
+  html:not([data-theme]) footer a { color: #d9cfc3; }
+  html[data-theme="auto"] .form-field input,
+  html[data-theme="auto"] .form-field textarea,
+  html[data-theme="auto"] .form-field input:focus,
+  html[data-theme="auto"] .form-field textarea:focus,
+  html:not([data-theme]) .form-field input,
+  html:not([data-theme]) .form-field textarea {
+    border-color: rgba(246,241,233,.28);
+  }
+  html[data-theme="auto"] .btn-main,
+  html[data-theme="auto"] .btn-acq,
+  html:not([data-theme]) .btn-main {
+    background: #e0704a;
+    color: #1c1710;
+  }
+  html[data-theme="auto"] .tag-o,
+  html:not([data-theme]) .tag-o { color: #e0704a; }
+  html[data-theme="auto"] .tag-b,
+  html:not([data-theme]) .tag-b { color: #9ec4ef; }
+  html[data-theme="auto"] .tag-g,
+  html:not([data-theme]) .tag-g { color: #8dcea8; }
+  html[data-theme="auto"] .tag-p,
+  html:not([data-theme]) .tag-p { color: #e2b0d4; }
+}
+
+@media (max-width: 780px) {
+  .theme-toggle {
+    padding: .38rem .5rem;
+    margin-right: 2px;
+    letter-spacing: .04em;
+  }
+}
