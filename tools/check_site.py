@@ -159,7 +159,7 @@ for slug in LEGACY_OEUVRES:
     s = read(page)
     if "<style>" in s:
         err(f"{page}: CSS encore incorporé")
-    if 'href="../css/oeuvre-legacy-nav.css"' not in s or f'href="../css/legacy/{slug}.css"' not in s:
+    if "../css/oeuvre-legacy-nav.css" not in s or f"../css/legacy/{slug}.css" not in s:
         err(f"{page}: feuilles CSS externes manquantes")
 
 def script_src_of(csp):

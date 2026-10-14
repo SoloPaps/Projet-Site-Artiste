@@ -365,4 +365,7 @@ html[data-theme="dark"] .tag-sun { color: #d4b483; }
     margin-right: 2px;
     letter-spacing: .04em;
   }
+  /* Même place que sur l'accueil : le logo pousse le bouton vers le hamburger. */
+  #navbar .logo { margin-right: auto; }
+  #navbar .hamburger { margin-left: auto; }
 }
