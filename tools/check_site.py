@@ -82,7 +82,9 @@ def image_format(path):
 EXT_FORMAT = {"jpg":"jpeg","jpeg":"jpeg","png":"png","webp":"webp","gif":"gif","bmp":"bmp","ico":"ico"}
 imgdir=os.path.join(ROOT,"images")
 for f in sorted(os.listdir(imgdir)):
-    real=image_format(os.path.join(imgdir,f))
+    path=os.path.join(imgdir,f)
+    if os.path.isdir(path): continue
+    real=image_format(path)
     ext=f.rsplit(".",1)[-1].lower()
     if EXT_FORMAT.get(ext)!=real: err(f"images/{f}: extension .{ext} ≠ format réel ({real})")
 

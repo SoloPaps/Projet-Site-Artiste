@@ -68,7 +68,7 @@
     /* Nav */
     nav#navbar { position: fixed; top: 16px; left: 50%; transform: translateX(-50%); z-index: 500; height: 56px; width: min(840px, calc(100vw - 32px)); display: flex; align-items: center; justify-content: space-between; padding: 0 8px 0 10px; background: rgba(253,250,246,.76); backdrop-filter: blur(28px) saturate(1.9); -webkit-backdrop-filter: blur(28px) saturate(1.9); border: 1px solid rgba(28,23,16,.09); border-radius: 100px; box-shadow: 0 2px 8px rgba(28,23,16,.04), 0 8px 28px rgba(28,23,16,.07); }
     nav#navbar .logo { display: flex; align-items: center; gap: 9px; text-decoration: none; }
-    nav#navbar .logo-mark { width: 38px; height: 38px; border-radius: 50%; background: var(--ink); display: flex; align-items: center; justify-content: center; }
+    nav#navbar .logo-mark { display: block; height: 40px; width: 40px; border-radius: 50%; flex-shrink: 0; }
     nav#navbar .logo-name { font-family: var(--fs); font-size: .95rem; font-weight: 500; font-style: italic; color: var(--ink); }
     nav#navbar .logo-sub { font-size: .54rem; color: var(--ink-mist); letter-spacing: .13em; text-transform: uppercase; display: block; }
     nav#navbar .nav-links { display: flex; align-items: center; gap: 2px; position: absolute; left: 50%; transform: translateX(-50%); }
@@ -128,12 +128,7 @@
 
   <nav id="navbar" aria-label="Navigation principale">
     <a href="index.html" class="logo">
-      <div class="logo-mark">
-        <svg width="17" height="17" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-          <path d="M10 3C10 3 6 7 6 10.5C6 12.985 7.791 15 10 15C12.209 15 14 12.985 14 10.5C14 7 10 3 10 3Z" fill="white"/>
-          <circle cx="10" cy="10.5" r="2" fill="#c94b22"/>
-        </svg>
-      </div>
+      <img class="logo-mark" src="images/logo/ah-mark.svg" alt="Angélique Héduin" width="40" height="40">
       <div class="logo-text">
         <span class="logo-name">Angélique Héduin</span>
         <span class="logo-sub">Peintre · Bessan, Occitanie</span>
