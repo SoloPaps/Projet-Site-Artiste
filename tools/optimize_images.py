@@ -89,11 +89,9 @@ def paint_mark(size, square=True):
 
 
 def make_favicons():
-    paint_mark(180, square=True).save(os.path.join(IMG, "apple-touch-icon.png"), "PNG")
-    mark32 = paint_mark(32, square=True)
-    mark32.save(os.path.join(IMG, "favicon-32.png"), "PNG")
-    mark32.save(os.path.join(IMG, "favicon.ico"), format="ICO", sizes=[(16, 16), (32, 32)])
-    print("favicon: ico / 32.png / apple-touch 180")
+    # Les favicons sont le monogramme vitrail (images/logo/ah-mark.svg),
+    # exportés par tools/build_logo.py. Ne pas redessiner l'ancienne goutte.
+    print("favicon: conservés (monogramme AH)")
 
 
 def delete_unused():
