@@ -55,8 +55,7 @@ picture { display: contents; }
       display: block;
       height: 40px;
       width: 40px;
-      object-fit: cover;
-      object-position: left center;
+      border-radius: 50%;
       flex-shrink: 0;
     }
     nav#navbar .logo-text { display: flex; flex-direction: column; line-height: 1.1; }
