@@ -11,7 +11,7 @@
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://*.tile.openstreetmap.fr https://tile.openstreetmap.fr; connect-src 'self' https://formspree.io; form-action 'none'; base-uri 'self'; object-src 'none'; frame-src 'none'; frame-ancestors 'none'; upgrade-insecure-requests">
   <meta http-equiv="X-Frame-Options" content="DENY">
   <meta http-equiv="X-Content-Type-Options" content="nosniff">
-  <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+  <link rel="sitemap" type="application/xml" href="sitemap.xml">
   <meta name="geo.region" content="FR-34">
   <meta name="geo.placename" content="Bessan, Hérault, Occitanie">
 
@@ -464,7 +464,7 @@
   ]
   </script>
   <link rel="preload" as="image" href="images/le-guetteur-silencieux-2024.jpg">
-  <link rel="preload" as="image" href="images/souvenirs-de-blonville+decors.jpg">
+  <link rel="preload" as="image" type="image/webp" href="images/souvenirs-de-blonville%2Bdecors-800.webp" imagesrcset="images/souvenirs-de-blonville%2Bdecors-400.webp 400w, images/souvenirs-de-blonville%2Bdecors-800.webp 800w" imagesizes="(max-width: 700px) 400px, 800px">
 </head>
 <body>
   <a href="#main-content" class="skip-link">Aller au contenu principal</a>
@@ -989,6 +989,9 @@
 
           <div class="form-sep"></div>
 
+          <noscript>
+            <p class="form-header-sub">Sans JavaScript, ce formulaire ne part pas. Écrivez à <a href="mailto:angeliqueheduin@gmail.com">angeliqueheduin@gmail.com</a>.</p>
+          </noscript>
           <form class="contact-form" id="contact-form" novalidate aria-label="Formulaire de contact">
             <input type="hidden" id="cf-subject" name="subject" value="Acquisition d'une œuvre">
             <!-- Honeypot Formspree : nom _gotcha (doc officielle). Réduit le spam, n'est pas une garantie. -->

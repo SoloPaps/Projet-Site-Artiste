@@ -424,11 +424,15 @@ function appliquerSujetContact(sujet) {
       }
     }
   }
+  // Le « + » de « +decors » est un espace dans certaines piles HTTP. On l'encode en %2B à la requête.
+  function publicImgUrl(src) {
+    return src.replace(/\+/g, '%2B');
+  }
   function appendArtworkImage(parent, src, alt, w, h, opts) {
     const safe = safeImgSrc(src);
     if (!safe) return;
     const img = document.createElement('img');
-    img.src = safe;
+    img.src = publicImgUrl(safe);
     img.alt = typeof alt === 'string' ? alt : '';
     if (w) img.width = w;
     if (h) img.height = h;
@@ -439,7 +443,8 @@ function appliquerSujetContact(sujet) {
       const pic = document.createElement('picture');
       const source = document.createElement('source');
       source.type = 'image/webp';
-      source.srcset = stem + '-400.webp 400w, ' + stem + '-800.webp 800w';
+      const stemUrl = publicImgUrl(stem);
+      source.srcset = stemUrl + '-400.webp 400w, ' + stemUrl + '-800.webp 800w';
       source.sizes = (opts && opts.sizes) ? opts.sizes : '(max-width: 700px) 400px, 800px';
       pic.appendChild(source);
       pic.appendChild(img);

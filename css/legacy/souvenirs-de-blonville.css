@@ -1,0 +1,306 @@
+/* ── Page œuvre ── */
+    .oeuvre-hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding-top: 88px;
+    }
+    .oeuvre-image-col {
+      position: sticky;
+      top: 88px;
+      height: calc(100vh - 88px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--warm);
+      padding: 48px;
+    }
+    .oeuvre-img-wrap {
+      position: relative;
+      max-width: 520px;
+      width: 100%;
+    }
+    .oeuvre-img-wrap img {
+      width: 100%;
+      height: auto;
+      display: block;
+      box-shadow: var(--shadow-frame);
+      border-radius: 2px;
+      will-change: transform; /* AUDIT — hint GPU pour hover */
+    }
+    .oeuvre-img-badge {
+      position: absolute;
+      top: -12px; right: -12px;
+      background: var(--accent);
+      color: #fff;
+      font-family: var(--fb);
+      font-size: .65rem;
+      font-weight: 500;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      padding: 6px 12px;
+      border-radius: 100px;
+    }
+    .oeuvre-info-col {
+      padding: 64px 56px 80px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      max-width: 560px;
+    }
+    .oeuvre-breadcrumb {
+      font-family: var(--fb);
+      font-size: .72rem;
+      color: var(--ink-mist);
+      letter-spacing: .04em;
+      margin-bottom: 32px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .oeuvre-breadcrumb a { color: var(--ink-soft); text-decoration: none; }
+    .oeuvre-breadcrumb a:hover { color: var(--ink); }
+    .oeuvre-num {
+      font-family: var(--fb);
+      font-size: .68rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+    .oeuvre-title {
+      font-family: var(--fs);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 300;
+      line-height: 1.15;
+      color: var(--ink);
+      margin-bottom: 6px;
+    }
+    .oeuvre-title em { font-style: italic; color: var(--accent); }
+    .oeuvre-medium {
+      font-family: var(--fb);
+      font-size: .8rem;
+      color: var(--ink-soft);
+      margin-bottom: 28px;
+    }
+    .oeuvre-tags {
+      display: flex; flex-wrap: wrap; gap: 6px;
+      margin-bottom: 28px;
+    }
+    .oeuvre-tag {
+      font-family: var(--fb);
+      font-size: .68rem;
+      font-weight: 500;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      padding: 4px 11px;
+      border-radius: 100px;
+      border: 1px solid currentColor;
+    }
+    .tag-o { color: #c94b22; border-color: #c94b2240; background: #c94b2209; }
+    .tag-b { color: #2060a0; border-color: #2060a040; background: #2060a009; }
+    .tag-g { color: #3a7a54; border-color: #3a7a5440; background: #3a7a5409; }
+    .oeuvre-sep { height: 1px; background: var(--warm-2); margin: 28px 0; }
+    .oeuvre-desc {
+      font-family: var(--fs);
+      font-size: 1.1rem;
+      line-height: 1.75;
+      color: var(--ink-soft);
+      margin-bottom: 28px;
+    }
+    .oeuvre-desc strong { color: var(--ink); font-weight: 500; }
+    .oeuvre-specs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px 24px;
+      margin-bottom: 36px;
+    }
+    .spec-item { display: flex; flex-direction: column; gap: 3px; }
+    .spec-label {
+      font-family: var(--fb);
+      font-size: .65rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--ink-mist);
+    }
+    .spec-val {
+      font-family: var(--fs);
+      font-size: 1rem;
+      color: var(--ink);
+    }
+    .oeuvre-avail {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--fb);
+      font-size: .75rem;
+      color: var(--green);
+      margin-bottom: 20px;
+    }
+    .avail-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--green);
+      flex-shrink: 0;
+    }
+    .oeuvre-price-row {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+      margin-bottom: 24px;
+    }
+    .oeuvre-price {
+      font-family: var(--fs);
+      font-size: 2.4rem;
+      font-weight: 300;
+      color: var(--ink);
+    }
+    .oeuvre-price-cur {
+      font-family: var(--fb);
+      font-size: .85rem;
+      color: var(--ink-soft);
+    }
+    .oeuvre-price-tax {
+      font-family: var(--fb);
+      font-size: .72rem;
+      color: var(--ink-mist);
+      letter-spacing: .04em;
+    }
+    .oeuvre-btns {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .btn-acq {
+      flex: 1;
+      min-width: 180px;
+      background: var(--ink);
+      color: var(--white);
+      border: none;
+      border-radius: 8px;
+      padding: 14px 24px;
+      font-family: var(--fb);
+      font-size: .8rem;
+      font-weight: 500;
+      letter-spacing: .04em;
+      cursor: pointer;
+      text-decoration: none;
+      text-align: center;
+      transition: background .2s, transform .15s;
+    }
+    .btn-acq:hover { background: #2a2520; transform: translateY(-1px); }
+    .btn-contact {
+      flex: 1;
+      min-width: 140px;
+      background: transparent;
+      color: var(--ink);
+      border: 1.5px solid var(--warm-2);
+      border-radius: 8px;
+      padding: 14px 24px;
+      font-family: var(--fb);
+      font-size: .8rem;
+      font-weight: 400;
+      cursor: pointer;
+      text-decoration: none;
+      text-align: center;
+      transition: border-color .2s, background .2s;
+    }
+    .btn-contact:hover { border-color: var(--ink); background: var(--warm); }
+    .oeuvre-note {
+      margin-top: 16px;
+      font-family: var(--fb);
+      font-size: .7rem;
+      color: var(--ink-mist);
+      line-height: 1.6;
+    }
+    /* Related */
+    .related-section {
+      background: var(--warm);
+      padding: 72px 5vw;
+    }
+    .related-head {
+      margin-bottom: 40px;
+    }
+    .related-eyebrow {
+      font-family: var(--fb);
+      font-size: .68rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--ink-mist);
+      margin-bottom: 8px;
+    }
+    .related-title {
+      font-family: var(--fs);
+      font-size: 1.8rem;
+      font-weight: 300;
+      color: var(--ink);
+    }
+    .related-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 24px;
+    }
+    .related-card {
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transition: transform .2s;
+    }
+    .related-card:hover { transform: translateY(-4px); }
+    .related-card-img {
+      aspect-ratio: 1;
+      overflow: hidden;
+      border-radius: 2px;
+      background: var(--warm-2);
+    }
+    .related-card-img img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform .4s;
+    }
+    .related-card:hover .related-card-img img { transform: scale(1.04); }
+    .related-card-title {
+      font-family: var(--fs);
+      font-size: 1rem;
+      color: var(--ink);
+    }
+    .related-card-price {
+      font-family: var(--fb);
+      font-size: .75rem;
+      color: var(--ink-soft);
+    }
+    /* Footer simple */
+    footer {
+      background: var(--ink);
+      color: var(--white);
+      padding: 32px 5vw;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-family: var(--fb);
+      font-size: .72rem;
+    }
+    footer a { color: var(--white); opacity: .7; text-decoration: none; }
+    footer a:hover { opacity: 1; }
+    @media (max-width: 768px) {
+      .oeuvre-hero { grid-template-columns: 1fr; }
+      .oeuvre-image-col { position: relative; top: 0; height: auto; padding: 32px 24px; }
+      .oeuvre-info-col { padding: 40px 24px 64px; max-width: 100%; }
+    }
+
+    /* AUDIT — Focus visible pour navigation clavier (WCAG 2.1 AA) */
+    :focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+      border-radius: 3px;
+    }
+    .btn-acq:focus-visible, .btn-contact:focus-visible {
+      outline-offset: 2px;
+    }
+    /* AUDIT — classe utilitaire lien texte */
+    .link-soft { color: var(--ink-soft); }
+    .link-soft:hover { color: var(--ink); }

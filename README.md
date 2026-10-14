@@ -4,15 +4,17 @@
 
 ```
 index.html            Page d'accueil (hero, portfolio, galerie, contact)
-main.js               Logique de l'index + TABLEAU `works` (source de vérité de la galerie)
+js/main.js            Logique de l'index + TABLEAU `works` (source de vérité de la galerie)
 css/style.css         Styles de l'index
-css/oeuvre.css        Styles partagés de TOUTES les fiches œuvres (nouvelles pages)
+css/oeuvre.css        Styles partagés des fiches générées par tools/build_pages.py
+css/oeuvre-legacy-nav.css
+css/legacy/*.css      Les 6 fiches d'origine : même CSS qu'avant, plus dans le HTML
 js/oeuvre.js          Scripts partagés des fiches (navbar, menu mobile)
 js/contact-prefill.js Fiches œuvres : pré-remplit le formulaire de contact de l'accueil
                       (nom de l'œuvre, via sessionStorage) — chargé par les fiches
 oeuvres/*.html        Une fiche par œuvre (15)
 images/               <nom>.jpg (œuvre intégrale) + <nom>+decors.jpg (mise en scène)
-sitemap.xml, robots.txt
+sitemap.xml, robots.txt, .htaccess, .nojekyll
 tools/                Scripts de vérification et de génération (voir plus bas)
 ```
 
@@ -73,19 +75,43 @@ python3 tools/check_site.py      # HTML, liens, images, JSON-LD, cohérence main
 python3 tools/render_test.py     # rendu réel Chromium à 360/768/1280/1920 px (nécessite playwright)
 ```
 
-## Points d'attention connus (hors périmètre de cette mise à jour)
+## Déploiement
 
-- `mentions-legales.html`, `cgv.html`, `politique-confidentialite.html`
-  sont référencés par la navigation et le pied de page mais **absents de ce dossier**.
-- La boutique et le panier ont été retirés : plus aucun lien vers `boutique.html`,
-  plus de `localStorage`, plus de badge de panier.
-- Formulaire de contact : `main.js` contient encore le placeholder
-  `https://formspree.io/f/VOTRE_ID_FORMSPREE` → les messages ne partent pas tant
-  qu'il n'est pas remplacé.
-- `frame-ancestors` dans la CSP est **ignoré** en balise `<meta>` : pour protéger contre
-  l'intégration en iframe, l'envoyer en en-tête HTTP côté hébergeur.
-- Les 6 fiches d'origine gardent leur CSS incorporé. Les 7 nouvelles utilisent
-  `css/oeuvre.css` + `js/oeuvre.js`. Migrer les 6 anciennes est possible, sans changement visuel.
-- Le portrait de l'artiste (bloc Portfolio) est encore une illustration SVG de substitution.
-- Images de décor : elles sont nommées `+decors` (avec un `+`). Sur certains hébergeurs le
-  `+` dans une URL doit être encodé (`%2B`). À surveiller si une image de décor ne s'affiche pas.
+Le site public est publié par GitHub Actions (`.github/workflows/static.yml`) sur
+`https://solopaps.github.io/Projet-Site-Artiste/`. Le workflow lance `tools/check_site.py`,
+puis n'envoie que les fichiers du site (pas `tools/`, `docs/`, `.cursor/`, ni les notes).
+
+Le 29 septembre 2026, le build Jekyll de GitHub Pages (`pages-build-deployment`) a échoué
+trois fois : `Document_suivre.md` est un document Word, et Jekyll a refusé ses octets
+(« invalid characters for the used encoding UTF-8 »). Le fichier s'appelle maintenant
+`Document_suivre.docx`. `.nojekyll` empêche Jekyll de se relancer si la source Pages
+repassait sur la branche.
+
+`angeliqueheduin.fr` n'a **aucun enregistrement DNS** (NXDOMAIN, vérifié le 14 octobre 2026).
+GitHub Pages n'a pas de domaine personnalisé configuré (`cname` vide). Ne pas ajouter de
+fichier `CNAME` tant que le domaine ne résout pas : GitHub redirigerait l'adresse
+`github.io` vers un nom qui n'existe pas. Quand le nom sera enregistré, les enregistrements
+à créer chez le bureau d'enregistrement sont les quatre adresses A de GitHub Pages
+(`185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`) et, pour
+`www`, un CNAME vers `solopaps.github.io`. Ensuite seulement, déclarer le domaine dans
+les réglages Pages.
+
+## Points d'attention
+
+- Les pages `mentions-legales.html`, `cgv.html` et `politique-confidentialite.html`
+  sont dans le dépôt et liées depuis le pied de page.
+- La boutique et le panier ont été retirés : plus aucun lien vers `boutique.html`.
+  Les favoris de la galerie utilisent encore `localStorage` (clé `ah-favoris`), ce n'est pas un panier.
+- Formulaire : `js/main.js` envoie vers `https://formspree.io/f/mjykyvno` (honeypot `_gotcha`).
+  Ce n'est plus un identifiant de remplacement. Un essai réel, reçu dans la boîte Formspree,
+  reste à faire par la propriétaire. Sans JavaScript, un message indique l'adresse e-mail.
+- `frame-ancestors`, `X-Frame-Options` et `X-Content-Type-Options` dans une balise
+  `<meta http-equiv>` sont **ignorés** par le navigateur. Le fichier `.htaccess` les envoie
+  pour Apache (OVH). **GitHub Pages ne lit pas `.htaccess`** : sur l'adresse `github.io`,
+  ces en-têtes ne sont pas posés. Les mentions légales indiquent encore OVH comme hébergeur.
+- Les 6 fiches d'origine ne gardent plus leur CSS dans le HTML. Le rendu est le même :
+  `css/oeuvre-legacy-nav.css` (partie commune) et `css/legacy/<slug>.css` (partie propre
+  à la fiche). Les autres fiches utilisent `css/oeuvre.css` + `js/oeuvre.js`.
+- Le portrait du bloc Portfolio est la photo `images/profil.jpg` (versions WebP à côté).
+- Les fichiers de décor restent nommés `+decors`. `js/main.js` encode le `+` en `%2B`
+  au moment de la requête. Les URL écrites dans le HTML doivent faire de même.
