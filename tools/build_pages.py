@@ -405,8 +405,8 @@ def render(w):
     return f'''<!DOCTYPE html>
 <html lang="fr">
 <head>
-  <script src="../js/theme-init.js?v=20261014"></script>
-  <link rel="stylesheet" href="../css/theme.css?v=20261014">
+  <script src="../js/theme-init.js?v=20261015"></script>
+  <link rel="stylesheet" href="../css/theme.css?v=20261015">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -446,15 +446,17 @@ def render(w):
   </script>
 
   <link rel="preload" as="image" href="../images/{f}.jpg">
-  <link rel="icon" href="../images/favicon.ico" sizes="any">
-  <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="../images/apple-touch-icon.png">
+  <link rel="icon" href="../images/favicon.ico?v=20261015" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32.png?v=20261015" data-favicon="light" media="(prefers-color-scheme: light)">
+  <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32-sombre.png?v=20261015" data-favicon="dark" media="(prefers-color-scheme: dark)">
+  <link rel="apple-touch-icon" sizes="180x180" href="../images/apple-touch-icon.png?v=20261015" data-favicon="light" media="(prefers-color-scheme: light)">
+  <link rel="apple-touch-icon" sizes="180x180" href="../images/apple-touch-icon-sombre.png?v=20261015" data-favicon="dark" media="(prefers-color-scheme: dark)">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 
   <!-- Styles partagés des fiches œuvres -->
-  <link rel="stylesheet" href="../css/oeuvre.css?v=20261014">
+  <link rel="stylesheet" href="../css/oeuvre.css?v=20261015">
   <!-- Accent propre à cette œuvre -->
   <style>
     :root {{ --art: {css_color(w['art'])}; --art-bg: {css_color(w['art_bg'], '#f0b01018')}; --art-w: {int(w['aw'])}px; }}
@@ -465,8 +467,8 @@ def render(w):
   <a href="#main-content" class="skip-link">Aller au contenu principal</a>
   <nav id="navbar" aria-label="Navigation principale">
     <a href="../index.html" class="logo">
-      <img class="logo-mark logo-mark-light" src="../images/logo/ah-mark.svg" alt="Angélique Héduin" width="40" height="40">
-      <img class="logo-mark logo-mark-dark" src="../images/logo/ah-mark-sombre.svg" alt="" width="40" height="40">
+      <img class="logo-mark logo-mark-light" src="../images/logo/marque-clair.png?v=20261015" alt="Angélique Héduin" width="40" height="40">
+      <img class="logo-mark logo-mark-dark" src="../images/logo/marque-sombre.png?v=20261015" alt="" width="40" height="40">
       <div class="logo-text"><span class="logo-name">Angélique Héduin</span><span class="logo-sub">Peintre · Bessan, Occitanie</span></div>
     </a>
     <div class="nav-links">
@@ -547,8 +549,8 @@ def render(w):
     <a href="../cgv.html">CGV</a>
     <a href="../politique-confidentialite.html">Confidentialité</a>
   </footer>
-  <script src="../js/oeuvre.js?v=20261014" defer></script>
-  <script src="../js/contact-prefill.js?v=20261014" defer></script>
+  <script src="../js/oeuvre.js?v=20261015" defer></script>
+  <script src="../js/contact-prefill.js?v=20261015" defer></script>
 </body>
 </html>
 '''

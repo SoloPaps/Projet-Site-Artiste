@@ -89,6 +89,10 @@ def paint_mark(size, square=True):
 
 
 def make_favicons():
+    # Les favicons officiels viennent du cercle du cheval (tools/build_official_logos.py).
+    if os.path.isfile(os.path.join(IMG, "logo", "marque-clair.png")):
+        print("favicon: inchangés (marque officielle)")
+        return
     paint_mark(180, square=True).save(os.path.join(IMG, "apple-touch-icon.png"), "PNG")
     mark32 = paint_mark(32, square=True)
     mark32.save(os.path.join(IMG, "favicon-32.png"), "PNG")
@@ -181,9 +185,11 @@ def rewrite_fonts_and_favicons():
         os.path.join("tools", "build_pages.py"),
     ]
     fav_files = (
-        '<link rel="icon" href="images/favicon.ico" sizes="any">\n'
-        '  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">\n'
-        '  <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">'
+        '<link rel="icon" href="images/favicon.ico?v=20261015" sizes="any">\n'
+        '  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png?v=20261015" data-favicon="light" media="(prefers-color-scheme: light)">\n'
+        '  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32-sombre.png?v=20261015" data-favicon="dark" media="(prefers-color-scheme: dark)">\n'
+        '  <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png?v=20261015" data-favicon="light" media="(prefers-color-scheme: light)">\n'
+        '  <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon-sombre.png?v=20261015" data-favicon="dark" media="(prefers-color-scheme: dark)">'
     )
     icon_data = re.compile(
         r"""<link rel="icon" type="image/svg\+xml" href="data:image/svg\+xml,[^"]+">"""
