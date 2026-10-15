@@ -2187,6 +2187,14 @@ footer a:hover { color: var(--accent); }
 #contact-section {
   scroll-margin-top: 80px;
 }
+/* Ancre des boutons « Acquérir », « Prendre rendez-vous », etc.
+   Le formulaire est sous la navbar fixe (16+56 px bureau, 10+50 px mobile). */
+#contact-form-card {
+  scroll-margin-top: 96px;
+}
+@media (max-width: 780px) {
+  #contact-form-card { scroll-margin-top: 80px; }
+}
 
 /* ══ LEAFLET CUSTOM POPUP ══ */
 .ah-popup .leaflet-popup-content-wrapper {

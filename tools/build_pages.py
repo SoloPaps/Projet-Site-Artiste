@@ -528,11 +528,11 @@ def render(w):
       <div class="oeuvre-avail"><div class="avail-dot" aria-hidden="true"></div>Disponible</div>
       {price_html}
       <div class="oeuvre-btns">
-        <a href="../index.html#contact-section" class="btn-acq">{acq_label}</a>
-        <a href="../index.html#contact-section" class="btn-contact">Poser une question</a>
+        <a href="../index.html#contact-form-card" class="btn-acq">{acq_label}</a>
+        <a href="../index.html#contact-form-card" class="btn-contact">Poser une question</a>
       </div>
       <p class="oeuvre-note">Emballage soigné · Certificat d'authenticité inclus<br>
-        Commandes personnalisées disponibles — <a href="../index.html#contact-section" class="link-soft">contactez-moi</a></p>
+        Commandes personnalisées disponibles — <a href="../index.html#contact-form-card" class="link-soft">contactez-moi</a></p>
     </div>
   </article>
   <section class="related-section" aria-label="Autres œuvres">
