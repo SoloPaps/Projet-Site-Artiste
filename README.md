@@ -14,7 +14,7 @@ js/contact-prefill.js Fiches œuvres : pré-remplit le formulaire de contact de 
                       (nom de l'œuvre, via sessionStorage) — chargé par les fiches
 oeuvres/*.html        Une fiche par œuvre (15)
 images/               <nom>.jpg (œuvre intégrale) + <nom>+decors.jpg (mise en scène)
-sitemap.xml, robots.txt, .htaccess, .nojekyll
+robots.txt, .htaccess, .nojekyll
 tools/                Scripts de vérification et de génération (voir plus bas)
 ```
 
@@ -65,13 +65,13 @@ n'est envoyée à Google (pas de bloc `Offer`).
 3. Ajouter l'objet correspondant **à la fin** du tableau `works` dans `main.js`
    (avec un `svgId` inédit `svg-15`, etc.).
 4. Mettre à jour le compteur de la galerie (`01 — 15` → `01 — 16`).
-5. Ajouter l'URL au `sitemap.xml` et le bloc `VisualArtwork` au JSON-LD de l'index.
+5. Ajouter le bloc `VisualArtwork` au JSON-LD de l'index.
 6. Vérifier : `python3 tools/check_site.py`
 
 ## Vérifications automatiques
 
 ```
-python3 tools/check_site.py      # HTML, liens, images, JSON-LD, cohérence main.js ↔ pages ↔ sitemap
+python3 tools/check_site.py      # HTML, liens, images, JSON-LD, cohérence main.js ↔ pages
 python3 tools/render_test.py     # rendu réel Chromium à 360/768/1280/1920 px (nécessite playwright)
 ```
 

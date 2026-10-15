@@ -19,9 +19,9 @@ Puis fais l'inventaire du projet :
 4. les données structurées Schema.org qui mentionnent une offre ou l'achat,
 5. les liens de réseaux sociaux par page,
 6. pour chaque œuvre : le lien dans oeuvres/*.html (existence réelle, vérifiée dans le
-   dossier du projet), l'entrée du sitemap, l'entrée dans les données JS, et le nom du
+   dossier du projet), l'entrée dans les données JS, et le nom du
    fichier image correspondant — signale toute page manquante ou tout nom qui ne
-   correspond pas entre ces quatre endroits,
+   correspond pas entre ces trois endroits,
 7. tous les placeholders (VOTRE_, À COMPLÉTER, XXXX),
 8. le contenu de tools/ (build_pages.py, check_site.py, render_test.py) : dis-moi si
    oeuvres/*.html (ou d'autres fichiers) sont générés par ces scripts plutôt qu'écrits
@@ -68,7 +68,7 @@ N'ajoute aucun fait. Attends ma validation avant de l'appliquer et de passer au 
 Joins aussi @20-security.mdc à ce chat.
 Tâche 4 : vérifie la CSP après suppression de la boutique, l'incohérence des liens
 de réseaux sociaux (signale-la, demande-moi lesquels sont vrais), et l'existence
-réelle de chaque page oeuvres/*.html face au sitemap et aux données JS (voir Phase 0
+réelle de chaque page oeuvres/*.html face aux données JS (voir Phase 0
 point 6). Signale aussi toute incohérence des pages légales
 (sans les réécrire). Donne un rapport par gravité.
 ```
@@ -79,9 +79,9 @@ point 6). Signale aussi toute incohérence des pages légales
 Recherche dans TOUT le projet, y compris tools/*.py et AGENTS.md : boutique, stripe,
 paypal, panier, cart, VOTRE_, À COMPLÉTER, TODO-OWNER, XXXX.
 Explique chaque résultat restant.
-Vérifie que tous les liens internes et les entrées du sitemap mènent à des pages
-existantes, et que chaque slug d'œuvre est cohérent entre sitemap, données JS et
-noms de fichiers images.
+Vérifie que tous les liens internes mènent à des pages
+existantes, et que chaque slug d'œuvre est cohérent entre les données JS et
+les noms de fichiers images.
 Si tools/check_site.py ou tools/render_test.py existent pour ça, lance-les (ou
 dis-moi comment les lancer) plutôt que de tout revérifier à la main.
 Puis rappelle-moi la liste des éléments que seule la propriétaire peut fournir.

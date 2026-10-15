@@ -109,16 +109,27 @@ else:
     for i,o in enumerate(order):
         if not works[i]["slug"].endswith(o+".html"): err(f"js/main.js: l'ordre des œuvres existantes a changé à l'indice {i}")
 
-# ── pages œuvres ↔ sitemap ↔ dimensions JSON-LD ↔ main.js ──
-sm=read("sitemap.xml")
+# ── pages œuvres ↔ dimensions JSON-LD ↔ main.js ──
 for w in works:
-    if w["slug"] and ("https://angeliqueheduin.fr/"+w["slug"]) not in sm: err(f"sitemap.xml: {w['slug']} manquant")
     page=read(w["slug"]) if w["slug"] and os.path.exists(os.path.join(ROOT,w["slug"])) else ""
     dm=re.search(r'"width":\s*\{[^}]*"value":\s*(\d+)[^}]*\},\s*"height":\s*\{[^}]*"value":\s*(\d+)',page)
     if dm and w["dims"]:
         exp=f"{dm.group(1)} × {dm.group(2)} cm"
         if exp!=w["dims"]: err(f"{w['slug']}: dimensions page ({exp}) ≠ js/main.js ({w['dims']})")
     elif not dm: warn(f"{w['slug']}: pas de width/height dans le JSON-LD")
+
+# ── non-indexation : lien privé, aucun sitemap ──
+if os.path.exists(os.path.join(ROOT, "sitemap.xml")):
+    err("sitemap.xml présent : le site ne doit pas publier de sitemap")
+robots_txt = read("robots.txt")
+if robots_txt != "User-agent: *\nDisallow: /\n":
+    err("robots.txt doit être « User-agent: * » puis « Disallow: / », sans ligne Sitemap")
+for p in pages:
+    s = read(p)
+    if '<meta name="robots" content="noindex, nofollow">' not in s:
+        err(f"{p}: meta robots attendue « noindex, nofollow »")
+    if "sitemap.xml" in s:
+        err(f"{p}: référence à sitemap.xml")
 
 # ── sécurité ──
 if not os.path.exists(os.path.join(ROOT, ".htaccess")):
