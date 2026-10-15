@@ -723,7 +723,7 @@ function appliquerSujetContact(sujet) {
       msg.dispatchEvent(new Event('input'));
     }
 
-    const contact = document.getElementById('contact-section');
+    const contact = document.getElementById('contact-form-card');
     if (contact) scrollToEl(contact);
   });
 
