@@ -1,6 +1,6 @@
 # Refonte partielle de angeliqueheduin.fr — Cahier des charges
 
-Ce document est la **source unique de vérité** du chantier. Il est issu de l'analyse du site existant (index.html, boutique.html/js/css, cgv.html, mentions-legales.html/css/js, politique-confidentialite.html, sitemap.xml, robots.txt, main.js, style.css). Les règles Cursor (`.cursor/rules/`) en sont le résumé opérationnel.
+Ce document est la **source unique de vérité** du chantier. Il est issu de l'analyse du site existant (index.html, boutique.html/js/css, cgv.html, mentions-legales.html/css/js, politique-confidentialite.html, robots.txt, main.js, style.css). Les règles Cursor (`.cursor/rules/`) en sont le résumé opérationnel.
 
 Les sections marquées **« ajout proposé »** ne figuraient pas dans l'analyse d'origine : ce sont des points de vigilance ajoutés à la relecture, à valider par la propriétaire.
 
@@ -26,7 +26,7 @@ La première et la troisième catégorie peuvent être corrigées par Cursor. La
 | 2 | Paiement Stripe | Lien `buy.stripe.com/VOTRE_LIEN`, jamais renseigné. | `boutique.js` |
 | 3 | Paiement PayPal | Lien `www.paypal.com/paypalme/VOTRE_COMPTE`, jamais renseigné. | `boutique.js` |
 | 4 | Paiement par virement | IBAN factice codé en dur (`FR76 XXXX XXXX...`). | `boutique.js` |
-| 5 | Pages détail des œuvres | Le sitemap et la galerie pointent vers `oeuvres/*.html`, absentes des fichiers fournis : à vérifier sur le site en ligne. | `sitemap.xml`, `main.js` |
+| 5 | Pages détail des œuvres | La galerie pointe vers `oeuvres/*.html`, absentes des fichiers fournis : à vérifier sur le site en ligne. | `main.js` |
 | 6 | Réseaux sociaux incohérents | `index.html` : Pinterest et un Facebook « Angélique Héduin Ostéopathe » ; `boutique.html` : Instagram et un autre Facebook. Les deux jeux ne peuvent pas être corrects. | `index.html`, `boutique.html` |
 
 La boutique n'a jamais eu de système de paiement opérationnel : sa suppression retire une interface non finalisée, pas une fonctionnalité réelle.
@@ -57,7 +57,7 @@ Ces champs restent des emplacements clairement signalés jusqu'à ce que la prop
 |---|---|
 | Garder le même design | Aucune modification de la structure visuelle, des couleurs, de la mise en page. |
 | Enlever le style « IA » | Réécriture des textes de la section 4, un bloc à la fois. |
-| Enlever la page boutique | Suppression de `boutique.html`, `boutique.css`, `boutique.js` ; retrait de tous les liens (nav, footer, drawer mobile, pages légales) ; entrée du sitemap ; remplacement du flux « Acquérir ». |
+| Enlever la page boutique | Suppression de `boutique.html`, `boutique.css`, `boutique.js` ; retrait de tous les liens (nav, footer, drawer mobile, pages légales) ; remplacement du flux « Acquérir ». |
 | Vérifier que tout fonctionne | Corriger ou signaler chaque point de la section 2 ; scénarios de la section 9. |
 | Ajouter des éléments si pertinent | Propositions de la section 7, à valider. |
 | Vérifier la sécurité | Section 6. |
@@ -94,7 +94,7 @@ Autres suggestions, optionnelles :
 **Ajouts proposés (conséquences de la suppression de la boutique) :**
 
 - Retirer le code devenu mort : icône ou compteur de panier, styles et scripts du panier, clé `localStorage` du panier.
-- Chercher les références à la boutique dans les données structurées Schema.org (offres, URL d'achat), les balises Open Graph/canonical, `robots.txt` et le sitemap.
+- Chercher les références à la boutique dans les données structurées Schema.org (offres, URL d'achat), les balises Open Graph/canonical et `robots.txt`.
 - Vérifier la cohérence des pages légales : CGV, politique de confidentialité (mentions de Stripe, PayPal, panier ; mention de Formspree ; tuiles de carte Leaflet). Signaler, sans réécrire.
 
 ## 8. Ce qui reste à la propriétaire
@@ -111,4 +111,4 @@ Voir `A-FAIRE-PAR-LA-PROPRIETAIRE.md`.
 6. Vérifier qu'aucune règle de CSP ne référence encore Stripe ou PayPal.
 7. Relire à voix haute tous les textes modifiés.
 8. **Ajout proposé :** rechercher dans tout le projet `boutique`, `stripe`, `paypal`, `panier`/`cart`, `VOTRE_`, `À COMPLÉTER`, `TODO-OWNER`, `XXXX` et expliquer chaque résultat restant.
-9. **Ajout proposé :** contrôler que tous les liens internes et les entrées du sitemap mènent à des pages existantes.
+9. **Ajout proposé :** contrôler que tous les liens internes mènent à des pages existantes.

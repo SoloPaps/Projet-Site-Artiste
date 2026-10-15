@@ -22,7 +22,7 @@ Le dossier de travail contient des fichiers **internes**. Ne pas les copier sur 
 
 Le `.htaccess` refuse aussi ces chemins s’ils sont tout de même envoyés. Mieux vaut ne pas les envoyer.
 
-À envoyer : `index.html`, les pages légales, `oeuvres/`, `css/`, `js/`, `images/`, `vendor/`, `sitemap.xml`, `robots.txt`, `.htaccess`.
+À envoyer : `index.html`, les pages légales, `oeuvres/`, `css/`, `js/`, `images/`, `vendor/`, `robots.txt`, `.htaccess`.
 
 ## 3. Vérifier après mise en ligne
 

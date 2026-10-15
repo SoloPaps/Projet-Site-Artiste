@@ -31,7 +31,7 @@ Two conflicting sets exist (Pinterest/Facebook vs Instagram/Facebook). Ask which
 
 ## Artwork detail pages
 `oeuvres/*.html` exist in this project. Check locally (file list, not "the live site")
-whether each page referenced in the sitemap and in the JS `works` data actually exists,
+whether each page referenced in the JS `works` data actually exists,
 and whether its slug matches the corresponding image/data filename. Report every
 mismatch you find instead of guessing which name is correct. Do not delete or rename
 files yourself — flag and wait.
