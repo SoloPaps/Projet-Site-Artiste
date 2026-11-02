@@ -359,6 +359,51 @@ html[data-theme="dark"] .tag-sun { color: #d4b483; }
   html:not([data-theme]) .tag-p { color: #e2b0d4; }
 }
 
+/* Étiquette « Plus disponible » — remplace le prix des œuvres vendues.
+   Cadre double, même or et même typo que les pastilles du site. */
+.unavailable-badge {
+  display: inline-block;
+  max-width: 100%;
+  font-family: var(--fb, "DM Sans", system-ui, sans-serif);
+  font-size: .62rem;
+  font-weight: 500;
+  font-style: normal;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  line-height: 1.2;
+  color: var(--ink);
+  background: transparent;
+  border: 3px double var(--gold);
+  padding: 6px 12px 5px;
+  border-radius: 1px;
+  white-space: nowrap;
+}
+.price-row.is-unavailable {
+  align-items: center;
+}
+.price-row.is-unavailable .price-value,
+.price-row.is-unavailable .price-currency,
+.price-row.is-unavailable .price-tax {
+  display: none;
+}
+.artwork-avail.is-unavailable,
+.oeuvre-avail.is-unavailable {
+  display: none;
+}
+/* .btn-acquerir { display: flex } l'emporte sinon sur l'attribut hidden. */
+.btn-acquerir[hidden] {
+  display: none !important;
+}
+.btn-row:has(.btn-acquerir[hidden]) {
+  justify-content: flex-end;
+}
+.related-card .unavailable-badge {
+  font-size: .56rem;
+  letter-spacing: .08em;
+  padding: 5px 8px 4px;
+  align-self: flex-start;
+}
+
 @media (max-width: 780px) {
   .theme-toggle {
     padding: .38rem .5rem;

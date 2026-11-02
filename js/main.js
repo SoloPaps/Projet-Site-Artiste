@@ -129,7 +129,7 @@ const works = [
     medium:   "Peinture acrylique sur toile · Juillet 2025",
     dims:     "50 × 50 cm",
     desc:     "Une jeune femme au ballon rouge s'avance vers la mer sur les planches normandes, entre cabines de plage aux toits bleus et vagues écumantes. Une toile solaire et poétique, chargée de la douce nostalgie des étés d'enfance — lumière éclatante, couleurs pures, émotion universelle.",
-    price:    "150",
+    available: false,
     tags:     [{ l: "Figuratif", c: "tag-b" }, { l: "Nostalgie", c: "tag-o" }, { l: "Mer", c: "tag-g" }],
     series:   "mer",
     bg:       "#e8d080"
@@ -159,7 +159,7 @@ const works = [
     medium:   "Acrylique sur toile · Septembre 2023",
     dims:     "58 × 77 cm",
     desc:     "Un chat aux grands yeux bleus rêveurs, déconstruit en fragments de vitrail multicolore sur fond jaune soleil et rose fuchsia. Chaque morceau raconte une histoire différente — géométries vives, taches rondes, chaos joyeux. Une œuvre qui interpelle, surprend et ne se lasse pas de dévoiler de nouveaux détails.",
-    price:    "240",
+    available: false,
     tags:     [{ l: "Chat Sacré", c: "tag-p" }, { l: "Vitrail", c: "tag-b" }, { l: "Pop Art", c: "tag-o" }],
     series:   "totem",
     bg:       "#f0e020"
@@ -174,7 +174,7 @@ const works = [
     medium:   "Peinture acrylique sur toile · 2024",
     dims:     "50 × 60 cm",
     desc:     "Un chat en majesté, profil altier sur fond de mandala blanc et orange brûlé — œil doré en amande, museau délicat, robe découpée en facettes de vitrail bleu, vert, mauve et or. L'animal totémique dans toute sa puissance silencieuse : gardien, guide, passeur d'énergie. Dorures et collage sur toile.",
-    price:    "240",
+    available: false,
     tags:     [{ l: "Chat Totémique", c: "tag-o" }, { l: "Mandala", c: "tag-p" }, { l: "Dorures", c: "tag-b" }],
     series:   "totem",
     bg:       "#e86820"
@@ -189,7 +189,7 @@ const works = [
     medium:   "Peinture acrylique · Juin 2023",
     dims:     "60 × 80 cm",
     desc:     "Réinterprétation personnelle du chef-d'œuvre de Gustav Klimt, peinte à l'acrylique avec une maîtrise saisissante des dorures, des motifs géométriques et des cercles caractéristiques. Deux amants enlacés dans un flot d'or et de fleurs — un exercice d'admiration qui révèle la profondeur technique et la sensibilité de l'artiste.",
-    price:    "240",
+    available: false,
     tags:     [{ l: "Hommage Klimt", c: "tag-o" }, { l: "Dorures", c: "tag-b" }, { l: "Figuratif", c: "tag-p" }],
     series:   "hommage",
     bg:       "#c8a820"
@@ -264,7 +264,7 @@ const works = [
     medium:   "Peinture acrylique sur toile · 2025",
     dims:     "50 × 50 cm",
     desc:     "Un cerf nous regarde en face, calme et attentif. Ses bois s'ornent de feuilles vertes et de baies rouges, des plumes pendent de ses oreilles. Autour de lui, un monde de signes : spirales, triangles, chevrons, lettres, et quelques petits singes suspendus. Un totem de la forêt, doux et plein de mystères.",
-    price:    "180",
+    available: false,
     tags:     [{ l: "Cerf Totémique", c: "tag-o" }, { l: "Symboles", c: "tag-p" }, { l: "Nature", c: "tag-g" }],
     series:   "totem",
     bg:       "#40a0e0"
@@ -592,18 +592,42 @@ function appliquerSujetContact(sujet) {
       document.getElementById('p-dims').textContent   = w.dims;
       document.getElementById('p-desc').textContent   = w.desc;
       const priceEl = document.getElementById('p-price');
-      const hasPrice = w.price !== null && w.price !== undefined && w.price !== '';
-      priceEl.textContent = hasPrice ? w.price : 'Prix sur demande';
-      priceEl.classList.toggle('on-request', !hasPrice);
+      const sold = w.available === false;
+      const hasPrice = !sold && w.price !== null && w.price !== undefined && w.price !== '';
       const priceRow = priceEl.closest('.price-row');
-      if (priceRow) priceRow.classList.toggle('on-request-row', !hasPrice);
+      let badge = priceRow ? priceRow.querySelector('.unavailable-badge') : null;
+      if (sold) {
+        priceEl.textContent = '';
+        priceEl.classList.remove('on-request');
+        if (priceRow) {
+          priceRow.classList.add('is-unavailable');
+          priceRow.classList.remove('on-request-row');
+          if (!badge) {
+            badge = document.createElement('span');
+            badge.className = 'unavailable-badge';
+            badge.textContent = 'Plus disponible';
+            priceRow.appendChild(badge);
+          }
+        }
+      } else {
+        if (badge) badge.remove();
+        if (priceRow) priceRow.classList.remove('is-unavailable');
+        priceEl.textContent = hasPrice ? w.price : 'Prix sur demande';
+        priceEl.classList.toggle('on-request', !hasPrice);
+        if (priceRow) priceRow.classList.toggle('on-request-row', !hasPrice);
+      }
+      const avail = document.querySelector('#gallery-section .artwork-avail');
+      if (avail) avail.classList.toggle('is-unavailable', sold);
+      btnAcq.hidden = sold;
       // Le bouton mène toujours au formulaire de contact ; seul le libellé change
-      btnAcq.dataset.mode = hasPrice ? 'acquisition' : 'quote';
-      btnAcq.setAttribute('aria-label', hasPrice
-        ? "Acquérir l'œuvre — aller au formulaire de contact"
-        : "Demander le prix de cette œuvre — aller au formulaire de contact");
-      const lbl = btnAcq.querySelector('.btn-label');
-      if (lbl) lbl.textContent = hasPrice ? "Acquérir l'œuvre" : 'Demander le prix';
+      if (!sold) {
+        btnAcq.dataset.mode = hasPrice ? 'acquisition' : 'quote';
+        btnAcq.setAttribute('aria-label', hasPrice
+          ? "Acquérir l'œuvre — aller au formulaire de contact"
+          : "Demander le prix de cette œuvre — aller au formulaire de contact");
+        const lbl = btnAcq.querySelector('.btn-label');
+        if (lbl) lbl.textContent = hasPrice ? "Acquérir l'œuvre" : 'Demander le prix';
+      }
       const tagsEl = document.getElementById('p-tags');
       tagsEl.textContent = '';
       (w.tags || []).forEach(function (t) {
@@ -709,6 +733,7 @@ function appliquerSujetContact(sujet) {
   // Acquérir / Demander le prix : défilement vers le formulaire de contact
   btnAcq.addEventListener('click', e => {
     e.stopPropagation();
+    if (works[current].available === false) return;
 
     const prix = btnAcq.dataset.mode === 'quote';
     appliquerSujetContact(prix ? 'Demande de prix' : "Acquisition d'une œuvre");
