@@ -2,12 +2,12 @@
 <html lang="fr">
 <head>
   <script src="../js/theme-init.js?v=20261015"></script>
-  <link rel="stylesheet" href="../css/theme.css?v=20261015">
+  <link rel="stylesheet" href="../css/theme.css?v=20261102">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Souvenirs de Blonville — Angélique Héduin · 2025</title><!-- AUDIT — titre raccourci (48 chars, était 78) -->
-  <meta name="description" content="« Souvenirs de Blonville » — peinture acrylique originale sur toile 50×50 cm, juillet 2025. Une jeune femme au ballon rouge sur les planches normandes, entre cabines bleues et mer scintillante. Œuvre figurative solaire d'Angélique Héduin, artiste peintre à Bessan (Hérault). Disponible à l'acquisition.">
+  <meta name="description" content="« Souvenirs de Blonville » — peinture acrylique originale sur toile 50×50 cm, juillet 2025. Une jeune femme au ballon rouge sur les planches normandes, entre cabines bleues et mer scintillante. Œuvre figurative solaire d'Angélique Héduin, artiste peintre à Bessan (Hérault). Plus disponible.">
   <meta name="author" content="Angélique Héduin">
   <meta name="theme-color" content="#c94b22">
   <meta name="referrer" content="strict-origin-when-cross-origin">
@@ -25,7 +25,7 @@
   <!-- Open Graph -->
   <meta property="og:type"        content="article">
   <meta property="og:title"       content="Souvenirs de Blonville — Angélique Héduin">
-  <meta property="og:description" content="Peinture acrylique sur toile 50×50 cm, juillet 2025. Une jeune femme au ballon rouge sur les planches de Blonville — lumière solaire, couleurs pures, nostalgie douce. Œuvre originale disponible.">
+  <meta property="og:description" content="Peinture acrylique sur toile 50×50 cm, juillet 2025. Une jeune femme au ballon rouge sur les planches de Blonville — lumière solaire, couleurs pures, nostalgie douce. Plus disponible.">
   <meta property="og:url"         content="https://angeliqueheduin.fr/oeuvres/souvenirs-de-blonville.html">
   <meta property="og:image"       content="https://angeliqueheduin.fr/images/souvenirs-de-blonville.jpg">
   <meta property="og:image:alt"   content="Souvenirs de Blonville — peinture acrylique d'Angélique Héduin, jeune femme au ballon rouge sur les planches normandes">
@@ -35,7 +35,7 @@
   <!-- Twitter Card -->
   <meta name="twitter:card"        content="summary_large_image">
   <meta name="twitter:title"       content="Souvenirs de Blonville — Angélique Héduin">
-  <meta name="twitter:description" content="Peinture acrylique 50×50 cm · Planche normande, ballon rouge, mer · Juillet 2025 · Disponible à l'acquisition">
+  <meta name="twitter:description" content="Peinture acrylique 50×50 cm · Planche normande, ballon rouge, mer · Juillet 2025 · Plus disponible">
   <meta name="twitter:image"       content="https://angeliqueheduin.fr/images/souvenirs-de-blonville.jpg">
   <meta name="twitter:image:alt"   content="Souvenirs de Blonville — Angélique Héduin">
 
@@ -67,12 +67,7 @@
     "offers": {
       "@type": "Offer",
       "url": "https://angeliqueheduin.fr/oeuvres/souvenirs-de-blonville.html",
-      "priceCurrency": "EUR",
-      "price": "150",
-      "priceValidUntil": "2027-01-01",
-      "availability": "https://schema.org/InStock",
-      "itemCondition": "https://schema.org/NewCondition",
-      "seller": { "@id": "https://angeliqueheduin.fr/#atelier" }
+      "availability": "https://schema.org/SoldOut"
     },
     "isPartOf": {
       "@type": "Collection",
@@ -149,7 +144,6 @@
              width="800" height="800"
              itemprop="image"
              loading="eager"></picture>
-        <span class="oeuvre-img-badge" aria-label="Disponible"><!-- AUDIT — aria-label badge image -->Disponible</span>
       </div>
     </div>
 
@@ -207,20 +201,11 @@
         </div>
       </div>
 
-      <div class="oeuvre-avail">
-        <div class="avail-dot" aria-hidden="true"></div><!-- AUDIT — aria-hidden décoratif -->
-        Disponible
-      </div>
-
-      <div class="oeuvre-price-row" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
-        <span class="oeuvre-price" itemprop="price" content="150">150</span><!-- AUDIT -->
-        <span class="oeuvre-price-cur" itemprop="priceCurrency" content="EUR">€</span>
-        <span class="oeuvre-price-tax">TTC</span>
-        <meta itemprop="availability" content="https://schema.org/InStock">
+      <div class="oeuvre-price-row">
+        <span class="unavailable-badge">Plus disponible</span>
       </div>
 
       <div class="oeuvre-btns">
-        <a href="../index.html#contact-form-card" class="btn-acq">Acquérir cette œuvre</a>
         <a href="../index.html#contact-form-card" class="btn-contact">Poser une question</a>
       </div>
 

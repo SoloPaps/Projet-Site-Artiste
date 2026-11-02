@@ -2,11 +2,11 @@
 <html lang="fr">
 <head>
   <script src="js/theme-init.js?v=20261015"></script>
-  <link rel="stylesheet" href="css/theme.css?v=20261015">
+  <link rel="stylesheet" href="css/theme.css?v=20261102">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Angélique Héduin — Peintre · Art Figuratif & Animaux Totémiques · Bessan, Occitanie</title>
-  <meta name="description" content="Peintre à Bessan (Hérault), Angélique Héduin crée des œuvres figuratives vibrantes : animaux totémiques (âne, chat, ara), vitrail moderne, hommages à l'Occitanie. Toiles originales à acquérir — Souvenirs de Blonville, L'Âne de B100, Le Guetteur Silencieux. Commandes personnalisées.">
+  <meta name="description" content="Peintre à Bessan (Hérault), Angélique Héduin crée des œuvres figuratives vibrantes : animaux totémiques (âne, chat, ara), vitrail moderne, hommages à l'Occitanie. Toiles originales à acquérir — L'Âne de B100. Commandes personnalisées.">
   <meta name="author" content="Angélique Héduin">
   <meta name="robots" content="noindex, nofollow">
   <meta name="theme-color" content="#c94b22">
@@ -167,7 +167,7 @@
       "height": { "@type": "QuantitativeValue", "value": 50, "unitCode": "CMT" },
       "dateCreated": "2025-07",
       "artist": { "@id": "https://angeliqueheduin.fr/#artist" },
-      "offers": { "@type": "Offer", "priceCurrency": "EUR", "price": "150", "availability": "https://schema.org/InStock" }
+      "offers": { "@type": "Offer", "availability": "https://schema.org/SoldOut" }
     },
     {
       "@context": "https://schema.org",
@@ -195,7 +195,7 @@
       "height": { "@type": "QuantitativeValue", "value": 77, "unitCode": "CMT" },
       "dateCreated": "2023-09",
       "artist": { "@id": "https://angeliqueheduin.fr/#artist" },
-      "offers": { "@type": "Offer", "priceCurrency": "EUR", "price": "240", "availability": "https://schema.org/InStock" }
+      "offers": { "@type": "Offer", "availability": "https://schema.org/SoldOut" }
     },
     {
       "@context": "https://schema.org",
@@ -209,7 +209,7 @@
       "height": { "@type": "QuantitativeValue", "value": 60, "unitCode": "CMT" },
       "dateCreated": "2024",
       "artist": { "@id": "https://angeliqueheduin.fr/#artist" },
-      "offers": { "@type": "Offer", "priceCurrency": "EUR", "price": "240", "availability": "https://schema.org/InStock" }
+      "offers": { "@type": "Offer", "availability": "https://schema.org/SoldOut" }
     },
     {
       "@context": "https://schema.org",
@@ -223,7 +223,7 @@
       "height": { "@type": "QuantitativeValue", "value": 80, "unitCode": "CMT" },
       "dateCreated": "2023-06",
       "artist": { "@id": "https://angeliqueheduin.fr/#artist" },
-      "offers": { "@type": "Offer", "priceCurrency": "EUR", "price": "240", "availability": "https://schema.org/InStock" }
+      "offers": { "@type": "Offer", "availability": "https://schema.org/SoldOut" }
     },
     {
       "@context": "https://schema.org",
@@ -337,7 +337,7 @@
       "artist": {
         "@id": "https://angeliqueheduin.fr/#artist"
       },
-      "offers": { "@type": "Offer", "priceCurrency": "EUR", "price": "180", "availability": "https://schema.org/InStock" }
+      "offers": { "@type": "Offer", "availability": "https://schema.org/SoldOut" }
     },
     {
       "@context": "https://schema.org",
@@ -808,20 +808,21 @@
           <span class="dims-text" id="p-dims">—</span>
         </div>
 
-        <div class="artwork-avail">
+        <div class="artwork-avail is-unavailable">
           <div class="avail-dot"></div>
           <span class="avail-text">Disponible</span>
         </div>
 
         <div class="panel-bottom">
-          <div class="price-row">
-            <span class="price-value"    id="p-price">—</span>
+          <div class="price-row is-unavailable">
+            <span class="price-value"    id="p-price"></span>
             <span class="price-currency">€</span>
             <span class="price-tax">TTC</span>
+            <span class="unavailable-badge">Plus disponible</span>
           </div>
 
           <div class="btn-row">
-            <button type="button" class="btn-acquerir" id="btnacq" aria-label="Acquérir l'œuvre — aller au formulaire de contact">
+            <button type="button" class="btn-acquerir" id="btnacq" hidden aria-label="Acquérir l'œuvre — aller au formulaire de contact">
               <span class="btn-label">Acquérir l'œuvre</span>
             </button>
 
@@ -1143,6 +1144,6 @@
     </div>
   </div>
 
-  <script src="js/main.js?v=20261015" defer></script>
+  <script src="js/main.js?v=20261102" defer></script>
 </body>
 </html>

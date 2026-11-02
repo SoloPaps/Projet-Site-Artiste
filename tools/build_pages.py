@@ -293,24 +293,38 @@ EXISTING = {
 for w in WORKS:
     EXISTING[w["slug"]] = (w["title"], w["file"] + ".jpg", w["slug"] + ".html")
 
-# Prix affichés sur la fiche et dans « Vous aimerez aussi »
+# Prix affichés sur la fiche et dans « Vous aimerez aussi ».
+# Les œuvres vendues n'y figurent pas : aucun montant ne doit rester dans les données.
 PRICES = {
-  "souvenirs-de-blonville": "150 €",
   "lane-de-b100-2025": "470 €",
-  "raconte-moi-une-histoire": "240 €",
-  "le-guetteur-silencieux-2024": "240 €",
-  "klimt-juin-2023": "240 €",
   "le-flamboyant-juin-2023": "180 €",
   "le-cheval-soleil-2026": "1350 €",
   "taureau-feria-2026": "1500 €",
   "deux-voiles-2026": "150 €",
-  "le-cerf-des-mille-signes-2025": "180 €",
   "flamenco-2025": "230 €",
   "lesprit-du-fauve-2026": "240 €",
   "les-quatre-verres-2026": "180 €",
   "le-rose-de-bessan-2026": "230 €",
   "la-barque-catalane-2026": "170 €",
 }
+
+# available: false — même liste que js/main.js (slug sans dossier ni extension)
+UNAVAILABLE = {
+  "souvenirs-de-blonville",
+  "raconte-moi-une-histoire",
+  "le-guetteur-silencieux-2024",
+  "klimt-juin-2023",
+  "le-cerf-des-mille-signes-2025",
+}
+SOLD_LABEL = "Plus disponible"
+
+def is_sold(slug):
+    return slug in UNAVAILABLE
+
+def related_status(slug):
+    if is_sold(slug):
+        return f'<span class="unavailable-badge">{esc(SOLD_LABEL)}</span>'
+    return f'<span class="related-card-price">{esc(PRICES.get(slug, "Prix sur demande"))}</span>'
 
 def dim_txt(w):
     a, b = w["dims"]; return f"{a} × {b} cm"
@@ -325,9 +339,15 @@ def render(w):
     hw = 800
     hh = round(hw * ih / iw)
     title_full = w["title"]
-    price_label = PRICES.get(slug)
+    sold = is_sold(slug)
+    price_label = None if sold else PRICES.get(slug)
     price_num = "".join(ch for ch in price_label if ch.isdigit()) if price_label else ""
-    price_phrase = f"{price_num} €" if price_num else "Prix sur demande"
+    if sold:
+        price_phrase = SOLD_LABEL
+    elif price_num:
+        price_phrase = f"{price_num} €"
+    else:
+        price_phrase = "Prix sur demande"
     # META
     page_title = f"{title_full} — Angélique Héduin · {w['year']}"
     meta_desc = (f"« {title_full} » — {w['short']} {dim_txt(w)}, {w['year']}. "
@@ -348,7 +368,19 @@ def render(w):
       "artist": {"@type":"Person","@id":BASE+"/#artist","name":"Angélique Héduin","url":BASE+"/"},
       "isPartOf": {"@type":"Collection","name":f"Collection {w['year']}"}
     }
-    if price_num:
+    if sold:
+        ld["offers"] = {
+          "@type": "Offer",
+          "url": url,
+          "availability": "https://schema.org/SoldOut",
+        }
+        price_html = (
+            '<div class="oeuvre-price-row is-unavailable">\n'
+            f'        <span class="unavailable-badge">{esc(SOLD_LABEL)}</span>\n'
+            '      </div>'
+        )
+        acq_html = ""
+    elif price_num:
         ld["offers"] = {
           "@type": "Offer",
           "url": url,
@@ -359,7 +391,6 @@ def render(w):
           "itemCondition": "https://schema.org/NewCondition",
           "seller": {"@id": BASE + "/#atelier"},
         }
-    if price_num:
         price_html = (
             '<div class="oeuvre-price-row" itemprop="offers" itemscope itemtype="https://schema.org/Offer">\n'
             f'        <span class="oeuvre-price" itemprop="price" content="{esc(price_num)}">{esc(price_num)}</span>\n'
@@ -368,14 +399,17 @@ def render(w):
             '        <meta itemprop="availability" content="https://schema.org/InStock">\n'
             '      </div>'
         )
-        acq_label = "Acquérir cette œuvre"
+        acq_html = '<a href="../index.html#contact-form-card" class="btn-acq">Acquérir cette œuvre</a>\n        '
     else:
         price_html = (
             '<div class="oeuvre-price-row">\n'
             '        <span class="oeuvre-price on-request">Prix sur demande</span>\n'
             '      </div>'
         )
-        acq_label = "Demander le prix"
+        acq_html = '<a href="../index.html#contact-form-card" class="btn-acq">Demander le prix</a>\n        '
+    avail_html = "" if sold else '<div class="oeuvre-avail"><div class="avail-dot" aria-hidden="true"></div>Disponible</div>\n      '
+    # Le pastille « Disponible » sur l'image contredit une œuvre vendue.
+    img_badge = "" if (sold and w.get("badge") == "Disponible") else f'<span class="oeuvre-img-badge">{esc(w["badge"])}</span>'
     bc = {
       "@context":"https://schema.org","@type":"BreadcrumbList",
       "itemListElement":[
@@ -398,7 +432,7 @@ def render(w):
         t, im, pg = EXISTING[r]
         cards.append(f'''      <a href="{pg}" class="related-card">
         <div class="related-card-img"><picture><source type="image/webp" srcset="../images/{im.rsplit('.',1)[0]}-400.webp 400w, ../images/{im.rsplit('.',1)[0]}-800.webp 800w" sizes="400px"><img src="../images/{im}" alt="{esc(t)}" width="400" height="400" loading="lazy" decoding="async"></picture></div>
-        <span class="related-card-title">{esc(t)}</span><span class="related-card-price">{PRICES.get(r, "Prix sur demande")}</span>
+        <span class="related-card-title">{esc(t)}</span>{related_status(r)}
       </a>''')
     cards_html = "\n".join(cards)
 
@@ -406,7 +440,7 @@ def render(w):
 <html lang="fr">
 <head>
   <script src="../js/theme-init.js?v=20261015"></script>
-  <link rel="stylesheet" href="../css/theme.css?v=20261015">
+  <link rel="stylesheet" href="../css/theme.css?v=20261102">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -477,7 +511,9 @@ def render(w):
       <a href="../index.html#gallery-section" class="nav-link">Collection</a>
       <a href="../index.html#contact-section" class="nav-link">Contact</a>
     </div>
-    <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Thème : Auto. Passer à Clair."><span class="theme-toggle-label">Auto</span></button>
+    <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Thème : Auto. Passer à Clair.">
+      <span class="theme-toggle-label">Auto</span>
+    </button>
     <button type="button" class="hamburger" id="hamburger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="nav-drawer">
       <span></span><span></span><span></span>
     </button>
@@ -499,7 +535,7 @@ def render(w):
              alt="{esc(w['alt'])}"
              width="{hw}" height="{hh}" itemprop="image" loading="eager" decoding="async">
         </picture>
-        <span class="oeuvre-img-badge">{esc(w['badge'])}</span>
+        {img_badge}
       </div>
     </div>
     <div class="oeuvre-info-col">
@@ -525,11 +561,9 @@ def render(w):
         <div class="spec-item"><span class="spec-label">Édition</span><span class="spec-val">Œuvre unique originale</span></div>
         <div class="spec-item"><span class="spec-label">Certificat</span><span class="spec-val">Certificat d'authenticité inclus</span></div>
       </div>
-      <div class="oeuvre-avail"><div class="avail-dot" aria-hidden="true"></div>Disponible</div>
-      {price_html}
+      {avail_html}{price_html}
       <div class="oeuvre-btns">
-        <a href="../index.html#contact-form-card" class="btn-acq">{acq_label}</a>
-        <a href="../index.html#contact-form-card" class="btn-contact">Poser une question</a>
+        {acq_html}<a href="../index.html#contact-form-card" class="btn-contact">Poser une question</a>
       </div>
       <p class="oeuvre-note">Emballage soigné · Certificat d'authenticité inclus<br>
         Commandes personnalisées disponibles — <a href="../index.html#contact-form-card" class="link-soft">contactez-moi</a></p>

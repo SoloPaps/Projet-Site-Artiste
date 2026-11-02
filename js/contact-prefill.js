@@ -13,6 +13,7 @@
   if (!titre) return;
 
   var surDemande = !!document.querySelector(".oeuvre-price.on-request");
+  var vendue = !!document.querySelector(".oeuvre-price-row .unavailable-badge");
 
   function memoriser(sujet, message) {
     try {
@@ -23,7 +24,7 @@
 
   // Chaque bouton porte son propre sujet, distinct des deux autres.
   var btnAcq = document.querySelector("a.btn-acq");
-  if (btnAcq) {
+  if (btnAcq && !vendue) {
     btnAcq.addEventListener("click", function () {
       if (surDemande) {
         memoriser("Demande de prix",
